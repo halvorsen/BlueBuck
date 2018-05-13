@@ -8,11 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		06BB079820A7CF7500895113 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB079720A7CF7500895113 /* AppDelegate.swift */; };
-		06BB079A20A7CF7500895113 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 06BB079920A7CF7500895113 /* GameScene.sks */; };
-		06BB079C20A7CF7500895113 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 06BB079B20A7CF7500895113 /* Actions.sks */; };
 		06BB079E20A7CF7500895113 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB079D20A7CF7500895113 /* GameScene.swift */; };
 		06BB07A020A7CF7500895113 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB079F20A7CF7500895113 /* GameViewController.swift */; };
-		06BB07A320A7CF7500895113 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06BB07A120A7CF7500895113 /* Main.storyboard */; };
 		06BB07A520A7CF7800895113 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06BB07A420A7CF7800895113 /* Assets.xcassets */; };
 		06BB07A820A7CF7800895113 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06BB07A620A7CF7800895113 /* LaunchScreen.storyboard */; };
 		06BB07B320A7CF7800895113 /* BlueBuckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB07B220A7CF7800895113 /* BlueBuckTests.swift */; };
@@ -39,11 +36,8 @@
 /* Begin PBXFileReference section */
 		06BB079420A7CF7500895113 /* BlueBuck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlueBuck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06BB079720A7CF7500895113 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		06BB079920A7CF7500895113 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		06BB079B20A7CF7500895113 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		06BB079D20A7CF7500895113 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		06BB079F20A7CF7500895113 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		06BB07A220A7CF7500895113 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		06BB07A420A7CF7800895113 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		06BB07A720A7CF7800895113 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		06BB07A920A7CF7800895113 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -104,11 +98,8 @@
 			isa = PBXGroup;
 			children = (
 				06BB079720A7CF7500895113 /* AppDelegate.swift */,
-				06BB079920A7CF7500895113 /* GameScene.sks */,
-				06BB079B20A7CF7500895113 /* Actions.sks */,
 				06BB079D20A7CF7500895113 /* GameScene.swift */,
 				06BB079F20A7CF7500895113 /* GameViewController.swift */,
-				06BB07A120A7CF7500895113 /* Main.storyboard */,
 				06BB07A420A7CF7800895113 /* Assets.xcassets */,
 				06BB07A620A7CF7800895113 /* LaunchScreen.storyboard */,
 				06BB07A920A7CF7800895113 /* Info.plist */,
@@ -238,11 +229,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06BB07A320A7CF7500895113 /* Main.storyboard in Resources */,
-				06BB079A20A7CF7500895113 /* GameScene.sks in Resources */,
 				06BB07A520A7CF7800895113 /* Assets.xcassets in Resources */,
 				06BB07A820A7CF7800895113 /* LaunchScreen.storyboard in Resources */,
-				06BB079C20A7CF7500895113 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,14 +293,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		06BB07A120A7CF7500895113 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				06BB07A220A7CF7500895113 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		06BB07A620A7CF7800895113 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
