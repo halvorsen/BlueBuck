@@ -8,26 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		06BB07D820A7D08C00895113 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB07D720A7D08C00895113 /* AppDelegate.swift */; };
-		06BB07DA20A7D08C00895113 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 06BB07D920A7D08C00895113 /* GameScene.sks */; };
-		06BB07DC20A7D08C00895113 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 06BB07DB20A7D08C00895113 /* Actions.sks */; };
 		06BB07DE20A7D08C00895113 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB07DD20A7D08C00895113 /* GameScene.swift */; };
 		06BB07E020A7D08C00895113 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB07DF20A7D08C00895113 /* GameViewController.swift */; };
-		06BB07E320A7D08C00895113 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06BB07E120A7D08C00895113 /* Main.storyboard */; };
 		06BB07E520A7D08E00895113 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06BB07E420A7D08E00895113 /* Assets.xcassets */; };
 		06BB07E820A7D08E00895113 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06BB07E620A7D08E00895113 /* LaunchScreen.storyboard */; };
+		06BB07F120A7D11E00895113 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06BB07EF20A7D11E00895113 /* Model.xcdatamodeld */; };
+		06BB07F320A7D8C000895113 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB07F220A7D8C000895113 /* GameView.swift */; };
+		06BB07F520A7E73B00895113 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06BB07F420A7E73B00895113 /* Main.storyboard */; };
+		06DFE61620A90D9200633D78 /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DFE61520A90D9200633D78 /* Block.swift */; };
+		06DFE61820A9110600633D78 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DFE61720A9110600633D78 /* Game.swift */; };
+		06DFE61A20A9144700633D78 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DFE61920A9144700633D78 /* Constant.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		06BB07D420A7D08C00895113 /* BlueBuck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlueBuck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06BB07D720A7D08C00895113 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		06BB07D920A7D08C00895113 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		06BB07DB20A7D08C00895113 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		06BB07DD20A7D08C00895113 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		06BB07DF20A7D08C00895113 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		06BB07E220A7D08C00895113 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		06BB07E420A7D08E00895113 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		06BB07E720A7D08E00895113 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		06BB07E920A7D08E00895113 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06BB07F020A7D11E00895113 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		06BB07F220A7D8C000895113 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		06BB07F420A7E73B00895113 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		06DFE61520A90D9200633D78 /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
+		06DFE61720A9110600633D78 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		06DFE61920A9144700633D78 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,14 +67,17 @@
 			isa = PBXGroup;
 			children = (
 				06BB07D720A7D08C00895113 /* AppDelegate.swift */,
-				06BB07D920A7D08C00895113 /* GameScene.sks */,
-				06BB07DB20A7D08C00895113 /* Actions.sks */,
 				06BB07DD20A7D08C00895113 /* GameScene.swift */,
 				06BB07DF20A7D08C00895113 /* GameViewController.swift */,
-				06BB07E120A7D08C00895113 /* Main.storyboard */,
 				06BB07E420A7D08E00895113 /* Assets.xcassets */,
+				06BB07F420A7E73B00895113 /* Main.storyboard */,
 				06BB07E620A7D08E00895113 /* LaunchScreen.storyboard */,
 				06BB07E920A7D08E00895113 /* Info.plist */,
+				06BB07EF20A7D11E00895113 /* Model.xcdatamodeld */,
+				06BB07F220A7D8C000895113 /* GameView.swift */,
+				06DFE61520A90D9200633D78 /* Block.swift */,
+				06DFE61720A9110600633D78 /* Game.swift */,
+				06DFE61920A9144700633D78 /* Constant.swift */,
 			);
 			path = BlueBuck;
 			sourceTree = "<group>";
@@ -131,11 +140,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06BB07E320A7D08C00895113 /* Main.storyboard in Resources */,
-				06BB07DA20A7D08C00895113 /* GameScene.sks in Resources */,
+				06BB07F520A7E73B00895113 /* Main.storyboard in Resources */,
 				06BB07E520A7D08E00895113 /* Assets.xcassets in Resources */,
 				06BB07E820A7D08E00895113 /* LaunchScreen.storyboard in Resources */,
-				06BB07DC20A7D08C00895113 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,21 +155,18 @@
 			files = (
 				06BB07DE20A7D08C00895113 /* GameScene.swift in Sources */,
 				06BB07E020A7D08C00895113 /* GameViewController.swift in Sources */,
+				06DFE61820A9110600633D78 /* Game.swift in Sources */,
+				06DFE61A20A9144700633D78 /* Constant.swift in Sources */,
 				06BB07D820A7D08C00895113 /* AppDelegate.swift in Sources */,
+				06DFE61620A90D9200633D78 /* Block.swift in Sources */,
+				06BB07F120A7D11E00895113 /* Model.xcdatamodeld in Sources */,
+				06BB07F320A7D8C000895113 /* GameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		06BB07E120A7D08C00895113 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				06BB07E220A7D08C00895113 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		06BB07E620A7D08E00895113 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -302,7 +306,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Halvorsen.BlueBuck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -320,7 +324,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Halvorsen.BlueBuck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -346,6 +350,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		06BB07EF20A7D11E00895113 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				06BB07F020A7D11E00895113 /* Model.xcdatamodel */,
+			);
+			currentVersion = 06BB07F020A7D11E00895113 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 06BB07CC20A7D08C00895113 /* Project object */;
 }

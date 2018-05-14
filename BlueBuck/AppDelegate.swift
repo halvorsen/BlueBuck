@@ -16,6 +16,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
+        if UserDefaults.standard.bool(forKey: "blueBuckLaunchedBefore") { // Subsequent Launches
+         
+            let viewController = GameViewController()
+            self.window?.rootViewController = viewController
+            self.window?.makeKeyAndVisible()
+            
+        } else { // First Launch
+            
+            UserDefaults.standard.set(true, forKey: "blueBuckLaunchedBefore")
+            let viewController = GameViewController()
+            self.window?.rootViewController = viewController
+            self.window?.makeKeyAndVisible()
+            
+        }
+        
         return true
     }
 
