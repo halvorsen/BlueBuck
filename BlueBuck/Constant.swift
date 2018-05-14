@@ -13,6 +13,7 @@ internal struct Color {
     internal static let blue = UIColor(red: 76/255, green: 193/255, blue: 252/255, alpha: 1.0)
     internal static let pink = UIColor(red: 255/255, green: 76/255, blue: 188/255, alpha: 1.0)
     internal static let yellow = UIColor(red: 255/255, green: 237/255, blue: 102/255, alpha: 1.0)
+    internal static let green = UIColor(red: 140/255, green: 224/255, blue: 135/255, alpha: 1.0)
     internal static let white = UIColor(red: 1, green: 1, blue: 1, alpha: 1.0)
     
     internal static let black = UIColor(red: 59/255, green: 59/255, blue: 59/255, alpha: 1.0)

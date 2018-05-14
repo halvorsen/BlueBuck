@@ -21,14 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if UserDefaults.standard.bool(forKey: "blueBuckLaunchedBefore") { // Subsequent Launches
          
-            let viewController = GameViewController()
+            let viewController = LevelsViewController()
             self.window?.rootViewController = viewController
             self.window?.makeKeyAndVisible()
             
         } else { // First Launch
             
             UserDefaults.standard.set(true, forKey: "blueBuckLaunchedBefore")
-            let viewController = GameViewController()
+            let viewController = LevelsViewController()
             self.window?.rootViewController = viewController
             self.window?.makeKeyAndVisible()
             

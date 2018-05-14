@@ -18,6 +18,8 @@
 		06DFE61620A90D9200633D78 /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DFE61520A90D9200633D78 /* Block.swift */; };
 		06DFE61820A9110600633D78 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DFE61720A9110600633D78 /* Game.swift */; };
 		06DFE61A20A9144700633D78 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DFE61920A9144700633D78 /* Constant.swift */; };
+		06DFE61C20A9239900633D78 /* LevelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DFE61B20A9239900633D78 /* LevelsViewController.swift */; };
+		06DFE61E20A9283700633D78 /* Levels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DFE61D20A9283700633D78 /* Levels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		06DFE61520A90D9200633D78 /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 		06DFE61720A9110600633D78 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		06DFE61920A9144700633D78 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		06DFE61B20A9239900633D78 /* LevelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelsViewController.swift; sourceTree = "<group>"; };
+		06DFE61D20A9283700633D78 /* Levels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Levels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,8 @@
 				06DFE61520A90D9200633D78 /* Block.swift */,
 				06DFE61720A9110600633D78 /* Game.swift */,
 				06DFE61920A9144700633D78 /* Constant.swift */,
+				06DFE61B20A9239900633D78 /* LevelsViewController.swift */,
+				06DFE61D20A9283700633D78 /* Levels.swift */,
 			);
 			path = BlueBuck;
 			sourceTree = "<group>";
@@ -153,6 +159,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06DFE61E20A9283700633D78 /* Levels.swift in Sources */,
+				06DFE61C20A9239900633D78 /* LevelsViewController.swift in Sources */,
 				06BB07DE20A7D08C00895113 /* GameScene.swift in Sources */,
 				06BB07E020A7D08C00895113 /* GameViewController.swift in Sources */,
 				06DFE61820A9110600633D78 /* Game.swift in Sources */,

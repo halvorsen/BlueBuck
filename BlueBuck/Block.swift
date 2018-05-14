@@ -7,7 +7,7 @@
 //
 
 internal enum BlockType {
-    case blue, pink, yellow, white
+    case blue, pink, yellow, white, green
 }
 
 internal enum DeviceDirection {

@@ -12,16 +12,19 @@ import GameplayKit
 
 class GameViewController: UIViewController {
     
-    var scene = GameScene()
-    var gameView = GameView()
+    private var scene = GameScene()
+    private var gameView = GameView()
+    internal var game: Game?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = Color.black
         gameView.frame = view.bounds
         view.addSubview(gameView)
         scene.size = view.bounds.size
         scene.scaleMode = .aspectFill
         scene.backgroundColor = .black
+        scene.game = game
         gameView.presentScene(scene)
         
     }

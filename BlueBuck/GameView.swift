@@ -14,6 +14,7 @@ internal final class GameView: SKView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = Color.black
         ignoresSiblingOrder = true
         showsFPS = true
         showsNodeCount = true
