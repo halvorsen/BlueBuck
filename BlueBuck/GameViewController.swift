@@ -10,7 +10,7 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, GameSceneDelegate {
     
     private var scene = GameScene()
     private var gameView = GameView()
@@ -25,8 +25,13 @@ class GameViewController: UIViewController {
         scene.scaleMode = .aspectFill
         scene.backgroundColor = .black
         scene.game = game
+        scene.gameDelegate = self
         gameView.presentScene(scene)
         
+    }
+    
+    internal func showButtons() {
+        print("showButtons")
     }
     
     override var shouldAutorotate: Bool {
