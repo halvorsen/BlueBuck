@@ -15,7 +15,7 @@ class LevelsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -24,15 +24,15 @@ class LevelsViewController: UIViewController {
         viewController.game = game
         present(viewController, animated: true)
     }
-
+    
     private func loadGame(_ level: Int) {
         var blocks: [Block] = []
         for i in 0..<10 {
             for j in 0..<5 {
                 let index = 5*i + j
                 if let color = levels.blockTypeArray[level],
-                      color.count > index {
-                let newBlock = Block.init(location: (row: i + 1, column: j + 1), type: color[index])
+                    color.count > index {
+                    let newBlock = Block.init(location: (row: i + 1, column: j + 1), type: color[index])
                     blocks.append(newBlock)
                 }
             }
@@ -69,5 +69,5 @@ class LevelsViewController: UIViewController {
             print("],")
         }
     }
-
+    
 }

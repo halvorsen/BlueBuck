@@ -48,7 +48,6 @@ internal final class Game {
                     blocks[index].shapeNode.strokeColor = color
                 }
                 blocks[index].shapeNode.lineJoin = .miter
-
                 blocks[index].shapeNode.position = newLocation
                 rowBlocks.append(blocks[index])
             }
@@ -56,12 +55,31 @@ internal final class Game {
             locations.append(newRow)
         }
         
+        for k in 50..<55 {
+            let newLocation = CGPoint(x: 56.5, y: 476.5 + (CGFloat(k) - 50)*21)
+            blocks[k].shapeNode = SKShapeNode(rectOf: CGSize(width: 14, height: 14), cornerRadius: 0)
+            blocks[k].shapeNode.lineWidth = 3
+            if originalAllBlocks.count > k,
+                let color = color[blocks[k].blockType] {
+                blocks[k].shapeNode.strokeColor = color
+            }
+            blocks[k].shapeNode.lineJoin = .miter
+            blocks[k].shapeNode.position = newLocation
+        }
+        
     }
     
-    internal func currentQueueIndexAndIncrement() -> Int {
+    internal func currentQueueIndex() -> Int {
         let index = queueIndex%100
-        queueIndex += 1
         return index
+    }
+    
+    internal func currentUpcomingQueueIndexes() -> (first: Int, second: Int, third: Int, fourth: Int, fifth: Int) {
+        return (queueIndex%100, (queueIndex + 1)%100, (queueIndex + 2)%100, (queueIndex + 3)%100, (queueIndex + 4)%100)
+    }
+    
+    internal func incrementQueue(by amount: Int) {
+        queueIndex += amount
     }
     
     internal func tap(block: Block) {

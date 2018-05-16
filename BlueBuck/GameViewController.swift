@@ -27,7 +27,6 @@ class GameViewController: UIViewController, GameSceneDelegate {
         scene.game = game
         scene.gameDelegate = self
         gameView.presentScene(scene)
-        
     }
     
     internal func showButtons() {

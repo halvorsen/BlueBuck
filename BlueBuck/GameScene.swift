@@ -22,15 +22,19 @@ class GameScene: SKScene {
     internal var game : Game?
     
     internal var squares : [[Block]] = [[]]
-
+    
     override func didMove(to view: SKView) {
         backgroundColor = Color.black
         guard let game = game else { return }
         squares = game.currentBoard
+        let (first, second, third, fourth, fifth) = game.currentUpcomingQueueIndexes()
         for row in squares {
-            for square in row {
+            for square in row  {
                 addChild(square.shapeNode)
             }
+        }
+        for square in [game.blockQueue[first], game.blockQueue[second], game.blockQueue[third], game.blockQueue[fourth], game.blockQueue[fifth]] {
+            addChild(square.shapeNode)
         }
         tap.addTarget(self, action: #selector(tapFunc(_:)))
         view.addGestureRecognizer(tap)
@@ -54,17 +58,21 @@ class GameScene: SKScene {
     
     private func tappedOn(_ block: Block) {
         guard let game = game else { return }
-        let queueIndex = game.currentQueueIndexAndIncrement()
+        let queueIndex = game.currentQueueIndex()
+        game.incrementQueue(by: 1)
         let replacementBlock = game.blockQueue[queueIndex]
-        replacementBlock.location = block.location
-        replacementBlock.shapeNode.position = block.shapeNode.position
-        replacementBlock.shapeNode.lineWidth = 5
+
         if let color = color[replacementBlock.blockType] {
-        replacementBlock.shapeNode.strokeColor = color
+            replacementBlock.shapeNode.strokeColor = color
         }
+
         replacementBlock.shapeNode.lineJoin = .miter
-        addChild(replacementBlock.shapeNode)
-       
+        replacementBlock.shapeNode.path = Path.big
+        replacementBlock.location = block.location
+        replacementBlock.shapeNode.lineWidth = 5
+        let move = SKAction.move(to: block.shapeNode.position, duration: 1.0)
+        replacementBlock.shapeNode.run(move)
+        
         block.shapeNode.removeFromParent()
     }
     
