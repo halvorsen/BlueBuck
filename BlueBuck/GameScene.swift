@@ -18,7 +18,7 @@ class GameScene: SKScene {
     internal weak var gameDelegate: GameSceneDelegate?
     
     let tap = UITapGestureRecognizer()
-    
+    var orientation: DeviceDirection = .up
     internal var game : Game?
     
     internal var squares : [[Block]] = [[]]
@@ -58,26 +58,70 @@ class GameScene: SKScene {
     
     private func tappedOn(_ block: Block) {
         guard let game = game else { return }
-        let queueIndex = game.currentQueueIndex()
-        game.incrementQueue(by: 1)
-        let replacementBlock = game.blockQueue[queueIndex]
-
-        if let color = color[replacementBlock.blockType] {
-            replacementBlock.shapeNode.strokeColor = color
-        }
-
-        replacementBlock.shapeNode.lineJoin = .miter
-        replacementBlock.shapeNode.path = Path.big
-        replacementBlock.location = block.location
-        replacementBlock.shapeNode.lineWidth = 5
-        let move = SKAction.move(to: block.shapeNode.position, duration: 1.0)
-        replacementBlock.shapeNode.run(move)
-        
+//        let queueIndex = game.currentQueueIndex()
+//        game.incrementQueue(by: 1)
+//        let replacementBlock = game.blockQueue[queueIndex]
+//
+//        if let color = color[replacementBlock.blockType] {
+//            replacementBlock.shapeNode.strokeColor = color
+//        }
+//
+//        replacementBlock.shapeNode.lineJoin = .miter
+//        replacementBlock.shapeNode.path = Path.big
+//        replacementBlock.location = block.location
+//        replacementBlock.shapeNode.lineWidth = 5
+//        let move = SKAction.move(to: block.shapeNode.position, duration: 1.0)
+//        replacementBlock.shapeNode.run(move)
+      
         block.shapeNode.removeFromParent()
+        moveBlocksIntoOpenings([block])
     }
     
     private func didNotTapOnBlock() {
         gameDelegate?.showButtons()
     }
+    
+    private func moveBlocksIntoOpenings(_ removedBlocks: [Block]) {
+        
+        var indexes: [(row: Int, column: Int)] = []
+        for block in removedBlocks {
+            indexes.append(block.location)
+            block.location = (0,0)
+        }
+        
+        switch orientation {
+        case .up: dropWithOrientationUp(indexes)
+        case .upsideDown: dropWithOrientationUpSideDown(indexes)
+        case .left: dropWithOrientationLeft(indexes)
+        case .right: dropWithOrientationRight(indexes)
+        }
+        
+    }
+    
+    private func dropWithOrientationUp(_ indexes: [(row: Int, column: Int)]) {
+        guard let game = game else { return }
+        let drop = SKAction.moveBy(x: 0, y: -48, duration: 0.5)
+        for row in game.currentBoard {
+            for block in row {
+                for index in indexes {
+                    if block.location.column == index.column && block.location.row < index.row {
+                        block.location.row += 1
+                        block.shapeNode.run(drop)
+                    }
+                    
+                }
+            }
+        }
+    }
+    private func dropWithOrientationUpSideDown(_ indexes: [(row: Int, column: Int)]) {
+        
+    }
+    private func dropWithOrientationLeft(_ indexes: [(row: Int, column: Int)]) {
+        
+    }
+    private func dropWithOrientationRight(_ indexes: [(row: Int, column: Int)]) {
+        
+    }
+    
     
 }
