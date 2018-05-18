@@ -10,6 +10,7 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
+
 class GameViewController: UIViewController, GameSceneDelegate {
     
     private var scene = GameScene()
@@ -17,6 +18,7 @@ class GameViewController: UIViewController, GameSceneDelegate {
     internal var game: Game?
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         view.backgroundColor = Color.black
         gameView.frame = view.bounds
@@ -27,6 +29,7 @@ class GameViewController: UIViewController, GameSceneDelegate {
         scene.game = game
         scene.gameDelegate = self
         gameView.presentScene(scene)
+        
     }
     
     internal func showButtons() {
@@ -40,4 +43,6 @@ class GameViewController: UIViewController, GameSceneDelegate {
     override var prefersStatusBarHidden: Bool {
         return true
     }
+    
 }
+

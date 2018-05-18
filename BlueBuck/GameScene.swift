@@ -8,6 +8,7 @@
 
 import SpriteKit
 import GameplayKit
+import CoreMotion
 
 internal protocol GameSceneDelegate: class {
     func showButtons()
@@ -17,6 +18,7 @@ class GameScene: SKScene {
     
     internal weak var gameDelegate: GameSceneDelegate?
     
+    let motionManager = CMMotionManager()
     let tap = UITapGestureRecognizer()
     var orientation: DeviceDirection = .up
     internal var game : Game?
@@ -24,6 +26,33 @@ class GameScene: SKScene {
     internal var squares : [[Block]] = [[]]
     
     override func didMove(to view: SKView) {
+        
+        if motionManager.isDeviceMotionAvailable {
+            motionManager.deviceMotionUpdateInterval = 0.2;
+            motionManager.startDeviceMotionUpdates()
+            
+            motionManager.gyroUpdateInterval = 0.5
+            guard let currentQueue = OperationQueue.current else { return }
+            motionManager.startDeviceMotionUpdates(to: currentQueue) { [weak self] (motion, error) in
+                if let attitude = motion?.attitude {
+                    
+                    if -0.785...0.785 ~= attitude.yaw {
+                        self?.orientation = .up
+                    }
+                    else if 0.785...2.355 ~= attitude.yaw {
+                        self?.orientation = .left
+                    }
+                    else if -2.355...(-0.785) ~= attitude.yaw {
+                        self?.orientation = .right
+                    }
+                    else {
+                        self?.orientation = .upsideDown
+                    }
+             
+                }
+            }
+        }
+        
         backgroundColor = Color.black
         guard let game = game else { return }
         squares = game.currentBoard
@@ -114,13 +143,49 @@ class GameScene: SKScene {
         }
     }
     private func dropWithOrientationUpSideDown(_ indexes: [(row: Int, column: Int)]) {
-        
+        guard let game = game else { return }
+        let drop = SKAction.moveBy(x: 0, y: 48, duration: 0.5)
+        for row in game.currentBoard {
+            for block in row {
+                for index in indexes {
+                    if block.location.column == index.column && block.location.row > index.row {
+                        block.location.row -= 1
+                        block.shapeNode.run(drop)
+                    }
+                    
+                }
+            }
+        }
     }
     private func dropWithOrientationLeft(_ indexes: [(row: Int, column: Int)]) {
-        
+        guard let game = game else { return }
+        let drop = SKAction.moveBy(x: -48, y: 0, duration: 0.5)
+        for row in game.currentBoard {
+            for block in row {
+                for index in indexes {
+                    if block.location.row == index.row && block.location.column > index.column {
+                        block.location.column -= 1
+                        block.shapeNode.run(drop)
+                    }
+                    
+                }
+            }
+        }
     }
     private func dropWithOrientationRight(_ indexes: [(row: Int, column: Int)]) {
-        
+        guard let game = game else { return }
+        let drop = SKAction.moveBy(x: 48, y: 0, duration: 0.5)
+        for row in game.currentBoard {
+            for block in row {
+                for index in indexes {
+                    if block.location.row == index.row && block.location.column < index.column {
+                        block.location.column += 1
+                        block.shapeNode.run(drop)
+                    }
+                    
+                }
+            }
+        }
     }
     
     
