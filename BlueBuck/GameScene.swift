@@ -17,7 +17,8 @@ internal protocol GameSceneDelegate: class {
 class GameScene: SKScene {
     
     internal weak var gameDelegate: GameSceneDelegate?
-    
+    private var unlocked = true
+    private var dropTime: Double = 0.5
     let motionManager = CMMotionManager()
     let tap = UITapGestureRecognizer()
     var orientation: DeviceDirection = .up
@@ -87,23 +88,41 @@ class GameScene: SKScene {
     
     private func tappedOn(_ block: Block) {
         guard let game = game else { return }
-//        let queueIndex = game.currentQueueIndex()
-//        game.incrementQueue(by: 1)
-//        let replacementBlock = game.blockQueue[queueIndex]
-//
-//        if let color = color[replacementBlock.blockType] {
-//            replacementBlock.shapeNode.strokeColor = color
-//        }
-//
-//        replacementBlock.shapeNode.lineJoin = .miter
-//        replacementBlock.shapeNode.path = Path.big
-//        replacementBlock.location = block.location
-//        replacementBlock.shapeNode.lineWidth = 5
-//        let move = SKAction.move(to: block.shapeNode.position, duration: 1.0)
-//        replacementBlock.shapeNode.run(move)
+        guard unlocked else { return }
+        unlocked = false
+        let queueIndex = game.currentQueueIndex()
+        game.incrementQueue(by: 1)
+        let replacementBlock = game.blockQueue[queueIndex]
+
+        replacementBlock.shapeNode.lineJoin = .miter
+        replacementBlock.shapeNode.path = Path.big
+        replacementBlock.shapeNode.lineWidth = 5
+        
+        var newPosition = CGPoint()
+        switch orientation {
+        case .up:
+            replacementBlock.location = (row: 0, column: block.location.column)
+            newPosition = Game.originLocation[0][block.location.column - 1]
+        case .upsideDown:
+            replacementBlock.location = (row: 11, column: block.location.column)
+            newPosition = Game.originLocation[9][block.location.column - 1]
+        case .left:
+            replacementBlock.location = (row: block.location.row, column: 6)
+            newPosition = Game.originLocation[block.location.row - 1][4]
+        case .right:
+            replacementBlock.location = (row: block.location.row, column: 0)
+            newPosition = Game.originLocation[block.location.row - 1][0]
+        }
+        
+        let moveReplacementBlock = SKAction.move(to: newPosition, duration: 0.5)
+        replacementBlock.location = block.location
+        replacementBlock.shapeNode.run(moveReplacementBlock)
       
         block.shapeNode.removeFromParent()
         moveBlocksIntoOpenings([block])
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + dropTime*2) {
+            self.unlocked = true
+        }
     }
     
     private func didNotTapOnBlock() {
@@ -129,7 +148,7 @@ class GameScene: SKScene {
     
     private func dropWithOrientationUp(_ indexes: [(row: Int, column: Int)]) {
         guard let game = game else { return }
-        let drop = SKAction.moveBy(x: 0, y: -48, duration: 0.5)
+        let drop = SKAction.moveBy(x: 0, y: -48, duration: dropTime)
         for row in game.currentBoard {
             for block in row {
                 for index in indexes {
@@ -144,7 +163,7 @@ class GameScene: SKScene {
     }
     private func dropWithOrientationUpSideDown(_ indexes: [(row: Int, column: Int)]) {
         guard let game = game else { return }
-        let drop = SKAction.moveBy(x: 0, y: 48, duration: 0.5)
+        let drop = SKAction.moveBy(x: 0, y: 48, duration: dropTime)
         for row in game.currentBoard {
             for block in row {
                 for index in indexes {
@@ -159,7 +178,7 @@ class GameScene: SKScene {
     }
     private func dropWithOrientationLeft(_ indexes: [(row: Int, column: Int)]) {
         guard let game = game else { return }
-        let drop = SKAction.moveBy(x: -48, y: 0, duration: 0.5)
+        let drop = SKAction.moveBy(x: -48, y: 0, duration: dropTime)
         for row in game.currentBoard {
             for block in row {
                 for index in indexes {
@@ -174,7 +193,7 @@ class GameScene: SKScene {
     }
     private func dropWithOrientationRight(_ indexes: [(row: Int, column: Int)]) {
         guard let game = game else { return }
-        let drop = SKAction.moveBy(x: 48, y: 0, duration: 0.5)
+        let drop = SKAction.moveBy(x: 48, y: 0, duration: dropTime)
         for row in game.currentBoard {
             for block in row {
                 for index in indexes {
@@ -187,6 +206,4 @@ class GameScene: SKScene {
             }
         }
     }
-    
-    
 }

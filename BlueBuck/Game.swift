@@ -34,12 +34,14 @@ internal final class Game {
     init(blocks: [Block]) {
         self.originalAllBlocks = blocks
         self.blockQueue = blocks
-        
+        print("[")
         for i in 0..<10 {
             var newRow : [CGPoint] = []
             var rowBlocks : [Block] = []
+            print("[")
             for j in 0..<5 {
                 let newLocation = CGPoint(x: 91.5 + 48*CGFloat(j), y: 549 - 48*CGFloat(i))
+                print("CGPoint(x: \(91.5 - 16.5 + 48*CGFloat(j)), y: \(549 - 16.5 - 48*CGFloat(i))),")
                 newRow.append(newLocation)
                 let index = 5*i + j
                 blocks[index].shapeNode.lineWidth = 5
@@ -51,10 +53,11 @@ internal final class Game {
                 blocks[index].shapeNode.position = newLocation
                 rowBlocks.append(blocks[index])
             }
+            print("],")
             currentBoard.append(rowBlocks)
             locations.append(newRow)
         }
-        
+        print("]")
         for k in 50..<55 {
             let newLocation = CGPoint(x: 56.5, y: 476.5 + (CGFloat(k) - 50)*21)
             blocks[k].shapeNode = SKShapeNode(rectOf: CGSize(width: 14, height: 14), cornerRadius: 0)
@@ -94,6 +97,150 @@ internal final class Game {
         
     }
     
+    static let centerLocation: [[CGPoint]] = [
+        [
+            CGPoint(x: 91.5, y: 549.0),
+            CGPoint(x: 139.5, y: 549.0),
+            CGPoint(x: 187.5, y: 549.0),
+            CGPoint(x: 235.5, y: 549.0),
+            CGPoint(x: 283.5, y: 549.0),
+            ],
+        [
+            CGPoint(x: 91.5, y: 501.0),
+            CGPoint(x: 139.5, y: 501.0),
+            CGPoint(x: 187.5, y: 501.0),
+            CGPoint(x: 235.5, y: 501.0),
+            CGPoint(x: 283.5, y: 501.0),
+            ],
+        [
+            CGPoint(x: 91.5, y: 453.0),
+            CGPoint(x: 139.5, y: 453.0),
+            CGPoint(x: 187.5, y: 453.0),
+            CGPoint(x: 235.5, y: 453.0),
+            CGPoint(x: 283.5, y: 453.0),
+            ],
+        [
+            CGPoint(x: 91.5, y: 405.0),
+            CGPoint(x: 139.5, y: 405.0),
+            CGPoint(x: 187.5, y: 405.0),
+            CGPoint(x: 235.5, y: 405.0),
+            CGPoint(x: 283.5, y: 405.0),
+            ],
+        [
+            CGPoint(x: 91.5, y: 357.0),
+            CGPoint(x: 139.5, y: 357.0),
+            CGPoint(x: 187.5, y: 357.0),
+            CGPoint(x: 235.5, y: 357.0),
+            CGPoint(x: 283.5, y: 357.0),
+            ],
+        [
+            CGPoint(x: 91.5, y: 309.0),
+            CGPoint(x: 139.5, y: 309.0),
+            CGPoint(x: 187.5, y: 309.0),
+            CGPoint(x: 235.5, y: 309.0),
+            CGPoint(x: 283.5, y: 309.0),
+            ],
+        [
+            CGPoint(x: 91.5, y: 261.0),
+            CGPoint(x: 139.5, y: 261.0),
+            CGPoint(x: 187.5, y: 261.0),
+            CGPoint(x: 235.5, y: 261.0),
+            CGPoint(x: 283.5, y: 261.0),
+            ],
+        [
+            CGPoint(x: 91.5, y: 213.0),
+            CGPoint(x: 139.5, y: 213.0),
+            CGPoint(x: 187.5, y: 213.0),
+            CGPoint(x: 235.5, y: 213.0),
+            CGPoint(x: 283.5, y: 213.0),
+            ],
+        [
+            CGPoint(x: 91.5, y: 165.0),
+            CGPoint(x: 139.5, y: 165.0),
+            CGPoint(x: 187.5, y: 165.0),
+            CGPoint(x: 235.5, y: 165.0),
+            CGPoint(x: 283.5, y: 165.0),
+            ],
+        [
+            CGPoint(x: 91.5, y: 117.0),
+            CGPoint(x: 139.5, y: 117.0),
+            CGPoint(x: 187.5, y: 117.0),
+            CGPoint(x: 235.5, y: 117.0),
+            CGPoint(x: 283.5, y: 117.0),
+            ]
+    ]
     
+    static let originLocation: [[CGPoint]] = [
+        [
+            CGPoint(x: 75.0, y: 532.5),
+            CGPoint(x: 123.0, y: 532.5),
+            CGPoint(x: 171.0, y: 532.5),
+            CGPoint(x: 219.0, y: 532.5),
+            CGPoint(x: 267.0, y: 532.5),
+            ],
+        [
+            CGPoint(x: 75.0, y: 484.5),
+            CGPoint(x: 123.0, y: 484.5),
+            CGPoint(x: 171.0, y: 484.5),
+            CGPoint(x: 219.0, y: 484.5),
+            CGPoint(x: 267.0, y: 484.5),
+            ],
+        [
+            CGPoint(x: 75.0, y: 436.5),
+            CGPoint(x: 123.0, y: 436.5),
+            CGPoint(x: 171.0, y: 436.5),
+            CGPoint(x: 219.0, y: 436.5),
+            CGPoint(x: 267.0, y: 436.5),
+            ],
+        [
+            CGPoint(x: 75.0, y: 388.5),
+            CGPoint(x: 123.0, y: 388.5),
+            CGPoint(x: 171.0, y: 388.5),
+            CGPoint(x: 219.0, y: 388.5),
+            CGPoint(x: 267.0, y: 388.5),
+            ],
+        [
+            CGPoint(x: 75.0, y: 340.5),
+            CGPoint(x: 123.0, y: 340.5),
+            CGPoint(x: 171.0, y: 340.5),
+            CGPoint(x: 219.0, y: 340.5),
+            CGPoint(x: 267.0, y: 340.5),
+            ],
+        [
+            CGPoint(x: 75.0, y: 292.5),
+            CGPoint(x: 123.0, y: 292.5),
+            CGPoint(x: 171.0, y: 292.5),
+            CGPoint(x: 219.0, y: 292.5),
+            CGPoint(x: 267.0, y: 292.5),
+            ],
+        [
+            CGPoint(x: 75.0, y: 244.5),
+            CGPoint(x: 123.0, y: 244.5),
+            CGPoint(x: 171.0, y: 244.5),
+            CGPoint(x: 219.0, y: 244.5),
+            CGPoint(x: 267.0, y: 244.5),
+            ],
+        [
+            CGPoint(x: 75.0, y: 196.5),
+            CGPoint(x: 123.0, y: 196.5),
+            CGPoint(x: 171.0, y: 196.5),
+            CGPoint(x: 219.0, y: 196.5),
+            CGPoint(x: 267.0, y: 196.5),
+            ],
+        [
+            CGPoint(x: 75.0, y: 148.5),
+            CGPoint(x: 123.0, y: 148.5),
+            CGPoint(x: 171.0, y: 148.5),
+            CGPoint(x: 219.0, y: 148.5),
+            CGPoint(x: 267.0, y: 148.5),
+            ],
+        [
+            CGPoint(x: 75.0, y: 100.5),
+            CGPoint(x: 123.0, y: 100.5),
+            CGPoint(x: 171.0, y: 100.5),
+            CGPoint(x: 219.0, y: 100.5),
+            CGPoint(x: 267.0, y: 100.5),
+            ],
+        ]
     
 }
