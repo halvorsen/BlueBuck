@@ -18,7 +18,7 @@ class GameScene: SKScene {
     
     internal weak var gameDelegate: GameSceneDelegate?
     private var unlocked = true
-    private var dropTime: Double = 0.5
+    private var dropTime: Double = 0.2
     let motionManager = CMMotionManager()
     let tap = UITapGestureRecognizer()
     var orientation: DeviceDirection = .up
@@ -120,7 +120,7 @@ class GameScene: SKScene {
       
         block.shapeNode.removeFromParent()
         moveBlocksIntoOpenings([block])
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + dropTime*2) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + dropTime) {
             self.unlocked = true
         }
     }
