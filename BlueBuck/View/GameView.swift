@@ -14,7 +14,7 @@ internal final class GameView: SKView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = Color.black
+        backgroundColor = .clear
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -11,7 +11,7 @@ import GameplayKit
 import CoreMotion
 
 internal protocol GameSceneDelegate: class {
-    func showButtons()
+   func tapOnGame()
 }
 
 class GameScene: SKScene {
@@ -71,7 +71,7 @@ class GameScene: SKScene {
     }
     
     @objc private func tapFunc(_ gesture: UITapGestureRecognizer) {
-        
+        gameDelegate?.tapOnGame()
         var tapLocation = gesture.location(in: view)
         tapLocation.y = UIScreen.main.bounds.height - tapLocation.y
         for row in squares {
@@ -83,7 +83,6 @@ class GameScene: SKScene {
                 }
             }
         }
-        didNotTapOnBlock()
     }
     
     private func tappedOn(_ block: Block) {
@@ -123,10 +122,6 @@ class GameScene: SKScene {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + dropTime) {
             self.unlocked = true
         }
-    }
-    
-    private func didNotTapOnBlock() {
-        gameDelegate?.showButtons()
     }
     
     private func moveBlocksIntoOpenings(_ removedBlocks: [Block]) {
