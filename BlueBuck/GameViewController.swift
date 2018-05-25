@@ -16,6 +16,7 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
     private var scene = GameScene()
     private var gameView = GameView()
     private var buttonView = ButtonView()
+    private var objectiveModel = ObjectiveModel()
     private var objectiveView: ObjectiveView?
     private var tapView: (top: UIView, bottom: UIView, left: UIView, right: UIView) = (UIView(),UIView(),UIView(),UIView())
     internal var game: Game?
@@ -33,8 +34,13 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        objectiveView = ObjectiveView(objectiveViews: [SingleObjective(square: [true,false,true,true,true,true,true,false,true])])
+        guard let objectives = ObjectiveModel.objectivesByLevel[.level3] else { return }
+        var patterns: [SingleObjective] = []
+        for objective in objectives {
+            guard let bools = ObjectiveModel.patternData[objective.pattern] else { return }
+            patterns.append(SingleObjective(square: bools))
+        }
+        objectiveView = ObjectiveView(objectiveViews: patterns)
         guard let objectiveView = objectiveView else { return }
         view.backgroundColor = Color.black
         gameView.frame = view.bounds

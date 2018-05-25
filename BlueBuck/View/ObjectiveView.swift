@@ -19,8 +19,16 @@ class ObjectiveView: UIView {
             case 1:
                 objectives[0].center = config.objectiveCenter3
             case 2:
-                objectives[0].center = config.objectiveCenter2
-                objectives[1].center = config.objectiveCenter4
+                if !objectives[1].square[0] && !objectives[1].square[3] && !objectives[1].square[6] {
+                    objectives[1].center = config.objectiveCenter4b
+                } else {
+                    objectives[1].center = config.objectiveCenter4
+                }
+                if !objectives[0].square[0] && !objectives[0].square[3] && !objectives[0].square[6] {
+                    objectives[0].center = config.objectiveCenter2b
+                } else {
+                    objectives[0].center = config.objectiveCenter2
+                }
             case 3:
                 objectives[0].center = config.objectiveCenter1
                 objectives[1].center = config.objectiveCenter3
@@ -36,8 +44,10 @@ class ObjectiveView: UIView {
         super.init(frame: CGRect.zero)
         self.objectives = objectiveViews
         for view in objectiveViews {
-        addSubview(view)
+            addSubview(view)
         }
+        print(objectives[0].square)
+        print(objectives[1].square)
     }
     
     required init?(coder aDecoder: NSCoder) {

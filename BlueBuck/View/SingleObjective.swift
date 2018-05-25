@@ -20,7 +20,7 @@ class SingleObjective: UIView {
                 let k = i*3 + j
                 if square.count > k {
                     if square[k] {
-                        let newSquare = Square(frame: CGRect(x: CGFloat(i)*17, y: CGFloat(j)*17, width: 10, height: 10))
+                        let newSquare = Square(frame: CGRect(x: CGFloat(j)*17, y: CGFloat(i)*17, width: 10, height: 10))
                         addSubview(newSquare)
                     }
                 }

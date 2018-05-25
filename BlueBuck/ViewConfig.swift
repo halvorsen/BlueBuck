@@ -20,6 +20,8 @@ internal class ViewConfig {
     var objectiveCenter3 = CGPoint.zero
     var objectiveCenter4 = CGPoint.zero
     var objectiveCenter5 = CGPoint.zero
+    var objectiveCenter2b = CGPoint.zero
+    var objectiveCenter4b = CGPoint.zero
 }
 
 internal final class Portrait: ViewConfig {
@@ -32,9 +34,12 @@ internal final class Portrait: ViewConfig {
         objectiveFrame = CGRect(x: 0, y: 569, width: 375, height: 98)
         objectiveCenter1 = CGPoint(x: 112, y: 49)
         objectiveCenter2 = CGPoint(x: 156, y: 49)
+        objectiveCenter2b = CGPoint(x: 149, y: 49)
         objectiveCenter3 = CGPoint(x: 187.5, y: 49)
         objectiveCenter4 = CGPoint(x: 225, y: 49)
+        objectiveCenter4b = CGPoint(x: 208, y: 49)
         objectiveCenter5 = CGPoint(x: 263, y: 49)
+        
         
     }
 }
