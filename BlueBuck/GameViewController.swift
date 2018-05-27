@@ -59,7 +59,7 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
         scene.game = game
         scene.gameDelegate = self
         gameView.presentScene(scene)
-        
+        toggleButtonsAndObjectives()
         
     }
 //    var tap = UITapGestureRecognizer()
@@ -90,7 +90,7 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
         toggleButtonsAndObjectives()
     }
     
-    var viewsOn = false
+    var viewsOn = true
     internal func toggleButtonsAndObjectives() {
         guard let objectiveView = objectiveView else { return }
         if viewsOn {
