@@ -48,7 +48,7 @@ class LevelsViewController: UIViewController {
         
     }
     
-    private func createLevelsUtility() {
+    private func createLevelsUtility() { // create and print a random level
         let colorDictionary: [UInt32: BlockType] = [
             0: .white,
             1: .blue,

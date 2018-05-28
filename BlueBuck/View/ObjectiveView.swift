@@ -46,8 +46,6 @@ class ObjectiveView: UIView {
         for view in objectiveViews {
             addSubview(view)
         }
-        print(objectives[0].square)
-        print(objectives[1].square)
     }
     
     required init?(coder aDecoder: NSCoder) {
