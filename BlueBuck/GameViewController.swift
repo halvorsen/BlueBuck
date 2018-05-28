@@ -34,7 +34,8 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        guard let objectives = ObjectiveModel.objectivesByLevel[.level3] else { return }
+        guard let buckLevel = game?.level,
+            let objectives = ObjectiveModel.objectivesByLevel[buckLevel] else { return }
         var patterns: [SingleObjective] = []
         for objective in objectives {
             guard let bools = ObjectiveModel.patternData[objective.pattern] else { return }
@@ -60,9 +61,13 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
         scene.gameDelegate = self
         gameView.presentScene(scene)
         toggleButtonsAndObjectives()
-        
+        buttonView.exit.addTarget(self, action: #selector(dismissGame), for: .touchUpInside)
     }
-//    var tap = UITapGestureRecognizer()
+    
+    @objc private func dismissGame() {
+        dismiss(animated: true)
+    }
+    
     private func addTapViews() {
         guard let objectiveView = objectiveView else { return }
         

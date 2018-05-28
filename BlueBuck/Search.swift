@@ -111,8 +111,6 @@ internal final class Search {
             foundPatterns = findTurtle3()
         case .turtle4:
             foundPatterns = findTurtle4()
-        default:
-            break
         }
         
         return foundPatterns

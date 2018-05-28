@@ -30,8 +30,10 @@ internal final class Game {
     private(set) internal var buttonsVisible: Bool = false
     private(set) internal var locations : [[CGPoint]] = [[]]
     private var queueIndex = 50
+    private(set) internal var level: BuckLevel?
     
-    init(blocks: [Block]) {
+    init(blocks: [Block], level: BuckLevel) {
+        self.level = level
         self.originalAllBlocks = blocks
         self.blockQueue = blocks
  

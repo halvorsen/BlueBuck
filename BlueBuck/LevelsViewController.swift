@@ -11,26 +11,36 @@ import UIKit
 class LevelsViewController: UIViewController {
     
     private var game: Game?
-    private let levels = Levels()
+    private lazy var levelsView = LevelsView(frame: view.bounds)
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addSubview(levelsView)
+        for button in levelsView.buttons {
+            button.addTarget(self, action: #selector(levelTouchUpInside(_:)), for: .touchUpInside)
+        }
+    }
+    
+    @objc private func levelTouchUpInside(_ sender: UIButton) {
+        if let level = Levels.levelByTag[sender.tag] {
+        loadAndPresentGame(level)
+        } else {
+            print("level was nil")
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let viewController = GameViewController()
-        loadGame(1)
-        viewController.game = game
-        present(viewController, animated: true)
+//        loadAnPresentGame(.level3)
     }
     
-    private func loadGame(_ level: Int) {
+    private func loadAndPresentGame(_ level: BuckLevel) {
         var blocks: [Block] = []
         for i in 0..<10 {
             for j in 0..<5 {
                 let index = 5*i + j
-                if let color = levels.blockTypeArray[level],
+                if let color = Levels.blockTypeArray[level],
                     color.count > index {
                     let newBlock = Block.init(location: (row: i + 1, column: j + 1), type: color[index])
                     blocks.append(newBlock)
@@ -38,13 +48,17 @@ class LevelsViewController: UIViewController {
             }
         }
         for i in 50..<100 {
-            if let color = levels.blockTypeArray[level],
+            if let color = Levels.blockTypeArray[level],
                 color.count > i {
                 let newBlock = Block.init(location: (row: 0, column: 0), type: color[i])
                 blocks.append(newBlock)
             }
         }
-        game = Game(blocks: blocks)
+        game = Game(blocks: blocks, level: level)
+        
+        let viewController = GameViewController()
+        viewController.game = game
+        present(viewController, animated: true)
         
     }
     
@@ -69,5 +83,7 @@ class LevelsViewController: UIViewController {
             print("],")
         }
     }
-    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
 }

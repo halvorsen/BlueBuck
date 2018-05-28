@@ -8,9 +8,35 @@
 
 internal final class Levels {
     
-    internal let blockTypeArray: [Int: [BlockType]] = [
+    internal static let levelByTag: [Int: BuckLevel] = [
+        0: .level1,
+        1: .level2,
+        2: .level3,
+        3: .level4,
+        4: .level5,
+        5: .level6,
+        6: .level7,
+        7: .level8,
+        8: .level9,
+        9: .level10,
+        10: .level11,
+        11: .level12,
+        12: .level13,
+        13: .level14,
+        14: .level15,
+        15: .level16,
+        16: .level17,
+        17: .level18,
+        18: .level19,
+        19: .level20,
+        20: .level21,
+        21: .level22,
+        22: .levelEgg
+    ]
+    
+    internal static let blockTypeArray: [BuckLevel: [BlockType]] = [
         
-        1: [
+        .level1: [
             .white, .blue, .pink, .yellow, .blue,
             .yellow, .pink, .green, .green, .white,
             .green, .pink, .green, .yellow, .pink,
@@ -32,7 +58,7 @@ internal final class Levels {
             .white, .pink, .blue, .yellow, .yellow,
             .green, .pink, .yellow, .blue, .white,
         ],
-        2: [
+        .level2: [
             .green, .white, .yellow, .pink, .green,
             .blue, .blue, .pink, .yellow, .green,
             .green, .green, .yellow, .green, .yellow,
@@ -54,7 +80,7 @@ internal final class Levels {
             .yellow, .yellow, .pink, .blue, .blue,
             .white, .pink, .green, .white, .blue,
         ],
-        3: [
+        .level3: [
             .green, .white, .white, .green, .pink,
             .green, .blue, .blue, .blue, .yellow,
             .white, .blue, .yellow, .blue, .yellow,
@@ -76,7 +102,7 @@ internal final class Levels {
             .green, .green, .white, .yellow, .yellow,
             .blue, .green, .yellow, .green, .blue,
         ],
-        4: [
+        .level4: [
             .white, .blue, .blue, .blue, .blue,
             .pink, .white, .white, .white, .green,
             .blue, .green, .white, .pink, .yellow,
@@ -98,7 +124,7 @@ internal final class Levels {
             .yellow, .yellow, .white, .yellow, .yellow,
             .white, .green, .yellow, .green, .white,
         ],
-        5: [
+        .level5: [
             .pink, .pink, .yellow, .yellow, .yellow,
             .blue, .pink, .blue, .white, .pink,
             .yellow, .white, .yellow, .blue, .blue,
@@ -120,7 +146,7 @@ internal final class Levels {
             .pink, .green, .yellow, .yellow, .pink,
             .white, .yellow, .blue, .pink, .green,
         ],
-        6: [
+        .level6: [
             .white, .yellow, .yellow, .yellow, .green,
             .blue, .green, .green, .pink, .green,
             .green, .green, .white, .pink, .white,
@@ -142,7 +168,7 @@ internal final class Levels {
             .blue, .green, .green, .pink, .yellow,
             .green, .white, .green, .yellow, .white,
         ],
-        7: [
+        .level7: [
             .blue, .blue, .yellow, .white, .white,
             .white, .blue, .blue, .white, .white,
             .white, .white, .blue, .white, .blue,
@@ -164,7 +190,7 @@ internal final class Levels {
             .white, .pink, .pink, .blue, .green,
             .green, .pink, .pink, .pink, .green,
         ],
-        8: [
+        .level8: [
             .green, .green, .yellow, .yellow, .yellow,
             .blue, .green, .blue, .white, .blue,
             .green, .yellow, .pink, .white, .green,
@@ -186,7 +212,7 @@ internal final class Levels {
             .white, .pink, .white, .blue, .yellow,
             .green, .blue, .pink, .yellow, .yellow,
         ],
-        9: [
+        .level9: [
             .blue, .blue, .blue, .white, .blue,
             .blue, .white, .blue, .green, .white,
             .yellow, .green, .pink, .pink, .white,
@@ -208,7 +234,7 @@ internal final class Levels {
             .blue, .blue, .white, .white, .yellow,
             .yellow, .green, .pink, .yellow, .white,
         ],
-        10: [
+        .level10: [
             .yellow, .green, .green, .green, .yellow,
             .blue, .blue, .green, .white, .yellow,
             .pink, .green, .yellow, .blue, .green,
@@ -230,7 +256,7 @@ internal final class Levels {
             .pink, .pink, .white, .green, .blue,
             .blue, .blue, .blue, .white, .blue,
         ],
-        11: [
+        .level11: [
             .green, .white, .yellow, .pink, .pink,
             .yellow, .yellow, .yellow, .blue, .green,
             .blue, .blue, .white, .pink, .blue,
@@ -252,7 +278,7 @@ internal final class Levels {
             .pink, .white, .white, .green, .green,
             .blue, .blue, .yellow, .white, .pink,
         ],
-        12: [
+        .level12: [
             .white, .white, .green, .pink, .blue,
             .pink, .green, .white, .green, .pink,
             .blue, .green, .yellow, .blue, .blue,
@@ -274,7 +300,7 @@ internal final class Levels {
             .blue, .white, .pink, .blue, .pink,
             .white, .blue, .pink, .green, .white,
         ],
-        13: [
+        .level13: [
             .green, .green, .yellow, .yellow, .green,
             .blue, .blue, .pink, .white, .pink,
             .pink, .blue, .blue, .yellow, .blue,
@@ -296,7 +322,7 @@ internal final class Levels {
             .blue, .green, .pink, .pink, .pink,
             .yellow, .blue, .white, .yellow, .yellow,
         ],
-        14: [
+        .level14: [
             .green, .green, .blue, .yellow, .green,
             .yellow, .pink, .blue, .green, .pink,
             .pink, .green, .blue, .blue, .yellow,
@@ -318,7 +344,7 @@ internal final class Levels {
             .yellow, .blue, .blue, .yellow, .pink,
             .blue, .green, .green, .pink, .yellow,
         ],
-        15: [
+        .level15: [
             .yellow, .pink, .yellow, .pink, .pink,
             .pink, .white, .pink, .pink, .green,
             .blue, .pink, .yellow, .white, .pink,
@@ -340,7 +366,7 @@ internal final class Levels {
             .pink, .blue, .white, .white, .pink,
             .green, .yellow, .white, .white, .white,
         ],
-        16: [
+        .level16: [
             .white, .yellow, .green, .pink, .yellow,
             .pink, .pink, .green, .blue, .green,
             .white, .green, .yellow, .green, .pink,
@@ -362,7 +388,7 @@ internal final class Levels {
             .pink, .blue, .blue, .white, .white,
             .yellow, .pink, .blue, .blue, .yellow,
         ],
-        17: [
+        .level17: [
             .green, .green, .blue, .yellow, .white,
             .blue, .white, .green, .pink, .blue,
             .white, .white, .green, .yellow, .white,
@@ -384,7 +410,7 @@ internal final class Levels {
             .white, .white, .pink, .white, .pink,
             .pink, .white, .blue, .green, .pink,
         ],
-        18: [
+        .level18: [
             .white, .yellow, .pink, .blue, .green,
             .green, .yellow, .yellow, .yellow, .white,
             .blue, .blue, .white, .yellow, .white,
@@ -406,7 +432,7 @@ internal final class Levels {
             .blue, .green, .green, .yellow, .green,
             .blue, .blue, .blue, .pink, .pink,
         ],
-        19: [
+        .level19: [
             .green, .blue, .pink, .blue, .pink,
             .yellow, .green, .green, .blue, .white,
             .green, .yellow, .white, .white, .blue,
@@ -428,7 +454,7 @@ internal final class Levels {
             .yellow, .yellow, .blue, .yellow, .blue,
             .blue, .blue, .yellow, .blue, .white,
         ],
-        20: [
+        .level20: [
             .yellow, .green, .green, .yellow, .white,
             .pink, .pink, .blue, .green, .white,
             .white, .yellow, .pink, .blue, .blue,
@@ -450,7 +476,7 @@ internal final class Levels {
             .blue, .green, .yellow, .yellow, .green,
             .yellow, .pink, .white, .pink, .blue,
         ],
-        21: [
+        .level21: [
             .blue, .white, .blue, .blue, .blue,
             .pink, .green, .pink, .green, .pink,
             .yellow, .pink, .white, .pink, .green,
@@ -472,6 +498,47 @@ internal final class Levels {
             .blue, .white, .green, .white, .blue,
             .yellow, .white, .yellow, .pink, .yellow,
         ],
+        .level22: [
+            .white, .yellow, .green, .pink, .yellow,
+            .pink, .pink, .green, .blue, .green,
+            .white, .green, .yellow, .green, .pink,
+            .blue, .white, .white, .pink, .green,
+            .green, .pink, .green, .blue, .pink,
+            .yellow, .blue, .pink, .blue, .yellow,
+            .blue, .blue, .pink, .yellow, .white,
+            .blue, .green, .pink, .green, .pink,
+            .green, .yellow, .blue, .green, .blue,
+            .green, .blue, .blue, .pink, .blue,
+            .blue, .green, .yellow, .white, .blue,
+            .white, .blue, .blue, .blue, .green,
+            .yellow, .green, .green, .green, .white,
+            .pink, .pink, .yellow, .green, .yellow,
+            .pink, .pink, .green, .yellow, .pink,
+            .pink, .white, .blue, .blue, .green,
+            .white, .green, .white, .blue, .pink,
+            .green, .yellow, .yellow, .green, .yellow,
+            .pink, .blue, .blue, .white, .white,
+            .yellow, .pink, .blue, .blue, .yellow,
+        ],
+        .levelEgg: [
+            .blue, .white, .blue, .blue, .blue,
+            .blue, .white, .pink, .white, .blue,
+            .blue, .blue, .yellow, .white, .pink,
+            .pink, .yellow, .green, .white, .green,
+            .yellow, .green, .green, .yellow, .white,
+            .pink, .pink, .blue, .green, .white,
+            .white, .yellow, .pink, .blue, .blue,
+            .green, .green, .white, .blue, .white,
+            .green, .green, .blue, .pink, .blue,
+            .pink, .blue, .green, .yellow, .pink,
+            .pink, .white, .pink, .white, .green,
+            .green, .blue, .pink, .pink, .blue,
+            .white, .yellow, .yellow, .green, .pink,
+            .white, .pink, .white, .white, .yellow,
+            .yellow, .white, .yellow, .white, .green,
+            .blue, .white, .green, .white, .blue,
+            .yellow, .white, .yellow, .pink, .yellow,
+        ]
         
         ]
     
