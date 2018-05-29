@@ -86,7 +86,18 @@ class GameScene: SKScene {
     }
     
     private func animateDisappearBlocks(_ blocks: [Block], completion: @escaping () -> Void) {
-    
+        if blocks.count > 0 {
+            let twinkleNode = BlockTwinkle()
+         
+            twinkleNode.position = blocks[0].shapeNode.position
+            addChild(twinkleNode)
+            twinkleNode.animate() {
+                twinkleNode.removeFromParent()
+                completion()
+            }
+        } else {
+            completion()
+        }
     }
     
     private func processResults(results: [(pattern: Pattern, blocks: [Block])]) -> (gameOver: Bool, successBlocks: [Block]) {
@@ -216,7 +227,6 @@ class GameScene: SKScene {
         }
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + dropTime*3) { [weak self] in
             guard let weakself = self else { return }
-            weakself.unlocked = true
             
             if let patternArray = weakself.objectiveModel?.patternArray {
                 var patterns: [Pattern] = []
@@ -230,6 +240,8 @@ class GameScene: SKScene {
                 weakself.animateDisappearBlocks(successBlocks) {
                     if completedGame {
                         weakself.gameComplete()
+                    } else {
+                        weakself.unlocked = true
                     }
                 }
             }

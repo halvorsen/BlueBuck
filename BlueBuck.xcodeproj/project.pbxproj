@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06149F0D20BCE0F6009BCF58 /* BlockTwinkle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06149F0C20BCE0F6009BCF58 /* BlockTwinkle.swift */; };
 		0698324520B39E0D00F0CC52 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0698324420B39E0D00F0CC52 /* ButtonView.swift */; };
 		0698324720B39E6600F0CC52 /* ViewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0698324620B39E6600F0CC52 /* ViewConfig.swift */; };
 		0698324920B3B4BB00F0CC52 /* ObjectiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0698324820B3B4BB00F0CC52 /* ObjectiveView.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		06149F0C20BCE0F6009BCF58 /* BlockTwinkle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockTwinkle.swift; sourceTree = "<group>"; };
 		0698324420B39E0D00F0CC52 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		0698324620B39E6600F0CC52 /* ViewConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConfig.swift; sourceTree = "<group>"; };
 		0698324820B3B4BB00F0CC52 /* ObjectiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectiveView.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				0698324820B3B4BB00F0CC52 /* ObjectiveView.swift */,
 				0698324D20B5076700F0CC52 /* SingleObjective.swift */,
 				0698325320BC402700F0CC52 /* LevelsView.swift */,
+				06149F0C20BCE0F6009BCF58 /* BlockTwinkle.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				0698325020B6E7A200F0CC52 /* ObjectiveModel.swift in Sources */,
 				06DFE61E20A9283700633D78 /* Levels.swift in Sources */,
 				06DFE61C20A9239900633D78 /* LevelsViewController.swift in Sources */,
+				06149F0D20BCE0F6009BCF58 /* BlockTwinkle.swift in Sources */,
 				06BB07DE20A7D08C00895113 /* GameScene.swift in Sources */,
 				06BB07E020A7D08C00895113 /* GameViewController.swift in Sources */,
 				06DFE61820A9110600633D78 /* Game.swift in Sources */,

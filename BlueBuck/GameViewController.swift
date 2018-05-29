@@ -63,6 +63,7 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
         gameView.presentScene(scene)
         toggleButtonsAndObjectives()
         buttonView.exit.addTarget(self, action: #selector(dismissGame), for: .touchUpInside)
+        updatePatternViews()
     }
     
     @objc private func dismissGame() {
