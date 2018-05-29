@@ -16,7 +16,7 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
     private var scene = GameScene()
     private var gameView = GameView()
     private var buttonView = ButtonView()
-    private var objectiveModel = ObjectiveModel()
+    internal var objectiveModel: ObjectiveModel?
     private var objectiveView: ObjectiveView?
     private var tapView: (top: UIView, bottom: UIView, left: UIView, right: UIView) = (UIView(),UIView(),UIView(),UIView())
     internal var game: Game?
@@ -59,6 +59,7 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
         scene.backgroundColor = .black
         scene.game = game
         scene.gameDelegate = self
+        scene.objectiveModel = objectiveModel
         gameView.presentScene(scene)
         toggleButtonsAndObjectives()
         buttonView.exit.addTarget(self, action: #selector(dismissGame), for: .touchUpInside)
@@ -114,6 +115,23 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
                 }
             }
         }
+    }
+    
+    internal func updatePatternViews() {
+        guard let objectiveModel = objectiveModel else {return}
+        for i in 0..<objectiveModel.patternArray.count {
+            objectiveView?.objectiveCounts[i].text = String(objectiveModel.patternArray[i].objective - objectiveModel.patternArray[i].completed)
+        }
+        for i in 0..<objectiveModel.patternArray.count {
+            if objectiveModel.patternArray[i].objective < objectiveModel.patternArray[i].completed {
+                print("error in patterns count")
+            }
+            if objectiveModel.patternArray[i].objective == objectiveModel.patternArray[i].completed {
+                objectiveView?.objectiveCounts[i].text = ""
+                objectiveView?.objectiveCompletes[i].isHidden = false
+            }
+        }
+        
     }
     
     override var shouldAutorotate: Bool {

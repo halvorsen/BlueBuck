@@ -5,13 +5,14 @@
 //  Created by Aaron Halvorsen on 5/12/18.
 //  Copyright © 2018 Aaron Halvorsen. All rights reserved.
 //
-
+import Foundation
 import SpriteKit
 import GameplayKit
 import CoreMotion
 
 internal protocol GameSceneDelegate: class {
     func tapOnGame()
+    func updatePatternViews()
 }
 
 class GameScene: SKScene {
@@ -19,6 +20,7 @@ class GameScene: SKScene {
     internal weak var gameDelegate: GameSceneDelegate?
     private var unlocked = true
     private var dropTime: Double = 0.2
+    internal var objectiveModel: ObjectiveModel?
     let motionManager = CMMotionManager()
     let tap = UITapGestureRecognizer()
     var orientation: DeviceDirection = .up
@@ -69,13 +71,65 @@ class GameScene: SKScene {
         }
         tap.addTarget(self, action: #selector(tapFunc(_:)))
         view.addGestureRecognizer(tap)
-        search(for: [.falcon])
+        
     }
     
-    private func search(for patterns: [Pattern]) {
+    private func search(for patterns: [Pattern]) -> (gameOver: Bool, successBlocks: [Block]) {
         search = Search(squares)
-        let result = search?.patterns(patterns)
-        print(result)
+        let results = search?.patterns(patterns)
+        print(results!)
+        return processResults(results: results!)
+    }
+    
+    private func updatePatternViews() {
+        gameDelegate?.updatePatternViews()
+    }
+    
+    private func animateDisappearBlocks(_ blocks: [Block], completion: @escaping () -> Void) {
+    
+    }
+    
+    private func processResults(results: [(pattern: Pattern, blocks: [Block])]) -> (gameOver: Bool, successBlocks: [Block]) {
+        guard let objectiveModel = objectiveModel else { return (false,[])}
+        var patternsFound: [Pattern] = []
+        var successBlockShapes: [SKShapeNode] = []
+        var successBlock: [Block] = []
+        for result in results {
+            
+            var maybeSuccessBlockShapes: [SKShapeNode] = []
+            var maybeSuccessBlock: [Block] = []
+            var havntDoubledBlock = true
+            
+            for block in result.blocks {
+                maybeSuccessBlockShapes.append(block.shapeNode)
+                maybeSuccessBlock.append(block)
+            }
+            
+            for blockShape in maybeSuccessBlockShapes {
+                if successBlockShapes.contains(blockShape) {
+                    havntDoubledBlock = false
+                }
+            }
+            
+            if havntDoubledBlock {
+                patternsFound.append(result.pattern)
+                successBlockShapes = successBlockShapes + maybeSuccessBlockShapes
+                successBlock = successBlock + maybeSuccessBlock
+                self.objectiveModel?.foundPattern(pattern: result.pattern)
+            }
+            
+        }
+        
+        for patternGoal in objectiveModel.patternArray {
+            if patternGoal.objective > patternGoal.completed {
+                return (false, successBlock)
+            }
+        }
+        return (true, successBlock)
+    }
+    
+    private func gameComplete() {
+        //game end sequence
     }
     
     @objc private func tapFunc(_ gesture: UITapGestureRecognizer) {
@@ -116,7 +170,6 @@ class GameScene: SKScene {
                 }
             }
         }
-        
     }
     
     private func tappedOn(_ block: Block, index: Int) {
@@ -161,9 +214,25 @@ class GameScene: SKScene {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + dropTime*2) {
             self.addBlockToQueue(newQueueBlock)
         }
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + dropTime*3) {
-            self.unlocked = true
-            self.search(for: [.falcon])
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + dropTime*3) { [weak self] in
+            guard let weakself = self else { return }
+            weakself.unlocked = true
+            
+            if let patternArray = weakself.objectiveModel?.patternArray {
+                var patterns: [Pattern] = []
+                for goal in patternArray {
+                    if goal.completed < goal.objective {
+                        patterns.append(goal.pattern)
+                    }
+                }
+                let (completedGame, successBlocks) = weakself.search(for: patterns)
+                weakself.updatePatternViews()
+                weakself.animateDisappearBlocks(successBlocks) {
+                    if completedGame {
+                        weakself.gameComplete()
+                    }
+                }
+            }
         }
     }
     

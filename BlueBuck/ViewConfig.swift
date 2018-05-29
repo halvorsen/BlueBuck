@@ -33,10 +33,10 @@ internal final class Portrait: ViewConfig {
         buttonViewFrame = CGRect(x: 0, y: 0, width: 375, height: 70)
         objectiveFrame = CGRect(x: 0, y: 569, width: 375, height: 98)
         objectiveCenter1 = CGPoint(x: 112, y: 49)
-        objectiveCenter2 = CGPoint(x: 156, y: 49)
+        objectiveCenter2 = CGPoint(x: 152, y: 49)
         objectiveCenter2b = CGPoint(x: 149, y: 49)
         objectiveCenter3 = CGPoint(x: 187.5, y: 49)
-        objectiveCenter4 = CGPoint(x: 225, y: 49)
+        objectiveCenter4 = CGPoint(x: 221, y: 49)
         objectiveCenter4b = CGPoint(x: 208, y: 49)
         objectiveCenter5 = CGPoint(x: 263, y: 49)
         

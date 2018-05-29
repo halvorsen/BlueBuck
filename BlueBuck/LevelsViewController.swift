@@ -58,7 +58,14 @@ class LevelsViewController: UIViewController {
         
         let viewController = GameViewController()
         viewController.game = game
-        present(viewController, animated: true)
+        if let level = game?.level,
+            let objectives = ObjectiveModel.objectivesByLevel[level] {
+        viewController.objectiveModel = ObjectiveModel(objectives: objectives)
+            present(viewController, animated: true)
+        } else {
+            print("loading nil unwrapped error")
+        }
+        
         
     }
     

@@ -20,6 +20,12 @@ internal enum PatternPlace {
 
 internal final class ObjectiveModel {
     
+    init(objectives: [(pattern: Pattern, amount: Int)]) {
+        for objective in objectives {
+            patternArray.append((pattern: objective.pattern, objective: objective.amount, completed: 0))
+        }
+    }
+    
     private(set) internal var patternArray: [(pattern: Pattern, objective: Int, completed: Int)] = []
     
     internal func remainingPatternToFind(at patternPlace: PatternPlace) -> Int? {
@@ -49,18 +55,14 @@ internal final class ObjectiveModel {
      
     }
     
-    internal func foundPattern(at patternPlace: PatternPlace) {
-        switch patternPlace {
-        case .first:
-            guard patternArray.count > 0 else { return }
-            patternArray[0].completed += 1
-        case .second:
-            guard patternArray.count > 1 else { return }
-            patternArray[1].completed += 1
-        case .third:
-            guard patternArray.count > 2 else { return }
-            patternArray[2].completed += 1
+    internal func foundPattern(pattern: Pattern) {
+        
+        for i in 0..<patternArray.count {
+            if pattern == patternArray[i].pattern {
+                patternArray[i].completed += 1
+            }
         }
+        
     }
     
     internal func addObjective(with pattern: Pattern, amount: Int) {
