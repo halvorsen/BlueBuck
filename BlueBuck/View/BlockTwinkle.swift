@@ -25,10 +25,10 @@ internal final class BlockTwinkle: SKNode {
         }
     }
     
-    internal func animate(completion: @escaping () -> Void) {
+    internal func animate(time: TimeInterval, completion: @escaping () -> Void) {
     
-        let fadeOut = SKAction.fadeOut(withDuration: 0.4)
-        let fadeIn = SKAction.fadeIn(withDuration: 0.4)
+        let fadeOut = SKAction.fadeOut(withDuration: time*0.2)
+        let fadeIn = SKAction.fadeIn(withDuration: time*0.2)
         for i in 0..<twinkles.count {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + (Double(i)/6)) { [weak self] in
                 self?.twinkles[i].run(fadeIn)
@@ -38,7 +38,7 @@ internal final class BlockTwinkle: SKNode {
             }
             
         }
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.0) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + time) {
             completion()
         }
     }
@@ -49,14 +49,11 @@ internal final class BlockTwinkle: SKNode {
     
     private let location: [CGPoint] = [
     
-   
-    
     CGPoint(x: 23, y: -4),
-    
     CGPoint(x: 17, y: 10),
     CGPoint(x: 22, y: -21),
-    CGPoint(x: -24, y: 24),
-    CGPoint(x: 0, y: -23),
+    CGPoint(x: -20, y: 24),
+    CGPoint(x: 0, y: -18),
     CGPoint(x: -30, y: 13),
     CGPoint(x: 18, y: -13),
     CGPoint(x: 11, y: 15),
@@ -69,40 +66,7 @@ internal final class BlockTwinkle: SKNode {
     CGPoint(x: -9, y: 13),
     CGPoint(x: 14, y: -1),
     CGPoint(x: -11, y: 22),
-    CGPoint(x: -21, y: -23)
+    CGPoint(x: -17, y: -19)
     
     ]
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

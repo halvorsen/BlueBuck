@@ -48,8 +48,8 @@ internal final class LevelsView: UIScrollView {
     }
     
     private let buttonLocations: [CGPoint] = [
-    CGPoint(x: 81, y: 2940),
-    CGPoint(x: 81, y: 2791),
+    CGPoint(x: 81, y: 2910),
+    CGPoint(x: 81, y: 2785),
     CGPoint(x: 94, y: 2658),
     CGPoint(x: 125, y: 2525),
     CGPoint(x: 161, y: 2397),

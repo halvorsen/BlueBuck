@@ -22,6 +22,7 @@ internal final class Block {
     private(set) internal var neighbor: (north: Block?, south: Block?, east: Block?, west: Block?) = (nil, nil, nil, nil)
     internal let blockType: BlockType
     internal var shapeNode: SKShapeNode
+    internal var indexOfBlockInSquareArray = 0
     
     init(location: (row: Int, column: Int), type: BlockType) {
         self.location = location

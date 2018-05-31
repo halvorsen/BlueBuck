@@ -8,7 +8,6 @@
 import Foundation
 import SpriteKit
 import GameplayKit
-import CoreMotion
 
 internal protocol GameSceneDelegate: class {
     func tapOnGame()
@@ -21,45 +20,22 @@ class GameScene: SKScene {
     private var unlocked = true
     private var dropTime: Double = 0.2
     internal var objectiveModel: ObjectiveModel?
-    let motionManager = CMMotionManager()
     let tap = UITapGestureRecognizer()
-    var orientation: DeviceDirection = .up
     internal var game : Game?
     internal var search: Search?
     internal var squares: [Block] = []
+    let twinkleNode: [BlockTwinkle] = [BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle()]
     
     override func didMove(to view: SKView) {
         
-        if motionManager.isDeviceMotionAvailable {
-            motionManager.deviceMotionUpdateInterval = 0.2;
-            motionManager.startDeviceMotionUpdates()
-            
-            motionManager.gyroUpdateInterval = 0.5
-            guard let currentQueue = OperationQueue.current else { return }
-            motionManager.startDeviceMotionUpdates(to: currentQueue) { [weak self] (motion, error) in
-                if let attitude = motion?.attitude {
-                    
-                    if -0.785...0.785 ~= attitude.yaw {
-                        self?.orientation = .up
-                    }
-                    else if 0.785...2.355 ~= attitude.yaw {
-                        self?.orientation = .left
-                    }
-                    else if -2.355...(-0.785) ~= attitude.yaw {
-                        self?.orientation = .right
-                    }
-                    else {
-                        self?.orientation = .upsideDown
-                    }
-                }
-            }
-        }
-        
         backgroundColor = Color.black
         guard let game = game else { return }
+        var index = 0
         for row in game.currentBoard {
             for block in row {
+                block.indexOfBlockInSquareArray = index
                 squares.append(block)
+                index += 1
             }
         }
         let (first, second, third, fourth, fifth) = game.currentUpcomingQueueIndexes()
@@ -87,13 +63,26 @@ class GameScene: SKScene {
     
     private func animateDisappearBlocks(_ blocks: [Block], completion: @escaping () -> Void) {
         if blocks.count > 0 {
-            let twinkleNode = BlockTwinkle()
-         
-            twinkleNode.position = blocks[0].shapeNode.position
-            addChild(twinkleNode)
-            twinkleNode.animate() {
-                twinkleNode.removeFromParent()
-                completion()
+            let animateTime: Double = 0.6*Double(blocks.count)
+            let orientation = UIDevice.current.orientation
+            for i in 0..<blocks.count {
+                
+                twinkleNode[i].position = blocks[i].shapeNode.position
+                addChild(twinkleNode[i])
+                
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3*animateTime) { [weak self] in
+                    blocks[i].shapeNode.removeFromParent()
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.6*Double(i)) { [weak self] in
+                        self?.replace(block: blocks[i], orientation: orientation)
+                    }
+                }
+                
+                twinkleNode[i].animate(time: animateTime) { [weak self] in
+                    self?.twinkleNode[i].removeFromParent()
+                    if i == (blocks.count - 1) {
+                        completion()
+                    }
+                }
             }
         } else {
             completion()
@@ -151,7 +140,7 @@ class GameScene: SKScene {
             
             let modifiedFrame = CGRect(x: squares[i].shapeNode.frame.origin.x - 5, y: squares[i].shapeNode.frame.origin.y - 5, width: squares[i].shapeNode.frame.width + 10, height: squares[i].shapeNode.frame.width + 10)
             if modifiedFrame.contains(tapLocation) {
-                tappedOn(squares[i], index: i)
+                tappedOn(squares[i])
                 return
             }
             
@@ -183,11 +172,8 @@ class GameScene: SKScene {
         }
     }
     
-    private func tappedOn(_ block: Block, index: Int) {
-    
+    private func replace(block: Block, orientation: UIDeviceOrientation) {
         guard let game = game else { return }
-        guard unlocked else { return }
-        unlocked = false
         let queueIndex = game.currentQueueIndex()
         game.incrementQueue(by: 1)
         let replacementBlock = game.blockQueue[queueIndex]
@@ -198,33 +184,45 @@ class GameScene: SKScene {
         replacementBlock.shapeNode.lineWidth = 5
         
         var newPosition = CGPoint()
-        switch orientation {
-        case .up:
+        switch orientation {//orientation {
+        case .portrait://.up:
             replacementBlock.location = (row: 1, column: block.location.column)
             newPosition = Game.originLocation[0][block.location.column - 1]
-        case .upsideDown:
+        case .portraitUpsideDown://.upsideDown:
             replacementBlock.location = (row: 10, column: block.location.column)
             newPosition = Game.originLocation[9][block.location.column - 1]
-        case .left:
+        case .landscapeLeft://.left:
             replacementBlock.location = (row: block.location.row, column: 5)
             newPosition = Game.originLocation[block.location.row - 1][4]
-        case .right:
+        case .landscapeRight://.right:
             replacementBlock.location = (row: block.location.row, column: 1)
             newPosition = Game.originLocation[block.location.row - 1][0]
+        case .faceUp, .faceDown, .unknown:
+            print("error device orientation: \(UIDevice.current.orientation)")
+            replacementBlock.location = (row: 1, column: block.location.column)
+            newPosition = Game.originLocation[0][block.location.column - 1]
         }
         
         let moveReplacementBlock = SKAction.move(to: newPosition, duration: 0.5)
-        
+        replacementBlock.indexOfBlockInSquareArray = block.indexOfBlockInSquareArray
         replacementBlock.shapeNode.run(moveReplacementBlock)
-        
         block.shapeNode.removeFromParent()
-        moveBlocksIntoOpenings(block)
+        moveBlocksIntoOpenings(block, orientation: orientation)
         moveQueueBlocksIntoOpenings()
-        squares.remove(at: index)
-        squares.append(replacementBlock)
+        squares[block.indexOfBlockInSquareArray] = replacementBlock
+
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + dropTime*2) {
             self.addBlockToQueue(newQueueBlock)
         }
+    }
+    
+    private func tappedOn(_ block: Block) {
+    
+        guard unlocked else { return }
+        unlocked = false
+        replace(block: block, orientation: UIDevice.current.orientation)
+        
+        
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + dropTime*3) { [weak self] in
             guard let weakself = self else { return }
             
@@ -248,21 +246,24 @@ class GameScene: SKScene {
         }
     }
     
-    private func moveBlocksIntoOpenings(_ removedBlock: Block) {
+    private func moveBlocksIntoOpenings(_ removedBlock: Block, orientation: UIDeviceOrientation) {
         
         var indexes: [(row: Int, column: Int)] = []
      
         indexes.append(removedBlock.location)
       
-        switch orientation {
-        case .up:
+        switch orientation {//orientation {
+        case .portrait://.up:
             dropWithOrientationUp(indexes)
-        case .upsideDown:
+        case .portraitUpsideDown://.upsideDown:
             dropWithOrientationUpSideDown(indexes)
-        case .left:
+        case .landscapeLeft://.left:
             dropWithOrientationLeft(indexes)
-        case .right:
+        case .landscapeRight://.right:
             dropWithOrientationRight(indexes)
+        case .faceDown, .faceUp, .unknown:
+            print("orientation for moveblocks func error: \(UIDevice.current.orientation)")
+            dropWithOrientationUp(indexes)
         }
         
     }
