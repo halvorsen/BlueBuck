@@ -12,15 +12,37 @@ class LevelsViewController: UIViewController {
     
     private var game: Game?
     private lazy var levelsView = LevelsView(frame: view.bounds)
-   
+    private var enterLevelPopup: EnterLevelPopup?
+    private var layoutConstraints = [NSLayoutConstraint]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.addSubview(levelsView)
+        
         for button in levelsView.buttons {
             button.addTarget(self, action: #selector(levelTouchUpInside(_:)), for: .touchUpInside)
         }
+        
+        enterLevelPopup = EnterLevelPopup()
+        guard let enterLevelPopup = enterLevelPopup else { return }
+        view.addSubview(enterLevelPopup)
+        
+        setupConstraints()
+        enableConstraints()
+    }
+    
+    private func setupConstraints() {
+        guard let enterLevelPopup = enterLevelPopup else { return }
+        enterLevelPopup.translatesAutoresizingMaskIntoConstraints = false
+        layoutConstraints.append(enterLevelPopup.centerXAnchor.constraint(equalTo: view.centerXAnchor))
+        layoutConstraints.append(enterLevelPopup.centerYAnchor.constraint(equalTo: view.centerYAnchor))
+        layoutConstraints.append(enterLevelPopup.heightAnchor.constraint(equalTo: enterLevelPopup.widthAnchor, multiplier: 0.75))
+        layoutConstraints.append(enterLevelPopup.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75))
+    }
+    
+    private func enableConstraints() {
+        NSLayoutConstraint.activate(layoutConstraints)
     }
     
     @objc private func levelTouchUpInside(_ sender: UIButton) {
@@ -33,6 +55,10 @@ class LevelsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
 //        loadAnPresentGame(.level3)
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        enableConstraints()
     }
     
     private func loadAndPresentGame(_ level: BuckLevel) {
@@ -61,6 +87,8 @@ class LevelsViewController: UIViewController {
         if let level = game?.level,
             let objectives = ObjectiveModel.objectivesByLevel[level] {
         viewController.objectiveModel = ObjectiveModel(objectives: objectives)
+            viewController.modalPresentationStyle = .custom
+            viewController.modalTransitionStyle = .crossDissolve
             present(viewController, animated: true)
         } else {
             print("loading nil unwrapped error")
