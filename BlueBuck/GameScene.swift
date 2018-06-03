@@ -64,22 +64,29 @@ class GameScene: SKScene {
     private func animateDisappearBlocks(_ blocks: [Block], completion: @escaping () -> Void) {
         if blocks.count > 0 {
             let animateTime: Double = 0.6*Double(blocks.count)
-            let orientation = UIDevice.current.orientation
-            for i in 0..<blocks.count {
+        var sortedBlocks = [Block]()
+            switch orientation {
+            case .faceDown, .faceUp, .unknown, .portrait, .portraitUpsideDown:
+                sortedBlocks = blocks.sorted { $0.location.column < $1.location.column }
+            case .landscapeLeft, .landscapeRight:
+                sortedBlocks = blocks.sorted { $0.location.row < $1.location.column }
+            }
+            for i in 0..<sortedBlocks.count {
                 
-                twinkleNode[i].position = blocks[i].shapeNode.position
+                twinkleNode[i].position = sortedBlocks[i].shapeNode.position
                 addChild(twinkleNode[i])
                 
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3*animateTime) { [weak self] in
-                    blocks[i].shapeNode.removeFromParent()
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.6*Double(i)) { [weak self] in
-                        self?.replace(block: blocks[i], orientation: orientation)
+                    guard let weakself = self else { return }
+                    sortedBlocks[i].shapeNode.removeFromParent()
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.8*Double(i)) {
+                        weakself.replace(block: sortedBlocks[i], orientation: weakself.orientation)
                     }
                 }
                 
                 twinkleNode[i].animate(time: animateTime) { [weak self] in
                     self?.twinkleNode[i].removeFromParent()
-                    if i == (blocks.count - 1) {
+                    if i == (sortedBlocks.count - 1) {
                         completion()
                     }
                 }
@@ -184,7 +191,7 @@ class GameScene: SKScene {
         replacementBlock.shapeNode.lineWidth = 5
         
         var newPosition = CGPoint()
-        switch orientation {//orientation {
+        switch orientation {
         case .portrait://.up:
             replacementBlock.location = (row: 1, column: block.location.column)
             newPosition = Game.originLocation[0][block.location.column - 1]
@@ -198,7 +205,7 @@ class GameScene: SKScene {
             replacementBlock.location = (row: block.location.row, column: 1)
             newPosition = Game.originLocation[block.location.row - 1][0]
         case .faceUp, .faceDown, .unknown:
-            print("error device orientation: \(UIDevice.current.orientation)")
+            print("error device orientation: \(orientation)")
             replacementBlock.location = (row: 1, column: block.location.column)
             newPosition = Game.originLocation[0][block.location.column - 1]
         }
@@ -216,11 +223,13 @@ class GameScene: SKScene {
         }
     }
     
+    private var orientation = UIDevice.current.orientation
     private func tappedOn(_ block: Block) {
     
         guard unlocked else { return }
         unlocked = false
-        replace(block: block, orientation: UIDevice.current.orientation)
+        orientation = UIDevice.current.orientation
+        replace(block: block, orientation: orientation)
         
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + dropTime*3) { [weak self] in
@@ -252,7 +261,7 @@ class GameScene: SKScene {
      
         indexes.append(removedBlock.location)
       
-        switch orientation {//orientation {
+        switch orientation {
         case .portrait://.up:
             dropWithOrientationUp(indexes)
         case .portraitUpsideDown://.upsideDown:
@@ -262,7 +271,7 @@ class GameScene: SKScene {
         case .landscapeRight://.right:
             dropWithOrientationRight(indexes)
         case .faceDown, .faceUp, .unknown:
-            print("orientation for moveblocks func error: \(UIDevice.current.orientation)")
+            print("orientation for moveblocks func error: \(orientation)")
             dropWithOrientationUp(indexes)
         }
         

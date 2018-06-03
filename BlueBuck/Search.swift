@@ -6,6 +6,17 @@
 //  Copyright © 2018 Aaron Halvorsen. All rights reserved.
 //
 
+/*
+ 
+ horizontal pairs searched first
+ ◻️ ◻️
+ 
+ patterns searched from the left of the two squares of the pairs found
+ ◻️ ◻️ ◻️
+ ◻️
+ 
+ */
+
 import Foundation
 
 internal final class Search {
@@ -25,7 +36,8 @@ internal final class Search {
     internal func patterns(_ patterns: [Pattern]) -> [(pattern: Pattern, blocks: [Block])] {
         findPrimativePairs()
         var response: [(pattern: Pattern, blocks: [Block])] = []
-        for pattern in patterns {
+        let sortedPatterns = patterns.sorted { ObjectiveModel.patternData[$0]!.filter{ $0 == true }.count > ObjectiveModel.patternData[$1]!.filter{ $0 == true }.count}
+        for pattern in sortedPatterns {
             let blocks = find(pattern: pattern)
             for set in blocks {
                 response.append((pattern: pattern, blocks: set))
@@ -183,7 +195,7 @@ internal final class Search {
                 let block1 = dictionary[primative.row - 1]?[primative.column + 1],
                 let block2 = dictionary[primative.row + 1]?[primative.column],
                 let block3 = dictionary[primative.row + 1]?[primative.column + 1],
-                let block4 = dictionary[primative.row + 1]?[primative.column + 2] {
+                let block4 = dictionary[primative.row + 1]?[primative.column - 1] {
                 if [primative.block.blockType, block1.blockType, block2.blockType, block3.blockType, block4.blockType].allEqual() {
                     foundPatterns.append([primative.block, block0, block1, block2, block3, block4])
                 }
@@ -259,7 +271,7 @@ internal final class Search {
         for primative in primativePairIndexes {
             if let block0 = dictionary[primative.row]?[primative.column + 1],
                 let block1 = dictionary[primative.row - 1]?[primative.column + 1],
-                let block2 = dictionary[primative.row - 1]?[primative.column + 2] {
+                let block2 = dictionary[primative.row - 2]?[primative.column + 1] {
                 if [primative.block.blockType, block1.blockType, block2.blockType].allEqual() {
                     foundPatterns.append([primative.block, block0, block1, block2])
                 }
@@ -486,7 +498,7 @@ internal final class Search {
             if let block0 = dictionary[primative.row]?[primative.column + 1],
                 let block1 = dictionary[primative.row]?[primative.column + 2],
                 let block2 = dictionary[primative.row - 1]?[primative.column + 1],
-                let block3 = dictionary[primative.row - 2]?[primative.column + 2] {
+                let block3 = dictionary[primative.row - 2]?[primative.column + 1] {
                 if [primative.block.blockType, block1.blockType, block2.blockType, block3.blockType].allEqual() {
                     foundPatterns.append([primative.block, block0, block1, block2, block3])
                 }
@@ -500,7 +512,7 @@ internal final class Search {
             if let block0 = dictionary[primative.row]?[primative.column + 1],
                 let block1 = dictionary[primative.row]?[primative.column + 2],
                 let block2 = dictionary[primative.row + 1]?[primative.column + 1],
-                let block3 = dictionary[primative.row + 2]?[primative.column + 2] {
+                let block3 = dictionary[primative.row + 2]?[primative.column + 1] {
                 if [primative.block.blockType, block1.blockType, block2.blockType, block3.blockType].allEqual() {
                     foundPatterns.append([primative.block, block0, block1, block2, block3])
                 }

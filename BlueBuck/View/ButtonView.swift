@@ -13,16 +13,14 @@ class ButtonView: UIView {
     let exit = UIButton()
     let refresh = UIButton()
     let moves = UILabel()
-//    let objectiveView = ObjectiveView()
-    
+
     internal var config: ViewConfig? {
         didSet {
             guard let config = config else { return }
             exit.frame = config.backFrame
             refresh.frame = config.refreshFrame
             moves.frame = config.movesFrame
-//            objectiveView.frame = config.objectiveFrame
-            
+
         }
     }
 
@@ -37,7 +35,6 @@ class ButtonView: UIView {
         addSubview(exit)
         addSubview(refresh)
         addSubview(moves)
-//        addSubview(objectiveView)
         
     }
     

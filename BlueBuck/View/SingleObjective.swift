@@ -11,6 +11,16 @@ import UIKit
 class SingleObjective: UIView {
     
     var square: [Bool]
+    var squareView = [Square]()
+    var popUp = false {
+        didSet {
+            if popUp {
+                for square in squareView {
+                    square.color = Color.white
+                }
+            }
+        }
+    }
     
     init(square: [Bool]) {
         self.square = square
@@ -21,6 +31,10 @@ class SingleObjective: UIView {
                 if square.count > k {
                     if square[k] {
                         let newSquare = Square(frame: CGRect(x: CGFloat(j)*17, y: CGFloat(i)*17, width: 10, height: 10))
+                        if popUp {
+                            newSquare.color = Color.white
+                        }
+                        squareView.append(newSquare)
                         addSubview(newSquare)
                     }
                 }
@@ -37,10 +51,11 @@ class SingleObjective: UIView {
 }
 
 class Square: UIView {
+    var color = Color.blackLighter2
     override func draw(_ rect: CGRect) {
         var path = UIBezierPath()
         path = UIBezierPath(rect: CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height))
-        Color.blackLighter2.setFill()
+        color.setFill()
         path.fill()
     }
 }

@@ -14,6 +14,38 @@ class LevelsViewController: UIViewController {
     private lazy var levelsView = LevelsView(frame: view.bounds)
     private var enterLevelPopup: EnterLevelPopup?
     private var layoutConstraints = [NSLayoutConstraint]()
+    private var objectiveView: ObjectiveView?
+    let popupConfig = Popup()
+    
+    var config: ViewConfig? {
+        didSet {
+            guard let config = config else { return }
+            objectiveView?.frame = config.objectiveFrame
+        }
+    }
+    
+    private func displayPopup() {
+       
+        guard let buckLevel = game?.level,
+            let objectives = ObjectiveModel.objectivesByLevel[buckLevel] else { return }
+        var patterns: [SingleObjective] = []
+        for objective in objectives {
+            guard let bools = ObjectiveModel.patternData[objective.pattern] else { return }
+            patterns.append(SingleObjective(square: bools))
+        }
+        objectiveView = ObjectiveView(objectiveViews: patterns)
+        guard let objectiveView = objectiveView else { return }
+        objectiveView.config = popupConfig
+        
+        
+        guard let enterLevelPopup = enterLevelPopup else { return }
+        objectiveView.frame = enterLevelPopup.centerView.bounds
+        enterLevelPopup.centerView.addSubview(objectiveView)
+        UIView.animate(withDuration: 0.4) {
+            enterLevelPopup.alpha = 1.0
+        }
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,10 +58,14 @@ class LevelsViewController: UIViewController {
         
         enterLevelPopup = EnterLevelPopup()
         guard let enterLevelPopup = enterLevelPopup else { return }
+        enterLevelPopup.alpha = 0.0
         view.addSubview(enterLevelPopup)
-        
         setupConstraints()
         enableConstraints()
+        
+        enterLevelPopup.cancel.addTarget(self, action: #selector(cancelTouchUpInside(_:)), for: .touchUpInside)
+        enterLevelPopup.okay.addTarget(self, action: #selector(okayTouchUpInside(_:)), for: .touchUpInside)
+
     }
     
     private func setupConstraints() {
@@ -44,24 +80,56 @@ class LevelsViewController: UIViewController {
     private func enableConstraints() {
         NSLayoutConstraint.activate(layoutConstraints)
     }
+
+    
+    private func removePopup() {
+        
+        UIView.animate(withDuration: 0.4, animations: {
+        self.enterLevelPopup?.alpha = 0.0
+        }) { _ in
+            self.objectiveView?.removeFromSuperview()
+            self.objectiveView = nil
+            self.levelsView.isUserInteractionEnabled = true
+        }
+   
+    }
+    
+    @objc private func cancelTouchUpInside(_ sender: UIButton) {
+        removePopup()
+    }
+    
+    @objc private func okayTouchUpInside(_ sender: UIButton) {
+        presentGame()
+        removePopup()
+    }
     
     @objc private func levelTouchUpInside(_ sender: UIButton) {
+        levelsView.isUserInteractionEnabled = false
         if let level = Levels.levelByTag[sender.tag] {
-        loadAndPresentGame(level)
+        loadGame(level)
         } else {
             print("level was nil")
         }
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-//        loadAnPresentGame(.level3)
-    }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         enableConstraints()
     }
+    private func presentGame() {
+        let viewController = GameViewController()
+        viewController.game = game
+        if let level = game?.level,
+            let objectives = ObjectiveModel.objectivesByLevel[level] {
+            viewController.objectiveModel = ObjectiveModel(objectives: objectives)
+            viewController.modalPresentationStyle = .custom
+            viewController.modalTransitionStyle = .crossDissolve
+            present(viewController, animated: true)
+        } else {
+            print("loading nil unwrapped error")
+        }
+    }
     
-    private func loadAndPresentGame(_ level: BuckLevel) {
+    private func loadGame(_ level: BuckLevel) {
         var blocks: [Block] = []
         for i in 0..<10 {
             for j in 0..<5 {
@@ -81,18 +149,8 @@ class LevelsViewController: UIViewController {
             }
         }
         game = Game(blocks: blocks, level: level)
-        
-        let viewController = GameViewController()
-        viewController.game = game
-        if let level = game?.level,
-            let objectives = ObjectiveModel.objectivesByLevel[level] {
-        viewController.objectiveModel = ObjectiveModel(objectives: objectives)
-            viewController.modalPresentationStyle = .custom
-            viewController.modalTransitionStyle = .crossDissolve
-            present(viewController, animated: true)
-        } else {
-            print("loading nil unwrapped error")
-        }
+        displayPopup()
+       
         
         
     }

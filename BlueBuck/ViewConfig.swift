@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+// ##NOTE: Some of the patterns still dont align properly if they only have two columns
 internal class ViewConfig {
     var backFrame = CGRect.zero
     var refreshFrame = CGRect.zero
@@ -22,6 +22,7 @@ internal class ViewConfig {
     var objectiveCenter5 = CGPoint.zero
     var objectiveCenter2b = CGPoint.zero
     var objectiveCenter4b = CGPoint.zero
+    var popUp = false
 }
 
 internal final class Portrait: ViewConfig {
@@ -53,10 +54,26 @@ internal final class Landscape: ViewConfig {
         buttonViewFrame = CGRect(x: 0, y: 0, width: 667, height: 70)
         objectiveFrame = CGRect(x: 304, y: 0, width: 667, height: 71)
         refreshRotation = CGFloat.pi*0.5
-        objectiveCenter1 = CGPoint(x: 49, y: 258)
-        objectiveCenter2 = CGPoint(x: 49, y: 302)
-        objectiveCenter3 = CGPoint(x: 49, y: 333.5)
-        objectiveCenter4 = CGPoint(x: 49, y: 371)
-        objectiveCenter5 = CGPoint(x: 49, y: 409)
+        objectiveCenter1 = CGPoint(x: 112, y: 49)
+        objectiveCenter2 = CGPoint(x: 152, y: 49)
+        objectiveCenter2b = CGPoint(x: 149, y: 49)
+        objectiveCenter3 = CGPoint(x: 187.5, y: 49)
+        objectiveCenter4 = CGPoint(x: 221, y: 49)
+        objectiveCenter4b = CGPoint(x: 208, y: 49)
+        objectiveCenter5 = CGPoint(x: 263, y: 49)
+    }
+}
+
+internal final class Popup: ViewConfig {
+    override init() {
+        super.init()
+        objectiveCenter1 = CGPoint(x: 62, y: 49)
+        objectiveCenter2 = CGPoint(x: 102, y: 49)
+        objectiveCenter2b = CGPoint(x: 99, y: 49)
+        objectiveCenter3 = CGPoint(x: 137.5, y: 49)
+        objectiveCenter4 = CGPoint(x: 171, y: 49)
+        objectiveCenter4b = CGPoint(x: 158, y: 49)
+        objectiveCenter5 = CGPoint(x: 213, y: 49)
+        popUp = true
     }
 }

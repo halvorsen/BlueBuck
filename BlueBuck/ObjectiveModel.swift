@@ -72,29 +72,43 @@ internal final class ObjectiveModel {
     internal static let objectivesByLevel: [BuckLevel: [(pattern: Pattern, amount: Int)]] = [
         .level1: [(.falcon, 2)],
         .level2: [(.falcon, 2),(.monkey, 1)],
-        .level3: [(.turtle3, 2),(.turtle1, 2)],
+        .level3: [(.turtle3, 2),(.turtle1, 1)],
         .level4: [(.rino1, 1),(.goose1, 1),(.stag1, 1)],
-        .level5: [(.bat1, 2),(.falcon, 3),(.stag1, 1)],
-        .level6: [(.bat1, 5)],
-        .level7: [],
-        .level8: [],
-        .level9: [],
-        .level10: [],
-        .level11: [],
-        .level12: [],
-        .level13: [],
-        .level14: [],
-        .level15: [],
-        .level16: [],
-        .level17: [],
-        .level18: [],
-        .level19: [],
-        .level20: [],
-        .level21: [],
-        .level22: [],
-        .levelEgg: []
+        .level5: [(.bat1, 1),(.falcon, 1),(.stag1, 1)],
+        .level6: [(.bat1, 2)],
+        .level7: [(.rino1, 1),(.rino2, 2),(.monkey, 1)],
+        .level8: [(.giraffe1, 1),(.giraffe2, 1),(.giraffe3, 1)],
+        .level9: [(.stag1, 1),(.monkey, 1)],
+        .level10: [(.goose1, 1),(.goose2, 2),(.goose3, 1)],
+        .level11: [(.ram1, 1),(.elephant, 1),(.ram2, 2)],
+        .level12: [(.goat1, 2),(.armadillo1, 1),(.goat2, 2)],
+        .level13: [(.armadillo1, 2),(.armadillo2, 2)],
+        .level14: [(.monkey, 3)],
+        .level15: [(.bat1, 1),(.bat3, 2),(.bat4, 1)],
+        .level16: [(.falcon, 1),(.elephant, 1),(.rino1, 2)],
+        .level17: [(.stag1, 2),(.goose1, 2),(.giraffe1, 2)],
+        .level18: [(.mouse, 4)],
+        .level19: [(.bat4, 1),(.goose2, 2),(.goat3, 2)],
+        .level20: [(.falcon, 2),(.turtle1, 2),(.stag4, 2)],
+        .level21: [(.giraffe1, 2),(.elephant, 2),(.turtle1, 2)],
+        .level22: [(.ram2, 3),(.ram1, 3)],
+        .levelEgg: [(.elephant, 5)]
     
     ]
+    /*
+     giraffe1, giraffe2, giraffe3, giraffe4, turtle1, turtle2, turtle3, turtle4, rino1, rino2, rino3, rino4, goose1, goose2, goose3, goose4, armadillo1, armadillo2, elephant, monkey, stag1, stag2, stag3, stag4, goat1, goat2, goat3, goat4, ram1, ram2, falcon, mouse, bat1, bat2, bat3, bat4
+     */
+    
+    /*
+     
+     horizontal pairs searched first
+     ◻️ ◻️
+     
+     patterns searched from the left of the two squares of the pairs found
+     ◻️ ◻️ ◻️
+        ◻️
+     
+     */
     
     internal static let patternData : [Pattern: [Bool]] = [
         .giraffe1: [false, false, true, false, false, true, false, true, true],

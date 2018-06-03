@@ -13,12 +13,12 @@ internal final class EnterLevelPopup: UIView {
     let title = UILabel()
     let cancel = UIButton()
     let okay = UIButton()
-    let centerView = UIView()
+    var centerView = UIView()
     var layoutContraints = [NSLayoutConstraint]()
     
     override init(frame: CGRect) {
     super.init(frame: frame)
-        backgroundColor = Color.black
+        backgroundColor = Color.blackPopup
         layer.cornerRadius = 15
         clipsToBounds = true
         title.text = "Level 1"

@@ -10,7 +10,7 @@ import SpriteKit
 
 internal final class BlockTwinkle: SKNode {
     
-    lazy var twinkles: [SKSpriteNode] = [SKSpriteNode(texture: texture),SKSpriteNode(texture: texture),SKSpriteNode(texture: texture),SKSpriteNode(texture: texture),SKSpriteNode(texture: texture),SKSpriteNode(texture: texture)]
+    lazy var twinkles: [SKSpriteNode] = [SKSpriteNode(texture: texture),SKSpriteNode(texture: texture),SKSpriteNode(texture: texture),SKSpriteNode(texture: texture)]
     let texture = SKTexture(image: #imageLiteral(resourceName: "star"))
     
     override init() {
