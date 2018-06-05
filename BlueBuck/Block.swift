@@ -19,8 +19,7 @@ internal enum DeviceDirection {
 internal final class Block {
     
     internal var location: (row: Int, column: Int)
-    private(set) internal var neighbor: (north: Block?, south: Block?, east: Block?, west: Block?) = (nil, nil, nil, nil)
-    internal let blockType: BlockType
+    internal var blockType: BlockType
     internal var shapeNode: SKShapeNode
     internal var indexOfBlockInSquareArray = 0
     
@@ -29,10 +28,5 @@ internal final class Block {
         self.blockType = type
         shapeNode = SKShapeNode(rectOf: CGSize(width: 33, height: 33), cornerRadius: 0)
     }
-    
-    internal func tapped() {
-        
-    }
-    
     
 }

@@ -32,6 +32,82 @@ internal final class Search {
             let column = block.location.column
             dictionary[row]![column] = block
         }
+        if let dict = dictionary[10],
+        dict.count < 5 {
+            print("ERROR!")
+            print("10")
+            print(dict.count)
+            print(dict)
+        }
+        if let dict = dictionary[1],
+            dict.count < 5 {
+            print("ERROR!")
+            print("1")
+            print(dict.count)
+            print(dict)
+            print(blocks.count)
+            for block in blocks {
+                print(block.location)
+            }
+        }
+        if let dict = dictionary[2],
+            dict.count < 5 {
+            print("ERROR!")
+            print("2")
+            print(dict.count)
+            print(dict)
+        }
+        if let dict = dictionary[3],
+            dict.count < 5 {
+            print("ERROR!")
+            print("3")
+            print(dict.count)
+            print(dict)
+        }
+        if let dict = dictionary[4],
+            dict.count < 5 {
+            print("ERROR!")
+            print("4")
+            print(dict.count)
+            print(dict)
+        }
+        if let dict = dictionary[5],
+            dict.count < 5 {
+            print("ERROR!")
+            print("5")
+            print(dict.count)
+            print(dict)
+        }
+        if let dict = dictionary[6],
+            dict.count < 5 {
+            print("ERROR!")
+            print("6")
+            print(dict.count)
+            print(dict)
+        }
+        if let dict = dictionary[7],
+            dict.count < 5 {
+            print("ERROR!")
+            print("7")
+            print(dict.count)
+            print(dict)
+        }
+        if let dict = dictionary[8],
+            dict.count < 5 {
+            print("ERROR!")
+            print("8")
+            print(dict.count)
+            print(dict)
+        }
+        if let dict = dictionary[9],
+            dict.count < 5 {
+            print("ERROR!")
+            print("9")
+            print(dict.count)
+            print(dict)
+        }
+        
+       
     }
     internal func patterns(_ patterns: [Pattern]) -> [(pattern: Pattern, blocks: [Block])] {
         findPrimativePairs()

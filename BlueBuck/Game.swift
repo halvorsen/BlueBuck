@@ -24,19 +24,20 @@ internal final class Game {
     
     internal var delegate: GameDelegate?
     private(set) internal var originalAllBlocks: [Block]
+    private(set) internal var allBlockType = [BlockType]()
     private(set) internal var blockQueue: [Block]
     private(set) internal var currentBoard: [[Block]] = [[]]
     private(set) internal var gameOrientation: DeviceDirection = .up
     private(set) internal var buttonsVisible: Bool = false
     private(set) internal var locations : [[CGPoint]] = [[]]
-    private var queueIndex = 50
+    private var queueIndex = 0
     private(set) internal var level: BuckLevel?
     
     init(blocks: [Block], level: BuckLevel) {
         self.level = level
         self.originalAllBlocks = blocks
         self.blockQueue = blocks
- 
+        allBlockType = Levels.blockTypeArray[level]!
         for i in 0..<10 {
             var newRow : [CGPoint] = []
             var rowBlocks : [Block] = []
@@ -78,25 +79,10 @@ internal final class Game {
         let index = queueIndex%100
         return index
     }
-    
-    internal func currentUpcomingQueueIndexes() -> (first: Int, second: Int, third: Int, fourth: Int, fifth: Int) {
-        return (queueIndex%100, (queueIndex + 1)%100, (queueIndex + 2)%100, (queueIndex + 3)%100, (queueIndex + 4)%100)
-    }
+
     
     internal func incrementQueue(by amount: Int) {
         queueIndex += amount
-    }
-    
-    internal func tap(block: Block) {
-        
-    }
-    
-    internal func movedDevice() {
-        
-    }
-    
-    internal func toggledButtons() {
-        
     }
     
     static let centerLocation: [[CGPoint]] = [

@@ -24,12 +24,14 @@ class GameScene: SKScene {
     internal var game : Game?
     internal var search: Search?
     internal var squares: [Block] = []
+    internal var squaresQueue: [Block] = []
     let twinkleNode: [BlockTwinkle] = [BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle()]
     
     override func didMove(to view: SKView) {
         
         backgroundColor = Color.black
         guard let game = game else { return }
+        squaresQueue = Array(game.blockQueue[50...99])
         var index = 0
         for row in game.currentBoard {
             for block in row {
@@ -38,11 +40,11 @@ class GameScene: SKScene {
                 index += 1
             }
         }
-        let (first, second, third, fourth, fifth) = game.currentUpcomingQueueIndexes()
+      
         for square in squares {
             addChild(square.shapeNode)
         }
-        for square in [game.blockQueue[first], game.blockQueue[second], game.blockQueue[third], game.blockQueue[fourth], game.blockQueue[fifth]] {
+        for square in [squaresQueue[0], squaresQueue[1], squaresQueue[2], squaresQueue[3], squaresQueue[4]] {
             addChild(square.shapeNode)
         }
         tap.addTarget(self, action: #selector(tapFunc(_:)))
@@ -53,7 +55,6 @@ class GameScene: SKScene {
     private func search(for patterns: [Pattern]) -> (gameOver: Bool, successBlocks: [Block]) {
         search = Search(squares)
         let results = search?.patterns(patterns)
-        print(results!)
         return processResults(results: results!)
     }
     
@@ -64,7 +65,7 @@ class GameScene: SKScene {
     private func animateDisappearBlocks(_ blocks: [Block], completion: @escaping () -> Void) {
         if blocks.count > 0 {
             let animateTime: Double = 0.6*Double(blocks.count)
-        var sortedBlocks = [Block]()
+            var sortedBlocks = [Block]()
             switch orientation {
             case .faceDown, .faceUp, .unknown, .portrait, .portraitUpsideDown:
                 sortedBlocks = blocks.sorted { $0.location.column < $1.location.column }
@@ -79,9 +80,9 @@ class GameScene: SKScene {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3*animateTime) { [weak self] in
                     guard let weakself = self else { return }
                     sortedBlocks[i].shapeNode.removeFromParent()
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.8*Double(i)) {
+                    Timer.scheduledTimer(withTimeInterval: 0.5*Double(i), repeats: false, block: { _ in
                         weakself.replace(block: sortedBlocks[i], orientation: weakself.orientation)
-                    }
+                    })
                 }
                 
                 twinkleNode[i].animate(time: animateTime) { [weak self] in
@@ -170,22 +171,20 @@ class GameScene: SKScene {
     
     private func moveQueueBlocksIntoOpenings() {
         let drop = SKAction.moveBy(x: 0, y: -21, duration: dropTime)
-        if let queueIndex = game?.currentQueueIndex() {
-            for i in queueIndex..<(queueIndex + 4) {
-                if let block = game?.blockQueue[i] {
+    
+            for block in [squaresQueue[0], squaresQueue[1], squaresQueue[2], squaresQueue[3]] {
                     block.shapeNode.run(drop)
-                }
             }
-        }
+        
     }
     
     private func replace(block: Block, orientation: UIDeviceOrientation) {
         guard let game = game else { return }
-        let queueIndex = game.currentQueueIndex()
-        game.incrementQueue(by: 1)
-        let replacementBlock = game.blockQueue[queueIndex]
-        let newQueueBlock = game.blockQueue[queueIndex + 5]
+//        squaresQueue.removeFirst()
         
+        let replacementBlock = squaresQueue.first!
+        let newQueueBlock = squaresQueue[4]
+        replacement = replacementBlock
         replacementBlock.shapeNode.lineJoin = .miter
         replacementBlock.shapeNode.path = Path.big
         replacementBlock.shapeNode.lineWidth = 5
@@ -195,6 +194,7 @@ class GameScene: SKScene {
         case .portrait://.up:
             replacementBlock.location = (row: 1, column: block.location.column)
             newPosition = Game.originLocation[0][block.location.column - 1]
+
         case .portraitUpsideDown://.upsideDown:
             replacementBlock.location = (row: 10, column: block.location.column)
             newPosition = Game.originLocation[9][block.location.column - 1]
@@ -213,19 +213,31 @@ class GameScene: SKScene {
         let moveReplacementBlock = SKAction.move(to: newPosition, duration: 0.5)
         replacementBlock.indexOfBlockInSquareArray = block.indexOfBlockInSquareArray
         replacementBlock.shapeNode.run(moveReplacementBlock)
-        block.shapeNode.removeFromParent()
-        moveBlocksIntoOpenings(block, orientation: orientation)
-        moveQueueBlocksIntoOpenings()
-        squares[block.indexOfBlockInSquareArray] = replacementBlock
 
+        
+        block.shapeNode.removeFromParent()
+     
+        self.moveBlocksIntoOpenings(block, orientation: orientation, squares: squares)
+
+        self.moveQueueBlocksIntoOpenings()
+
+        self.squares[replacementBlock.indexOfBlockInSquareArray].blockType = game.allBlockType[game.currentQueueIndex()]
+        self.squares[replacementBlock.indexOfBlockInSquareArray].location = (0,0)
+        squaresQueue.append(self.squares[replacementBlock.indexOfBlockInSquareArray])
+        self.squares[replacementBlock.indexOfBlockInSquareArray] = replacementBlock
+        squaresQueue.removeFirst()
+        game.incrementQueue(by: 1)
+        
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + dropTime*2) {
             self.addBlockToQueue(newQueueBlock)
         }
+        
     }
     
+    private var replacement = Block(location: (row: 0, column: 0), type: BlockType.blue)
     private var orientation = UIDevice.current.orientation
     private func tappedOn(_ block: Block) {
-    
+        
         guard unlocked else { return }
         unlocked = false
         orientation = UIDevice.current.orientation
@@ -255,86 +267,80 @@ class GameScene: SKScene {
         }
     }
     
-    private func moveBlocksIntoOpenings(_ removedBlock: Block, orientation: UIDeviceOrientation) {
+    private func moveBlocksIntoOpenings(_ removedBlock: Block, orientation: UIDeviceOrientation, squares: [Block]) {
         
-        var indexes: [(row: Int, column: Int)] = []
-     
-        indexes.append(removedBlock.location)
-      
+        let index: (row: Int, column: Int) = removedBlock.location
+        
         switch orientation {
         case .portrait://.up:
-            dropWithOrientationUp(indexes)
+            dropWithOrientationUp(index, squares: squares)
         case .portraitUpsideDown://.upsideDown:
-            dropWithOrientationUpSideDown(indexes)
+            dropWithOrientationUpSideDown(index, squares: squares)
         case .landscapeLeft://.left:
-            dropWithOrientationLeft(indexes)
+            dropWithOrientationLeft(index, squares: squares)
         case .landscapeRight://.right:
-            dropWithOrientationRight(indexes)
+            dropWithOrientationRight(index, squares: squares)
         case .faceDown, .faceUp, .unknown:
             print("orientation for moveblocks func error: \(orientation)")
-            dropWithOrientationUp(indexes)
+            dropWithOrientationUp(index, squares: squares)
         }
         
     }
     
-    private func dropWithOrientationUp(_ indexes: [(row: Int, column: Int)]) {
- 
+    private func dropWithOrientationUp(_ index: (row: Int, column: Int), squares: [Block]) {
+        
         let drop = SKAction.moveBy(x: 0, y: -48, duration: dropTime)
- 
-            for block in squares {
-                for index in indexes {
-                    if block.location.column == index.column && block.location.row < index.row {
-                        block.location.row += 1
-                        block.shapeNode.run(drop)
-                    }
-                    
+
+        for block in squares {
+         
+                if block.location.column == index.column && block.location.row < index.row {
+                    block.location.row += 1
+                    block.shapeNode.run(drop)
                 }
-            }
-        
-    }
-    private func dropWithOrientationUpSideDown(_ indexes: [(row: Int, column: Int)]) {
-   
-        let drop = SKAction.moveBy(x: 0, y: 48, duration: dropTime)
-    
-            for block in squares {
-                for index in indexes {
-                    if block.location.column == index.column && block.location.row > index.row {
-                        block.location.row -= 1
-                        block.shapeNode.run(drop)
-                    }
-                    
-                }
-            }
-        
-    }
-    private func dropWithOrientationLeft(_ indexes: [(row: Int, column: Int)]) {
-     
-        let drop = SKAction.moveBy(x: -48, y: 0, duration: dropTime)
-      
-            for block in squares {
-                for index in indexes {
-                    if block.location.row == index.row && block.location.column > index.column {
-                        block.location.column -= 1
-                        block.shapeNode.run(drop)
-                    }
-                    
-                }
-            }
-        
-    }
-    private func dropWithOrientationRight(_ indexes: [(row: Int, column: Int)]) {
- 
-        let drop = SKAction.moveBy(x: 48, y: 0, duration: dropTime)
        
-            for block in squares {
-                for index in indexes {
-                    if block.location.row == index.row && block.location.column < index.column {
-                        block.location.column += 1
-                        block.shapeNode.run(drop)
-                    }
-                    
-                }
+        }
+        
+    }
+    private func dropWithOrientationUpSideDown(_ index: (row: Int, column: Int), squares: [Block]) {
+        
+        let drop = SKAction.moveBy(x: 0, y: 48, duration: dropTime)
+        
+        for block in squares {
+            
+            if block.location.column == index.column && block.location.row > index.row {
+                block.location.row -= 1
+                block.shapeNode.run(drop)
             }
+            
+        }
+        
+    }
+    private func dropWithOrientationLeft(_ index: (row: Int, column: Int), squares: [Block]) {
+        
+        let drop = SKAction.moveBy(x: -48, y: 0, duration: dropTime)
+        
+        for block in squares {
+            
+            if block.location.row == index.row && block.location.column > index.column {
+                block.location.column -= 1
+                block.shapeNode.run(drop)
+            }
+            
+        }
+        
+    }
+    private func dropWithOrientationRight(_ index: (row: Int, column: Int), squares: [Block]) {
+        
+        let drop = SKAction.moveBy(x: 48, y: 0, duration: dropTime)
+        
+        for block in squares {
+            
+            if block.location.row == index.row && block.location.column < index.column {
+                block.location.column += 1
+                block.shapeNode.run(drop)
+            }
+            
+        }
         
     }
 }
