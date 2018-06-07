@@ -19,8 +19,14 @@ class ButtonView: UIView {
             guard let config = config else { return }
             exit.frame = config.backFrame
             refresh.frame = config.refreshFrame
-            moves.frame = config.movesFrame
-
+            if let center = config.movesCenter {
+                moves.center = center
+            }
+            else if let origin = config.movesOrigin {
+                moves.frame.origin = origin
+            }
+            refresh.transform = CGAffineTransform(rotationAngle: config.rotation)
+            moves.transform = CGAffineTransform(rotationAngle: config.rotation)
         }
     }
 
@@ -35,6 +41,7 @@ class ButtonView: UIView {
         addSubview(exit)
         addSubview(refresh)
         addSubview(moves)
+        moves.sizeToFit()
         
     }
     

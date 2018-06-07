@@ -66,6 +66,30 @@ class LevelsViewController: UIViewController {
         enterLevelPopup.cancel.addTarget(self, action: #selector(cancelTouchUpInside(_:)), for: .touchUpInside)
         enterLevelPopup.okay.addTarget(self, action: #selector(okayTouchUpInside(_:)), for: .touchUpInside)
 
+        NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(NSNotification.Name.UIDeviceOrientationDidChange)
+    }
+    
+    @objc private func orientationDidChange() {
+        let orientation =  UIDevice.current.orientation
+        var rotation: CGFloat = 0.0
+        switch orientation {
+        case .faceDown, .faceUp, .unknown, .portrait:
+            break
+        case .portraitUpsideDown:
+            rotation = CGFloat.pi
+        case .landscapeRight:
+            rotation = CGFloat.pi * -0.5
+        case .landscapeLeft:
+            rotation = CGFloat.pi * 0.5
+        }
+        for button in levelsView.buttons {
+            button.transform = CGAffineTransform(rotationAngle: rotation)
+        }
+        enterLevelPopup?.transform = CGAffineTransform(rotationAngle: rotation)
     }
     
     private func setupConstraints() {

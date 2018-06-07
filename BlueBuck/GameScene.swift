@@ -172,7 +172,7 @@ class GameScene: SKScene {
     private func moveQueueBlocksIntoOpenings() {
         let drop = SKAction.moveBy(x: 0, y: -21, duration: dropTime)
     
-            for block in [squaresQueue[0], squaresQueue[1], squaresQueue[2], squaresQueue[3]] {
+            for block in [squaresQueue[1], squaresQueue[2], squaresQueue[3], squaresQueue[4]] {
                     block.shapeNode.run(drop)
             }
         
@@ -180,10 +180,9 @@ class GameScene: SKScene {
     
     private func replace(block: Block, orientation: UIDeviceOrientation) {
         guard let game = game else { return }
-//        squaresQueue.removeFirst()
-        
+
         let replacementBlock = squaresQueue.first!
-        let newQueueBlock = squaresQueue[4]
+        let newQueueBlock = squaresQueue[5]
         replacement = replacementBlock
         replacementBlock.shapeNode.lineJoin = .miter
         replacementBlock.shapeNode.path = Path.big

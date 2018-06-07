@@ -13,13 +13,12 @@ class ObjectiveView: UIView {
     var objectives: [SingleObjective] = []
     let objectiveCounts: [UILabel] = [UILabel(),UILabel(),UILabel()]
     let objectiveCompletes: [UIImageView] = [UIImageView(image: #imageLiteral(resourceName: "checkmark")),UIImageView(image: #imageLiteral(resourceName: "checkmark")),UIImageView(image: #imageLiteral(resourceName: "checkmark"))]
-    var objectiveCountDimension: CGFloat = 12
-    var objectiveVerticleAdjustment: CGFloat = 2
-    var objectiveHorizontalAdjustment: CGFloat = 2
+
     
-    internal var config: ViewConfig? {
+    internal var config: ViewConfig? = Portrait() {
         didSet {
-            guard let config = config else { return }
+           guard let config = config else { return }
+            
             switch objectives.count {
             case 1:
                 objectives[0].center = config.objectiveCenter3
@@ -35,23 +34,29 @@ class ObjectiveView: UIView {
                 } else {
                     objectives[0].center = config.objectiveCenter2
                 }
-                objectiveCounts[1].frame.origin = CGPoint(x: objectives[1].frame.maxX + objectiveHorizontalAdjustment, y: objectives[1].frame.maxY - objectiveCountDimension + objectiveVerticleAdjustment)
-                objectiveCompletes[1].frame.origin = CGPoint(x: objectives[1].frame.maxX + objectiveHorizontalAdjustment, y: objectives[1].frame.maxY - objectiveCountDimension + objectiveVerticleAdjustment)
+                objectiveCounts[1].center = CGPoint(x: objectives[1].center.x + config.objectiveCountHorizontalAdjustment, y: objectives[1].center.y + config.objectiveCountVerticalAdjustment)
+                objectiveCompletes[1].center = CGPoint(x: objectives[1].center.x + config.objectiveCountHorizontalAdjustment, y: objectives[1].center.y + config.objectiveCountVerticalAdjustment)
             case 3:
                 objectives[1].popUp = config.popUp
                 objectives[2].popUp = config.popUp
                 objectives[0].center = config.objectiveCenter1
                 objectives[1].center = config.objectiveCenter3
                 objectives[2].center = config.objectiveCenter5
-                objectiveCounts[1].frame.origin = CGPoint(x: objectives[1].frame.maxX + objectiveHorizontalAdjustment, y: objectives[1].frame.maxY - objectiveCountDimension + objectiveVerticleAdjustment)
-                objectiveCounts[2].frame.origin = CGPoint(x: objectives[2].frame.maxX + objectiveHorizontalAdjustment, y: objectives[2].frame.maxY - objectiveCountDimension + objectiveVerticleAdjustment)
-                objectiveCompletes[2].frame.origin = CGPoint(x: objectives[2].frame.maxX + objectiveHorizontalAdjustment, y: objectives[2].frame.maxY - objectiveCountDimension + objectiveVerticleAdjustment)
+                objectiveCounts[1].center = CGPoint(x: objectives[1].center.x + config.objectiveCountHorizontalAdjustment, y: objectives[1].center.y + config.objectiveCountVerticalAdjustment)
+                objectiveCompletes[1].center = CGPoint(x: objectives[1].center.x + config.objectiveCountHorizontalAdjustment, y: objectives[1].center.y + config.objectiveCountVerticalAdjustment)
+                objectiveCounts[2].center = CGPoint(x: objectives[2].center.x + config.objectiveCountHorizontalAdjustment, y: objectives[2].center.y + config.objectiveCountVerticalAdjustment)
+                objectiveCompletes[2].center = CGPoint(x: objectives[2].center.x + config.objectiveCountHorizontalAdjustment, y: objectives[2].center.y + config.objectiveCountVerticalAdjustment)
             default:
                 break
             }
-            objectiveCounts[0].frame.origin = CGPoint(x: objectives[0].frame.maxX + objectiveHorizontalAdjustment, y: objectives[0].frame.maxY - objectiveCountDimension + objectiveVerticleAdjustment)
-            objectiveCompletes[0].frame.origin = CGPoint(x: objectives[0].frame.maxX + objectiveHorizontalAdjustment, y: objectives[0].frame.maxY - objectiveCountDimension + objectiveVerticleAdjustment)
+            objectiveCounts[0].center = CGPoint(x: objectives[0].center.x + config.objectiveCountHorizontalAdjustment, y: objectives[0].center.y + config.objectiveCountVerticalAdjustment)
+            objectiveCompletes[0].center = CGPoint(x: objectives[0].center.x + config.objectiveCountHorizontalAdjustment, y: objectives[0].center.y + config.objectiveCountVerticalAdjustment)
             objectives[0].popUp = config.popUp
+            
+            for objectiveLabel in objectiveCounts {
+                objectiveLabel.transform = CGAffineTransform(rotationAngle: config.rotation)
+                objectiveLabel.sizeToFit()
+            }
         }
     }
     
@@ -63,11 +68,11 @@ class ObjectiveView: UIView {
         }
         
         for label in objectiveCounts {
-            label.frame.size = CGSize(width: objectiveCountDimension, height: objectiveCountDimension)
             label.textAlignment = .center
             label.font = UIFont(name: "GothamBold", size: 12)
             label.textColor = Color.blackLighter2
             label.text = ""
+            label.sizeToFit()
             addSubview(label)
         }
         
@@ -76,7 +81,6 @@ class ObjectiveView: UIView {
             addSubview(imageView)
             imageView.isHidden = true
         }
-        
         
     }
     

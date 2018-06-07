@@ -20,14 +20,19 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
     private var objectiveView: ObjectiveView?
     private var tapView: (top: UIView, bottom: UIView, left: UIView, right: UIView) = (UIView(),UIView(),UIView(),UIView())
     internal var game: Game?
-    let landscapeConfig = Landscape()
+    let landscapeRightConfig = LandscapeRight()
     let portaitConfig = Portrait()
+    let landscapeLeftConfig = LandscapeLeft()
+    let portaitUpsideDownConfig = PortraitDown()
+    var didntChangeTooQuickly = true
     
     var config: ViewConfig? {
         didSet {
              guard let config = config else { return }
             buttonView.frame = config.buttonViewFrame
             objectiveView?.frame = config.objectiveFrame
+            buttonView.config = config
+            objectiveView?.config = config
         }
     }
     
@@ -64,6 +69,26 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
         toggleButtonsAndObjectives()
         buttonView.exit.addTarget(self, action: #selector(dismissGame), for: .touchUpInside)
         updatePatternViews()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(NSNotification.Name.UIDeviceOrientationDidChange)
+    }
+    
+    @objc private func orientationDidChange() {
+        if didntChangeTooQuickly && viewsOn {
+            toggleButtonsAndObjectives()
+        }
+        else if viewsOn {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) { [weak self] in
+                guard let weakself = self else { return }
+                if weakself.viewsOn {
+                weakself.toggleButtonsAndObjectives()
+                }
+            }
+        }
     }
     
     @objc private func dismissGame() {
@@ -109,7 +134,23 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
             }
         }
         else {
+            didntChangeTooQuickly = false
+            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { [weak self] _ in
+                self?.didntChangeTooQuickly = true
+            }
             viewsOn = true
+            let orientation =  UIDevice.current.orientation
+            switch orientation {
+            case .faceDown, .faceUp, .unknown, .portrait:
+                config = portaitConfig
+            case .portraitUpsideDown:
+                config = portaitUpsideDownConfig
+            case .landscapeRight:
+                config = landscapeRightConfig
+            case .landscapeLeft:
+                config = landscapeLeftConfig
+            }
+          
             UIView.animate(withDuration: 0.2) {
                 for view in objectiveView.subviews + self.buttonView.subviews {
                     view.alpha = 1.0

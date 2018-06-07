@@ -9,58 +9,65 @@
 import UIKit
 // ##NOTE: Some of the patterns still dont align properly if they only have two columns
 internal class ViewConfig {
-    var backFrame = CGRect.zero
-    var refreshFrame = CGRect.zero
-    var movesFrame = CGRect.zero
-    var buttonViewFrame = CGRect.zero
-    var objectiveFrame = CGRect.zero
-    var refreshRotation: CGFloat = 0
-    var objectiveCenter1 = CGPoint.zero
-    var objectiveCenter2 = CGPoint.zero
-    var objectiveCenter3 = CGPoint.zero
-    var objectiveCenter4 = CGPoint.zero
-    var objectiveCenter5 = CGPoint.zero
-    var objectiveCenter2b = CGPoint.zero
-    var objectiveCenter4b = CGPoint.zero
+    var backFrame = CGRect(x: 129, y: 40, width: 24, height: 24)
+    var refreshFrame = CGRect(x: 169, y: 31, width: 40, height: 39)
+    var movesOrigin: CGPoint? = CGPoint(x: 223, y: 41)
+    var movesCenter: CGPoint? = nil
+    var buttonViewFrame = CGRect(x: 0, y: 0, width: 375, height: 70)
+    var objectiveFrame = CGRect(x: 0, y: 569, width: 375, height: 98)
+    var objectiveCenter1 = CGPoint(x: 112, y: 49)
+    var objectiveCenter2 = CGPoint(x: 152, y: 49)
+    var objectiveCenter3 = CGPoint(x: 187.5, y: 49)
+    var objectiveCenter4 = CGPoint(x: 221, y: 49)
+    var objectiveCenter5 = CGPoint(x: 263, y: 49)
+    var objectiveCenter2b = CGPoint(x: 149, y: 49)
+    var objectiveCenter4b = CGPoint(x: 208, y: 49)
     var popUp = false
+    var rotation: CGFloat = 0
+    var objectiveCountHorizontalAdjustment: CGFloat = 29
+    var objectiveCountVerticalAdjustment: CGFloat = 18
+    
 }
 
 internal final class Portrait: ViewConfig {
     override init() {
         super.init()
-        backFrame = CGRect(x: 129, y: 40, width: 24, height: 24)
-        refreshFrame = CGRect(x: 169, y: 31, width: 40, height: 39)
-        movesFrame = CGRect(x: 223, y: 37, width: 90, height: 35)
-        buttonViewFrame = CGRect(x: 0, y: 0, width: 375, height: 70)
-        objectiveFrame = CGRect(x: 0, y: 569, width: 375, height: 98)
-        objectiveCenter1 = CGPoint(x: 112, y: 49)
-        objectiveCenter2 = CGPoint(x: 152, y: 49)
-        objectiveCenter2b = CGPoint(x: 149, y: 49)
-        objectiveCenter3 = CGPoint(x: 187.5, y: 49)
-        objectiveCenter4 = CGPoint(x: 221, y: 49)
-        objectiveCenter4b = CGPoint(x: 208, y: 49)
-        objectiveCenter5 = CGPoint(x: 263, y: 49)
-        
-        
+      
     }
 }
 
-internal final class Landscape: ViewConfig {
+internal final class PortraitDown: ViewConfig {
     override init() {
         super.init()
-        backFrame = CGRect(x: 25, y: 271, width: 24, height: 24)
-        refreshFrame = CGRect(x: 18, y: 313, width: 40, height: 39)
-        movesFrame = CGRect(x: 27, y: 367, width: 90, height: 28)
-        buttonViewFrame = CGRect(x: 0, y: 0, width: 667, height: 70)
-        objectiveFrame = CGRect(x: 304, y: 0, width: 667, height: 71)
-        refreshRotation = CGFloat.pi*0.5
-        objectiveCenter1 = CGPoint(x: 112, y: 49)
-        objectiveCenter2 = CGPoint(x: 152, y: 49)
-        objectiveCenter2b = CGPoint(x: 149, y: 49)
-        objectiveCenter3 = CGPoint(x: 187.5, y: 49)
-        objectiveCenter4 = CGPoint(x: 221, y: 49)
-        objectiveCenter4b = CGPoint(x: 208, y: 49)
-        objectiveCenter5 = CGPoint(x: 263, y: 49)
+        rotation = CGFloat.pi
+        movesOrigin = CGPoint(x: 223, y: 33)
+        objectiveCountHorizontalAdjustment = -29
+        objectiveCountVerticalAdjustment = -18
+        backFrame = CGRect(x: 129, y: 37, width: 24, height: 24)
+    }
+}
+
+internal final class LandscapeRight: ViewConfig {
+    override init() {
+        super.init()
+        rotation = CGFloat.pi * -0.5
+        movesOrigin = nil
+        movesCenter = CGPoint(x: 240, y: 52)
+        objectiveCountHorizontalAdjustment = 32
+        objectiveCountVerticalAdjustment = 0
+        backFrame = CGRect(x: 129, y: 37, width: 24, height: 24)
+    }
+}
+
+internal final class LandscapeLeft: ViewConfig {
+    override init() {
+        super.init()
+        rotation = CGFloat.pi * 0.5
+        movesOrigin = nil
+        movesCenter = CGPoint(x: 237, y: 52)
+        objectiveCountHorizontalAdjustment = -32
+        objectiveCountVerticalAdjustment = 0
+        backFrame = CGRect(x: 129, y: 37, width: 24, height: 24)
     }
 }
 
