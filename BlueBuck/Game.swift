@@ -26,17 +26,18 @@ internal final class Game {
     private(set) internal var originalAllBlocks: [Block]
     private(set) internal var allBlockType = [BlockType]()
     private(set) internal var blockQueue: [Block]
-    private(set) internal var currentBoard: [[Block]] = [[]]
+    private(set) internal var startBoard: [[Block]] = [[]]
     private(set) internal var gameOrientation: DeviceDirection = .up
     private(set) internal var buttonsVisible: Bool = false
-    private(set) internal var locations : [[CGPoint]] = [[]]
     private var queueIndex = 0
     private(set) internal var level: BuckLevel?
+    private(set) internal var blockConfigs: [BlockConfig]
     
-    init(blocks: [Block], level: BuckLevel) {
+    init(blocks: [Block], blockConfigs: [BlockConfig], level: BuckLevel) {
         self.level = level
         self.originalAllBlocks = blocks
         self.blockQueue = blocks
+        self.blockConfigs = blockConfigs
         allBlockType = Levels.blockTypeArray[level]!
         for i in 0..<10 {
             var newRow : [CGPoint] = []
@@ -44,42 +45,53 @@ internal final class Game {
       
             for j in 0..<5 {
                 let newLocation = CGPoint(x: 91.5 + 48*CGFloat(j), y: 549 - 48*CGFloat(i))
-                
                 newRow.append(newLocation)
                 let index = 5*i + j
-                blocks[index].shapeNode.lineWidth = 5
-                if originalAllBlocks.count > (index),
-                    let color = color[blocks[index].blockType] {
-                    blocks[index].shapeNode.strokeColor = color
-                }
-                blocks[index].shapeNode.lineJoin = .miter
-                blocks[index].shapeNode.position = newLocation
                 rowBlocks.append(blocks[index])
             }
-     
-            currentBoard.append(rowBlocks)
-            locations.append(newRow)
+            startBoard.append(rowBlocks)
         }
-      
-        for k in 50..<55 {
-            let newLocation = CGPoint(x: 56.5, y: 476.5 + (CGFloat(k) - 50)*21)
-            blocks[k].shapeNode = SKShapeNode(rectOf: CGSize(width: 14, height: 14), cornerRadius: 0)
-            blocks[k].shapeNode.lineWidth = 3
-            if originalAllBlocks.count > k,
-                let color = color[blocks[k].blockType] {
-                blocks[k].shapeNode.strokeColor = color
+        setShapeNodes()
+        
+    }
+    
+    internal func setShapeNodes() {
+        for i in 0..<10 {
+            for j in 0..<5 {
+                let newLocation = CGPoint(x: 91.5 + 48*CGFloat(j), y: 549 - 48*CGFloat(i))
+                let index = 5*i + j
+                blockQueue[index].shapeNode.lineWidth = 5
+                if originalAllBlocks.count > (index),
+                    let color = color[blockQueue[index].blockType] {
+                    blockQueue[index].shapeNode.strokeColor = color
+                }
+                blockQueue[index].shapeNode.lineJoin = .miter
+                blockQueue[index].shapeNode.position = newLocation
             }
-            blocks[k].shapeNode.lineJoin = .miter
-            blocks[k].shapeNode.position = newLocation
+            
         }
         
+        for k in 50..<55 {
+            let newLocation = CGPoint(x: 56.5, y: 476.5 + (CGFloat(k) - 50)*21)
+            blockQueue[k].shapeNode = SKShapeNode(rectOf: CGSize(width: 14, height: 14), cornerRadius: 0)
+            blockQueue[k].shapeNode.lineWidth = 3
+            if originalAllBlocks.count > k,
+                let color = color[blockQueue[k].blockType] {
+                blockQueue[k].shapeNode.strokeColor = color
+            }
+            blockQueue[k].shapeNode.lineJoin = .miter
+            blockQueue[k].shapeNode.position = newLocation
+        }
     }
     
     internal func currentQueueIndex() -> Int {
         let index = queueIndex%100
         return index
     }
-
+    
+    internal func resetIndex() {
+        queueIndex = 0
+    }
     
     internal func incrementQueue(by amount: Int) {
         queueIndex += amount

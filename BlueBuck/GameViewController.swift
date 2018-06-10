@@ -16,6 +16,7 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
     private var scene = GameScene()
     private var gameView = GameView()
     private var buttonView = ButtonView()
+    private var iconView = UIImageView(image: #imageLiteral(resourceName: "buckIcon"))
     internal var objectiveModel: ObjectiveModel?
     private var objectiveView: ObjectiveView?
     private var tapView: (top: UIView, bottom: UIView, left: UIView, right: UIView) = (UIView(),UIView(),UIView(),UIView())
@@ -53,8 +54,13 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
         config = portaitConfig
         buttonView.config = portaitConfig
         objectiveView.config = portaitConfig
+        iconView.alpha = 0.92
+        iconView.frame.size = CGSize(width: 16, height: 17)
+        iconView.center = CGPoint(x: 349, y: 642.5)
         view.addSubview(gameView)
         addTapViews()
+        
+        view.addSubview(iconView)
         view.addSubview(buttonView)
         view.addSubview(objectiveView)
         buttonView.backgroundColor = .clear
@@ -68,8 +74,9 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
         gameView.presentScene(scene)
         toggleButtonsAndObjectives()
         buttonView.exit.addTarget(self, action: #selector(dismissGame), for: .touchUpInside)
+        buttonView.refresh.addTarget(self, action: #selector(refreshGame), for: .touchUpInside)
         updatePatternViews()
-        
+        rotateIcon()
         NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
     
@@ -78,6 +85,7 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
     }
     
     @objc private func orientationDidChange() {
+    
         if didntChangeTooQuickly && viewsOn {
             toggleButtonsAndObjectives()
         }
@@ -89,10 +97,15 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
                 }
             }
         }
+        rotateIcon()
     }
     
     @objc private func dismissGame() {
         dismiss(animated: true)
+    }
+    
+    @objc private func refreshGame() {
+        scene.refreshGame()
     }
     
     private func addTapViews() {
@@ -141,7 +154,7 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
             viewsOn = true
             let orientation =  UIDevice.current.orientation
             switch orientation {
-            case .faceDown, .faceUp, .unknown, .portrait:
+            case .portrait:
                 config = portaitConfig
             case .portraitUpsideDown:
                 config = portaitUpsideDownConfig
@@ -149,6 +162,8 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
                 config = landscapeRightConfig
             case .landscapeLeft:
                 config = landscapeLeftConfig
+            default:
+                return
             }
           
             UIView.animate(withDuration: 0.2) {
@@ -156,6 +171,26 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
                     view.alpha = 1.0
                 }
             }
+        }
+    }
+    
+    private func rotateIcon() {
+        let orientation =  UIDevice.current.orientation
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            
+            switch orientation {
+            case .portrait:
+                self?.iconView.transform = CGAffineTransform(rotationAngle: 0)
+            case .portraitUpsideDown:
+                self?.iconView.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+            case .landscapeRight:
+                self?.iconView.transform = CGAffineTransform(rotationAngle: CGFloat.pi * -0.5)
+            case .landscapeLeft:
+                self?.iconView.transform = CGAffineTransform(rotationAngle: CGFloat.pi * 0.5)
+            default:
+                return
+            }
+            self?.scene.orientation = orientation
         }
     }
     

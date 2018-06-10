@@ -33,7 +33,7 @@ class GameScene: SKScene {
         guard let game = game else { return }
         squaresQueue = Array(game.blockQueue[50...99])
         var index = 0
-        for row in game.currentBoard {
+        for row in game.startBoard {
             for block in row {
                 block.indexOfBlockInSquareArray = index
                 squares.append(block)
@@ -49,6 +49,39 @@ class GameScene: SKScene {
         }
         tap.addTarget(self, action: #selector(tapFunc(_:)))
         view.addGestureRecognizer(tap)
+        
+    }
+    
+    internal func refreshGame() {
+        // moves equal to zero
+        // reset objectives
+        // reset grid
+        guard let game = game else { return }
+        game.resetIndex()
+        game.setShapeNodes()
+        for i in 0..<game.blockConfigs.count {
+            game.blockQueue[i].location = game.blockConfigs[i].location
+            game.blockQueue[i].blockType = game.blockConfigs[i].blockType
+        }
+        
+        squares.removeAll()
+        var _index = 0
+        for row in game.startBoard {
+            for block in row {
+                block.indexOfBlockInSquareArray = _index
+                squares.append(block)
+                _index += 1
+            }
+        }
+        squaresQueue = Array(game.blockQueue[50...99])
+        removeAllChildren()
+        
+        for square in squares {
+            addChild(square.shapeNode)
+        }
+        for square in [squaresQueue[0], squaresQueue[1], squaresQueue[2], squaresQueue[3], squaresQueue[4]] {
+            addChild(square.shapeNode)
+        }
         
     }
     
@@ -70,7 +103,7 @@ class GameScene: SKScene {
             case .faceDown, .faceUp, .unknown, .portrait, .portraitUpsideDown:
                 sortedBlocks = blocks.sorted { $0.location.column < $1.location.column }
             case .landscapeLeft, .landscapeRight:
-                sortedBlocks = blocks.sorted { $0.location.row < $1.location.column }
+                sortedBlocks = blocks.sorted { $0.location.row < $1.location.row }
             }
             for i in 0..<sortedBlocks.count {
                 
@@ -102,7 +135,15 @@ class GameScene: SKScene {
         var patternsFound: [Pattern] = []
         var successBlockShapes: [SKShapeNode] = []
         var successBlock: [Block] = []
-        for result in results {
+        loop: for result in results {
+            
+            for patternGoal in objectiveModel.patternArray { // makes sure that when theres one objective left of a given pattern that two of the same kind aren't found
+                if result.pattern == patternGoal.pattern {
+                    if patternGoal.objective <= patternGoal.completed {
+                        continue loop
+                    }
+                }
+            }
             
             var maybeSuccessBlockShapes: [SKShapeNode] = []
             var maybeSuccessBlock: [Block] = []
@@ -234,12 +275,12 @@ class GameScene: SKScene {
     }
     
     private var replacement = Block(location: (row: 0, column: 0), type: BlockType.blue)
-    private var orientation = UIDevice.current.orientation
+    internal var orientation = UIDevice.current.orientation
     private func tappedOn(_ block: Block) {
         
         guard unlocked else { return }
         unlocked = false
-        orientation = UIDevice.current.orientation
+        
         replace(block: block, orientation: orientation)
         
         

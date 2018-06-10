@@ -77,7 +77,7 @@ class LevelsViewController: UIViewController {
         let orientation =  UIDevice.current.orientation
         var rotation: CGFloat = 0.0
         switch orientation {
-        case .faceDown, .faceUp, .unknown, .portrait:
+        case .portrait:
             break
         case .portraitUpsideDown:
             rotation = CGFloat.pi
@@ -85,6 +85,8 @@ class LevelsViewController: UIViewController {
             rotation = CGFloat.pi * -0.5
         case .landscapeLeft:
             rotation = CGFloat.pi * 0.5
+        default:
+            return
         }
         for button in levelsView.buttons {
             button.transform = CGAffineTransform(rotationAngle: rotation)
@@ -155,6 +157,7 @@ class LevelsViewController: UIViewController {
     
     private func loadGame(_ level: BuckLevel) {
         var blocks: [Block] = []
+        var blockConfigs: [BlockConfig] = []
         for i in 0..<10 {
             for j in 0..<5 {
                 let index = 5*i + j
@@ -162,6 +165,7 @@ class LevelsViewController: UIViewController {
                     color.count > index {
                     let newBlock = Block.init(location: (row: i + 1, column: j + 1), type: color[index])
                     blocks.append(newBlock)
+                    blockConfigs.append(BlockConfig(location: (row: i + 1, column: j + 1), blockType: color[index]))
                 }
             }
         }
@@ -170,13 +174,12 @@ class LevelsViewController: UIViewController {
                 color.count > i {
                 let newBlock = Block.init(location: (row: 0, column: 0), type: color[i])
                 blocks.append(newBlock)
+                blockConfigs.append(BlockConfig(location: (row: 0, column: 0), blockType: color[i]))
             }
         }
-        game = Game(blocks: blocks, level: level)
+        game = Game(blocks: blocks, blockConfigs: blockConfigs, level: level)
         displayPopup()
        
-        
-        
     }
     
     private func createLevelsUtility() { // create and print a random level

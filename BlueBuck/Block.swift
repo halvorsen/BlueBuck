@@ -29,4 +29,9 @@ internal final class Block {
         shapeNode = SKShapeNode(rectOf: CGSize(width: 33, height: 33), cornerRadius: 0)
     }
     
+    internal func set(with config: BlockConfig) {
+        location = config.location
+        blockType = config.blockType
+    }
+    
 }
