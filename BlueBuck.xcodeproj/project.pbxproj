@@ -22,7 +22,6 @@
 		06BB07DE20A7D08C00895113 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB07DD20A7D08C00895113 /* GameScene.swift */; };
 		06BB07E020A7D08C00895113 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB07DF20A7D08C00895113 /* GameViewController.swift */; };
 		06BB07E520A7D08E00895113 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06BB07E420A7D08E00895113 /* Assets.xcassets */; };
-		06BB07E820A7D08E00895113 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06BB07E620A7D08E00895113 /* LaunchScreen.storyboard */; };
 		06BB07F120A7D11E00895113 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06BB07EF20A7D11E00895113 /* Model.xcdatamodeld */; };
 		06BB07F320A7D8C000895113 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB07F220A7D8C000895113 /* GameView.swift */; };
 		06BB07F520A7E73B00895113 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06BB07F420A7E73B00895113 /* Main.storyboard */; };
@@ -50,7 +49,6 @@
 		06BB07DD20A7D08C00895113 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		06BB07DF20A7D08C00895113 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		06BB07E420A7D08E00895113 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		06BB07E720A7D08E00895113 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		06BB07E920A7D08E00895113 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06BB07F020A7D11E00895113 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		06BB07F220A7D8C000895113 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
@@ -114,7 +112,6 @@
 				06BB07E420A7D08E00895113 /* Assets.xcassets */,
 				0698324A20B4F23100F0CC52 /* Gotham-Bold.ttf */,
 				06BB07F420A7E73B00895113 /* Main.storyboard */,
-				06BB07E620A7D08E00895113 /* LaunchScreen.storyboard */,
 				06BB07E920A7D08E00895113 /* Info.plist */,
 				06BB07EF20A7D11E00895113 /* Model.xcdatamodeld */,
 				06DFE61520A90D9200633D78 /* Block.swift */,
@@ -190,7 +187,6 @@
 				06BB07F520A7E73B00895113 /* Main.storyboard in Resources */,
 				0698324B20B4F23100F0CC52 /* Gotham-Bold.ttf in Resources */,
 				06BB07E520A7D08E00895113 /* Assets.xcassets in Resources */,
-				06BB07E820A7D08E00895113 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,17 +221,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		06BB07E620A7D08E00895113 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				06BB07E720A7D08E00895113 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		06BB07EA20A7D08E00895113 /* Debug */ = {
@@ -356,6 +341,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H7YBLWSAMD;
 				INFOPLIST_FILE = BlueBuck/Info.plist;
@@ -374,6 +360,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H7YBLWSAMD;
 				INFOPLIST_FILE = BlueBuck/Info.plist;

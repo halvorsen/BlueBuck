@@ -71,7 +71,7 @@ class ObjectiveView: UIView {
             label.textAlignment = .center
             label.font = UIFont(name: "GothamBold", size: 12)
             label.textColor = Color.blackLighter2
-            label.text = ""
+            label.text = "1"
             label.sizeToFit()
             addSubview(label)
         }

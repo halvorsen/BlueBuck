@@ -2,22 +2,14 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "annotationTapToEliminate@1x.png",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "universal",
-      "filename" : "annotationTapToEliminate@2x.png",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "universal",
-      "filename" : "annotationTapToEliminate@3x.png",
-      "scale" : "3x"
+      "filename" : "annotationTapToEliminate.pdf"
     }
   ],
   "info" : {
     "version" : 1,
     "author" : "xcode"
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
   }
 }
