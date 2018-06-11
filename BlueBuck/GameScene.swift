@@ -12,10 +12,12 @@ import GameplayKit
 internal protocol GameSceneDelegate: class {
     func tapOnGame()
     func updatePatternViews()
+    func gameComplete()
 }
 
 class GameScene: SKScene {
     
+    internal var isNotTutorial = true
     internal weak var gameDelegate: GameSceneDelegate?
     private var unlocked = true
     private var dropTime: Double = 0.2
@@ -25,6 +27,7 @@ class GameScene: SKScene {
     internal var search: Search?
     internal var squares: [Block] = []
     internal var squaresQueue: [Block] = []
+    private var tutorialAllowableIndex: Int = 17
     let twinkleNode: [BlockTwinkle] = [BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle(),BlockTwinkle()]
     
     override func didMove(to view: SKView) {
@@ -95,6 +98,7 @@ class GameScene: SKScene {
         gameDelegate?.updatePatternViews()
     }
     
+    internal var didFinishAnimateBlocks: () -> Void = {}
     private func animateDisappearBlocks(_ blocks: [Block], completion: @escaping () -> Void) {
         if blocks.count > 0 {
             let animateTime: Double = 0.6*Double(blocks.count)
@@ -121,11 +125,13 @@ class GameScene: SKScene {
                 twinkleNode[i].animate(time: animateTime) { [weak self] in
                     self?.twinkleNode[i].removeFromParent()
                     if i == (sortedBlocks.count - 1) {
+                        self?.didFinishAnimateBlocks()
                         completion()
                     }
                 }
             }
         } else {
+            didFinishAnimateBlocks()
             completion()
         }
     }
@@ -178,7 +184,13 @@ class GameScene: SKScene {
     }
     
     private func gameComplete() {
-        //game end sequence
+        gameDelegate?.gameComplete()
+    }
+    
+    internal var didTapOnBlock: (Block) -> Void = {_ in} {
+        didSet {
+            print("did set tap")
+        }
     }
     
     @objc private func tapFunc(_ gesture: UITapGestureRecognizer) {
@@ -189,7 +201,12 @@ class GameScene: SKScene {
             
             let modifiedFrame = CGRect(x: squares[i].shapeNode.frame.origin.x - 5, y: squares[i].shapeNode.frame.origin.y - 5, width: squares[i].shapeNode.frame.width + 10, height: squares[i].shapeNode.frame.width + 10)
             if modifiedFrame.contains(tapLocation) {
+                guard isNotTutorial || i == tutorialAllowableIndex else { return }
+               
                 tappedOn(squares[i])
+            
+                didTapOnBlock(squares[i])
+               
                 return
             }
             

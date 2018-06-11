@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             UserDefaults.standard.set(true, forKey: "blueBuckLaunchedBefore")
             let viewController = LevelsViewController()
+            viewController.doTutorial = true
             self.window?.rootViewController = viewController
             self.window?.makeKeyAndVisible()
             

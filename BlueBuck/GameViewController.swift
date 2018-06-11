@@ -13,8 +13,8 @@ import GameplayKit
 
 class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecognizerDelegate {
     
-    private var scene = GameScene()
-    private var gameView = GameView()
+    internal var scene = GameScene()
+    internal var gameView = GameView()
     private var buttonView = ButtonView()
     private var iconView = UIImageView(image: #imageLiteral(resourceName: "buckIcon"))
     internal var objectiveModel: ObjectiveModel?
@@ -26,6 +26,11 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
     let landscapeLeftConfig = LandscapeLeft()
     let portaitUpsideDownConfig = PortraitDown()
     var didntChangeTooQuickly = true
+    var baseView = UIView()
+    private var exitLevelPopup: ExitLevelPopup?
+    private var layoutConstraints = [NSLayoutConstraint]()
+    internal var didRotateDevice: (UIDeviceOrientation) -> Void = {_ in}
+    internal var isNotTutorial = true
     
     var config: ViewConfig? {
         didSet {
@@ -47,25 +52,29 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
             guard let bools = ObjectiveModel.patternData[objective.pattern] else { return }
             patterns.append(SingleObjective(square: bools))
         }
+        baseView.frame = view.bounds
+        baseView.backgroundColor = .clear
+        view.addSubview(baseView)
         objectiveView = ObjectiveView(objectiveViews: patterns)
         guard let objectiveView = objectiveView else { return }
         view.backgroundColor = Color.black
-        gameView.frame = view.bounds
+        gameView.frame.size = CGSize(width: 375, height: 667)
+        gameView.center = view.center
         config = portaitConfig
         buttonView.config = portaitConfig
         objectiveView.config = portaitConfig
         iconView.alpha = 0.92
         iconView.frame.size = CGSize(width: 16, height: 17)
         iconView.center = CGPoint(x: 349, y: 642.5)
-        view.addSubview(gameView)
+        baseView.addSubview(gameView)
         addTapViews()
         
-        view.addSubview(iconView)
-        view.addSubview(buttonView)
-        view.addSubview(objectiveView)
+        baseView.addSubview(iconView)
+        baseView.addSubview(buttonView)
+        baseView.addSubview(objectiveView)
         buttonView.backgroundColor = .clear
    
-        scene.size = view.bounds.size
+        scene.size = gameView.bounds.size
         scene.scaleMode = .aspectFill
         scene.backgroundColor = .black
         scene.game = game
@@ -78,6 +87,38 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
         updatePatternViews()
         rotateIcon()
         NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        
+        exitLevelPopup = ExitLevelPopup()
+        guard let exitLevelPopup = exitLevelPopup else { return }
+        exitLevelPopup.alpha = 0.0
+        view.addSubview(exitLevelPopup)
+        setupConstraints()
+        enableConstraints()
+        exitLevelPopup.gameCenter.addTarget(self, action: #selector(gameCenterTouchUpInside(_:)), for: .touchUpInside)
+        exitLevelPopup.okay.addTarget(self, action: #selector(okayTouchUpInside(_:)), for: .touchUpInside)
+        
+        switch UIDevice.current.orientation {
+        case .portrait:
+            orientation = .portrait
+        case .portraitUpsideDown:
+            orientation = .portraitUpsideDown
+        case .landscapeLeft:
+            orientation = .landscapeLeft
+        case .landscapeRight:
+            orientation = .landscapeRight
+        default:
+            orientation = .portrait
+        }
+        rotateIcon()
+        
+    }
+    
+    @objc private func gameCenterTouchUpInside(_ sender: UIButton) {
+        //display game center controller
+    }
+    
+    @objc private func okayTouchUpInside(_ sender: UIButton) {
+        dismiss(animated: true)
     }
     
     deinit {
@@ -97,7 +138,22 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
                 }
             }
         }
+        
+        
+        switch UIDevice.current.orientation {
+        case .portrait:
+           orientation = .portrait
+        case .portraitUpsideDown:
+            orientation = .portraitUpsideDown
+        case .landscapeLeft:
+            orientation = .landscapeLeft
+        case .landscapeRight:
+            orientation = .landscapeRight
+        default:
+            break
+        }
         rotateIcon()
+        didRotateDevice(orientation)
     }
     
     @objc private func dismissGame() {
@@ -118,7 +174,7 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
         for tapView in [tapView.top, tapView.bottom, tapView.left, tapView.right, buttonView, objectiveView] {
             let tap = UITapGestureRecognizer(target: self, action: #selector(tapOutsideGame(_:)))
             tap.delegate = self
-            view.addSubview(tapView)
+            baseView.addSubview(tapView)
             tapView.addGestureRecognizer(tap)
             tapView.isUserInteractionEnabled = true
         }
@@ -132,9 +188,15 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
     }
     
     @objc private func tapOutsideGame(_ tapGesture: UITapGestureRecognizer) {
+        guard isNotTutorial else { return }
         toggleButtonsAndObjectives()
     }
     
+    var orientation = UIDevice.current.orientation {
+        didSet {
+            scene.orientation = orientation
+        }
+    }
     var viewsOn = true
     internal func toggleButtonsAndObjectives() {
         guard let objectiveView = objectiveView else { return }
@@ -152,7 +214,7 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
                 self?.didntChangeTooQuickly = true
             }
             viewsOn = true
-            let orientation =  UIDevice.current.orientation
+    
             switch orientation {
             case .portrait:
                 config = portaitConfig
@@ -174,23 +236,22 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
         }
     }
     
-    private func rotateIcon() {
-        let orientation =  UIDevice.current.orientation
+    let rotationAngle: [UIDeviceOrientation: CGFloat] = [
+        .portrait: 0.0,
+        .portraitUpsideDown: CGFloat.pi,
+        .landscapeRight: CGFloat.pi * -0.5,
+        .landscapeLeft: CGFloat.pi * 0.5
+    ]
+    
+    internal func rotateIcon() {
+        
         UIView.animate(withDuration: 0.3) { [weak self] in
+            guard let weakself = self,
+                let rotationAngle = weakself.rotationAngle[weakself.orientation] else {return}
             
-            switch orientation {
-            case .portrait:
-                self?.iconView.transform = CGAffineTransform(rotationAngle: 0)
-            case .portraitUpsideDown:
-                self?.iconView.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
-            case .landscapeRight:
-                self?.iconView.transform = CGAffineTransform(rotationAngle: CGFloat.pi * -0.5)
-            case .landscapeLeft:
-                self?.iconView.transform = CGAffineTransform(rotationAngle: CGFloat.pi * 0.5)
-            default:
-                return
-            }
-            self?.scene.orientation = orientation
+            weakself.iconView.transform = CGAffineTransform(rotationAngle: rotationAngle)
+            
+            
         }
     }
     
@@ -211,12 +272,39 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
         
     }
     
+    private func displayPopup() {
+        guard let rotationAngle = rotationAngle[orientation],
+            let exitLevelPopup = exitLevelPopup else {return}
+        exitLevelPopup.transform = CGAffineTransform(rotationAngle: rotationAngle)
+        UIView.animate(withDuration: 0.4) {
+            exitLevelPopup.alpha = 1.0
+        }
+        self.baseView.isUserInteractionEnabled = false
+        
+    }
+    
     override var shouldAutorotate: Bool {
         return false
     }
     
     override var prefersStatusBarHidden: Bool {
         return true
+    }
+    private func setupConstraints() {
+        guard let exitLevelPopup = exitLevelPopup else { return }
+        exitLevelPopup.translatesAutoresizingMaskIntoConstraints = false
+        layoutConstraints.append(exitLevelPopup.centerXAnchor.constraint(equalTo: view.centerXAnchor))
+        layoutConstraints.append(exitLevelPopup.centerYAnchor.constraint(equalTo: view.centerYAnchor))
+        layoutConstraints.append(exitLevelPopup.heightAnchor.constraint(equalTo: exitLevelPopup.widthAnchor, multiplier: 0.58))
+        layoutConstraints.append(exitLevelPopup.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75))
+    }
+    private func enableConstraints() {
+        NSLayoutConstraint.activate(layoutConstraints)
+    }
+    
+    internal func gameComplete() {
+        //Display sucess popup first
+        displayPopup()
     }
     
 }

@@ -8,13 +8,16 @@
 
 import UIKit
 
-class LevelsViewController: UIViewController {
+class LevelsViewController: UIViewController, TutorialDelegate {
     
     private var game: Game?
     private lazy var levelsView = LevelsView(frame: view.bounds)
     private var enterLevelPopup: EnterLevelPopup?
     private var layoutConstraints = [NSLayoutConstraint]()
     private var objectiveView: ObjectiveView?
+    private var tutorialController = TutorialController()
+    private lazy var mask = UIView(frame: view.bounds)
+    internal var doTutorial = true
     let popupConfig = Popup()
     
     var config: ViewConfig? {
@@ -67,6 +70,38 @@ class LevelsViewController: UIViewController {
         enterLevelPopup.okay.addTarget(self, action: #selector(okayTouchUpInside(_:)), for: .touchUpInside)
 
         NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        
+        if doTutorial {
+            mask.backgroundColor = Color.black
+            view.addSubview(mask)
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if doTutorial {
+            levelsView.isUserInteractionEnabled = false
+            if let level = Levels.levelByTag[2] {
+                loadGame(level)
+            }
+            let gameViewController = GameViewController()
+            gameViewController.game = game
+            if let level = game?.level,
+                let objectives = ObjectiveModel.objectivesByLevel[level] {
+                gameViewController.objectiveModel = ObjectiveModel(objectives: objectives)
+                gameViewController.modalPresentationStyle = .custom
+                gameViewController.modalTransitionStyle = .crossDissolve
+                gameViewController.scene.isNotTutorial = false
+                gameViewController.isNotTutorial = false
+                present(gameViewController, animated: true) { [weak self] in
+                    guard let weakself = self else { return }
+                    weakself.tutorialController.setTarget(gameView: gameViewController.gameView, levelView: weakself.view)
+                    weakself.tutorialController.setClosures(gameViewController: gameViewController)
+                        weakself.mask.removeFromSuperview()
+                        gameViewController.orientation = .portrait
+                        gameViewController.rotateIcon()
+                }
+            }
+        }
     }
     
     deinit {
@@ -150,12 +185,10 @@ class LevelsViewController: UIViewController {
             viewController.modalPresentationStyle = .custom
             viewController.modalTransitionStyle = .crossDissolve
             present(viewController, animated: true)
-        } else {
-            print("loading nil unwrapped error")
         }
     }
     
-    private func loadGame(_ level: BuckLevel) {
+    internal func loadGame(_ level: BuckLevel) {
         var blocks: [Block] = []
         var blockConfigs: [BlockConfig] = []
         for i in 0..<10 {
