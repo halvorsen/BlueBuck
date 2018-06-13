@@ -10,13 +10,14 @@ import SpriteKit
 
 internal final class BlockTwinkle: SKNode {
     
-    lazy var twinkles: [SKSpriteNode] = [SKSpriteNode(texture: texture),SKSpriteNode(texture: texture),SKSpriteNode(texture: texture),SKSpriteNode(texture: texture)]
+    var twinkles = [SKSpriteNode]()
     let texture = SKTexture(image: #imageLiteral(resourceName: "star"))
     
     override init() {
         super.init()
+        twinkles = [SKSpriteNode(texture: texture),SKSpriteNode(texture: texture),SKSpriteNode(texture: texture),SKSpriteNode(texture: texture)]
         let randomIndex = Int(arc4random_uniform(18))
-
+        
         for i in 0..<twinkles.count {
             let index = (randomIndex + i)%18
             twinkles[i].position = location[index]

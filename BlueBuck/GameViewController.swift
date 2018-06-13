@@ -14,7 +14,7 @@ import GameplayKit
 class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecognizerDelegate {
     
     internal var scene = GameScene()
-    internal var gameView = GameView()
+    internal var gameView: GameView?
     private var buttonView = ButtonView()
     private var iconView = UIImageView(image: #imageLiteral(resourceName: "buckIcon"))
     internal var objectiveModel: ObjectiveModel?
@@ -58,15 +58,16 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
         objectiveView = ObjectiveView(objectiveViews: patterns)
         guard let objectiveView = objectiveView else { return }
         view.backgroundColor = Color.black
-        gameView.frame.size = CGSize(width: 375, height: 667)
-        gameView.center = view.center
+        gameView = GameView()
+        gameView?.frame.size = CGSize(width: 375, height: 667)
+        gameView?.center = view.center
         config = portaitConfig
         buttonView.config = portaitConfig
         objectiveView.config = portaitConfig
         iconView.alpha = 0.92
         iconView.frame.size = CGSize(width: 16, height: 17)
         iconView.center = CGPoint(x: 349, y: 642.5)
-        baseView.addSubview(gameView)
+        baseView.addSubview(gameView!)
         addTapViews()
         
         baseView.addSubview(iconView)
@@ -74,13 +75,13 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
         baseView.addSubview(objectiveView)
         buttonView.backgroundColor = .clear
    
-        scene.size = gameView.bounds.size
+        scene.size = gameView!.bounds.size
         scene.scaleMode = .aspectFill
         scene.backgroundColor = .black
         scene.game = game
         scene.gameDelegate = self
         scene.objectiveModel = objectiveModel
-        gameView.presentScene(scene)
+        gameView!.presentScene(scene)
         toggleButtonsAndObjectives()
         buttonView.exit.addTarget(self, action: #selector(dismissGame), for: .touchUpInside)
         buttonView.refresh.addTarget(self, action: #selector(refreshGame), for: .touchUpInside)
@@ -138,7 +139,6 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
                 }
             }
         }
-        
         
         switch UIDevice.current.orientation {
         case .portrait:

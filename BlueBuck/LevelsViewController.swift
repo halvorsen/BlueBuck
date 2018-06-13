@@ -15,9 +15,10 @@ class LevelsViewController: UIViewController, TutorialDelegate {
     private var enterLevelPopup: EnterLevelPopup?
     private var layoutConstraints = [NSLayoutConstraint]()
     private var objectiveView: ObjectiveView?
-    private var tutorialController = TutorialController()
+    private var tutorialController: TutorialController?
     private lazy var mask = UIView(frame: view.bounds)
     internal var doTutorial = true
+    internal var tutorialView: UIImageView?
     let popupConfig = Popup()
     
     var config: ViewConfig? {
@@ -76,14 +77,18 @@ class LevelsViewController: UIViewController, TutorialDelegate {
             view.addSubview(mask)
         }
     }
-    
+    var gameViewController: GameViewController?
     override func viewDidAppear(_ animated: Bool) {
         if doTutorial {
+            defer {
+                doTutorial = false
+            }
             levelsView.isUserInteractionEnabled = false
             if let level = Levels.levelByTag[2] {
                 loadGame(level)
             }
-            let gameViewController = GameViewController()
+            gameViewController = GameViewController()
+            guard let gameViewController = gameViewController else { return }
             gameViewController.game = game
             if let level = game?.level,
                 let objectives = ObjectiveModel.objectivesByLevel[level] {
@@ -94,12 +99,14 @@ class LevelsViewController: UIViewController, TutorialDelegate {
                 gameViewController.isNotTutorial = false
                 present(gameViewController, animated: true) { [weak self] in
                     guard let weakself = self else { return }
-                    weakself.tutorialController.setTarget(gameView: gameViewController.gameView, levelView: weakself.view)
-                    weakself.tutorialController.setClosures(gameViewController: gameViewController)
+                    weakself.tutorialController = TutorialController()
+                    weakself.tutorialController?.setTarget(gameView: gameViewController.gameView!, levelView: weakself.view, delegate: weakself)
+                    weakself.tutorialController?.setClosures(gameViewController: gameViewController)
                         weakself.mask.removeFromSuperview()
                         gameViewController.orientation = .portrait
                         gameViewController.rotateIcon()
                 }
+                removePopup()
             }
         }
     }
@@ -157,10 +164,12 @@ class LevelsViewController: UIViewController, TutorialDelegate {
     
     @objc private func cancelTouchUpInside(_ sender: UIButton) {
         removePopup()
+        tutorialView?.removeFromSuperview()
     }
     
     @objc private func okayTouchUpInside(_ sender: UIButton) {
         presentGame()
+        tutorialView?.removeFromSuperview()
         removePopup()
     }
     
@@ -168,8 +177,6 @@ class LevelsViewController: UIViewController, TutorialDelegate {
         levelsView.isUserInteractionEnabled = false
         if let level = Levels.levelByTag[sender.tag] {
         loadGame(level)
-        } else {
-            print("level was nil")
         }
     }
 
@@ -186,6 +193,23 @@ class LevelsViewController: UIViewController, TutorialDelegate {
             viewController.modalTransitionStyle = .crossDissolve
             present(viewController, animated: true)
         }
+    }
+    
+    internal func doneTutorial() {
+        print("done tutorial")
+        tutorialView = tutorialController?.tutorialView?.imageViews[.levelView]
+        tutorialController?.gameView = nil
+        tutorialController?.levelView = nil
+        tutorialController =  nil
+        gameViewController?.didRotateDevice = {_ in}
+        gameViewController?.scene.didFinishAnimateBlocks = {}
+        gameViewController?.scene.didTapOnBlock = {_ in}
+        gameViewController!.gameView = nil
+        gameViewController = nil
+        let notAButton = UIButton()
+        notAButton.tag = 0
+        
+        levelTouchUpInside(notAButton)
     }
     
     internal func loadGame(_ level: BuckLevel) {

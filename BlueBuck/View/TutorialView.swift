@@ -26,10 +26,12 @@ class TutorialView: UIView {
         super.init(frame: frame)
         for (screen, imageView) in imageViews {
             imageView.center = center
-            if screen != .tapToEliminate {
+            if screen != .tapToEliminate && screen != .levelView {
             imageView.alpha = 0.0
             }
+            if screen != .levelView {
             addSubview(imageView)
+            }
             imageView.isUserInteractionEnabled = false
         }
     }

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol TutorialDelegate: class {
-    func loadGame(_ level: BuckLevel)
+    func doneTutorial()
 }
 
 enum TutorialScreen {
@@ -18,42 +18,50 @@ enum TutorialScreen {
 
 class TutorialController {
     
-    var delegate: TutorialDelegate?
+    weak var delegate: TutorialDelegate? 
     
-    let tutorialView = TutorialView(frame: CGRect(x: 0, y: 0, width: 375, height: 667))
-    var gameView = UIView()
-    var levelView = UIView()
+    var tutorialView: TutorialView?
+    weak var gameView: UIView?
+    weak var levelView: UIView?
     var currentTutorialScreen: TutorialScreen = .tapToEliminate {
         didSet {
             setView()
         }
     }
-
-    func setTarget(gameView: UIView, levelView: UIView) {
+    
+    func setTarget(gameView: UIView, levelView: UIView, delegate: TutorialDelegate) {
+        tutorialView = TutorialView(frame: CGRect(x: 0, y: 0, width: 375, height: 667))
+        self.delegate = delegate
         self.gameView = gameView
         self.levelView = levelView
-        tutorialView.removeFromSuperview()
-        self.gameView.addSubview(tutorialView)
+        tutorialView?.removeFromSuperview()
+        guard let tutorialView = tutorialView else { return }
+        self.gameView?.addSubview(tutorialView)
+        self.levelView?.addSubview(tutorialView.imageViews[.levelView]!)
     }
     
     func setClosures(gameViewController: GameViewController) {
         gameViewController.didRotateDevice = { [weak self] orientation in
-            guard let weakself = self else { return }
- 
+            guard let weakself = self,
+                ![.tapToEliminate, .createShapes, .tapAgain1, .tapAgain2, .tapAgain3].contains(weakself.currentTutorialScreen) else { return }
+            
             if [TutorialScreen.returnPhone1, TutorialScreen.returnPhone2].contains(weakself.currentTutorialScreen) && orientation == .portrait {
+                weakself.tutorialView?.removeFromSuperview()
                 gameViewController.dismiss(animated: true, completion: {
+                    print("DISMISS")
                     weakself.currentTutorialScreen = .levelView
-                    weakself.delegate?.loadGame(.level1)
+                    print(weakself.delegate)
+                    weakself.delegate?.doneTutorial()
                 })
                 
             } else if weakself.currentTutorialScreen == .rotateDevice && orientation == .landscapeLeft {
                 weakself.currentTutorialScreen = .tapAgain1
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0, execute: {
                     weakself.currentTutorialScreen = .tapAgain2
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.0, execute: {
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0, execute: {
                         weakself.currentTutorialScreen = .tapAgain3
                         if orientation == .landscapeLeft {
-                        gameViewController.baseView.isUserInteractionEnabled = true
+                            gameViewController.baseView.isUserInteractionEnabled = true
                         }
                     })
                 })
@@ -65,7 +73,7 @@ class TutorialController {
         }
         
         gameViewController.scene.didTapOnBlock = { [weak self] block in
-
+            
             guard let weakself = self else { return }
             if weakself.currentTutorialScreen == .tapToEliminate {
                 weakself.currentTutorialScreen = .createShapes
@@ -78,7 +86,7 @@ class TutorialController {
         gameViewController.scene.didFinishAnimateBlocks = { [weak self] in
             guard let weakself = self else { return }
             if weakself.currentTutorialScreen == .createShapes {
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.0, execute: {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0, execute: {
                     weakself.currentTutorialScreen = .rotateDevice
                 })
             } else {
@@ -88,19 +96,18 @@ class TutorialController {
     }
     
     func setView() {
-        
+        guard let tutorialView = tutorialView else { return }
         for (tutorialScreen, imageView) in tutorialView.imageViews {
-            UIView.animate(withDuration: 0.3) { [weak self] in
-                guard let weakself = self else { return }
-                if tutorialScreen == weakself.currentTutorialScreen {
-                    imageView.alpha = 1.0
-                } else {
-                    imageView.alpha = 0.0
-                }
-            }
             
+            if tutorialScreen == currentTutorialScreen {
+                imageView.alpha = 1.0
+            } else if imageView.alpha == 1.0 {
+
+                imageView.alpha = 0.0
+         
+            }
         }
         
     }
-
+    
 }
