@@ -14,6 +14,7 @@ internal final class LevelsView: UIScrollView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        bounces = false
         backgroundColor = Color.black
         for _ in 0..<buttonLocations.count {
             buttons.append(UIButton())

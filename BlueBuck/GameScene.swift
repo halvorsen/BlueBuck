@@ -122,7 +122,7 @@ class GameScene: SKScene {
     }
     
     internal var didFinishAnimateBlocks: () -> Void = {}
-    private func animateDisappearBlocks(_ blocks: [Block], completion: @escaping () -> Void) {
+    private func animateDisappearBlocks(_ blocks: [Block], orientation: UIDeviceOrientation, completion: @escaping () -> Void) {
         if blocks.count > 0 {
             let animateTime: Double = 0.6*Double(blocks.count)
             var sortedBlocks = [Block]()
@@ -141,7 +141,7 @@ class GameScene: SKScene {
                     guard let weakself = self else { return }
                     sortedBlocks[i].shapeNode.removeFromParent()
                     Timer.scheduledTimer(withTimeInterval: 0.5*Double(i), repeats: false, block: { _ in
-                        weakself.replace(block: sortedBlocks[i], orientation: weakself.orientation)
+                        weakself.replace(block: sortedBlocks[i], orientation: orientation)
                     })
                 }
                 
@@ -225,7 +225,7 @@ class GameScene: SKScene {
                 print(i)
                 guard isNotTutorial || i == tutorialAllowableIndex else { return }
                
-                tappedOn(squares[i])
+                tappedOn(squares[i], orientation: orientation)
             
                 didTapOnBlock(squares[i])
                
@@ -315,8 +315,7 @@ class GameScene: SKScene {
     
     private var replacement = Block(location: (row: 0, column: 0), type: BlockType.blue)
     internal var orientation = UIDevice.current.orientation
-    private func tappedOn(_ block: Block) {
-        print(orientation)
+    private func tappedOn(_ block: Block, orientation: UIDeviceOrientation) {
         guard unlocked else { return }
         unlocked = false
         
@@ -325,25 +324,34 @@ class GameScene: SKScene {
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + dropTime*3) { [weak self] in
             guard let weakself = self else { return }
-            
-            if let patternArray = weakself.objectiveModel?.patternArray {
-                var patterns: [Pattern] = []
-                for goal in patternArray {
-                    if goal.completed < goal.objective {
-                        patterns.append(goal.pattern)
-                    }
-                }
-                let (completedGame, successBlocks) = weakself.search(for: patterns)
-                weakself.updatePatternViews()
-                weakself.animateDisappearBlocks(successBlocks) {
-                    if completedGame {
-                        weakself.gameComplete()
-                    } else {
-                        weakself.unlocked = true
-                    }
+            weakself.searchAndUpdateViewsAndAnimateBlocks()
+        }
+    }
+    
+    private func searchAndUpdateViewsAndAnimateBlocks() {
+        
+        if let patternArray = objectiveModel?.patternArray {
+            var patterns: [Pattern] = []
+            for goal in patternArray {
+                if goal.completed < goal.objective {
+                    patterns.append(goal.pattern)
                 }
             }
+            let (completedGame, successBlocks) = search(for: patterns)
+            updatePatternViews()
+            animateDisappearBlocks(successBlocks, orientation: orientation) { [weak self] in
+                guard let weakself = self else { return }
+                if completedGame {
+                    weakself.gameComplete()
+                } else if successBlocks.count > 0 {
+                    weakself.searchAndUpdateViewsAndAnimateBlocks()
+                } else {
+                    weakself.unlocked = true
+                }
+                
+            }
         }
+        
     }
     
     private func moveBlocksIntoOpenings(_ removedBlock: Block, orientation: UIDeviceOrientation, squares: [Block]) {

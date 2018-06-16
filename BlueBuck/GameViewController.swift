@@ -87,8 +87,6 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
         buttonView.refresh.addTarget(self, action: #selector(refreshGame), for: .touchUpInside)
         updatePatternViews()
         rotateIcon()
-        NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
-        
         exitLevelPopup = ExitLevelPopup()
         guard let exitLevelPopup = exitLevelPopup else { return }
         exitLevelPopup.alpha = 0.0
@@ -97,6 +95,8 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
         enableConstraints()
         exitLevelPopup.gameCenter.addTarget(self, action: #selector(gameCenterTouchUpInside(_:)), for: .touchUpInside)
         exitLevelPopup.okay.addTarget(self, action: #selector(okayTouchUpInside(_:)), for: .touchUpInside)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         
         switch UIDevice.current.orientation {
         case .portrait:

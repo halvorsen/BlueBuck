@@ -17,7 +17,7 @@ class LevelsViewController: UIViewController, TutorialDelegate {
     private var objectiveView: ObjectiveView?
     private var tutorialController: TutorialController?
     private lazy var mask = UIView(frame: view.bounds)
-    internal var doTutorial = true
+    internal var doTutorial = false
     internal var tutorialView: UIImageView?
     let popupConfig = Popup()
     
@@ -116,6 +116,7 @@ class LevelsViewController: UIViewController, TutorialDelegate {
     }
     
     @objc private func orientationDidChange() {
+     
         let orientation =  UIDevice.current.orientation
         var rotation: CGFloat = 0.0
         switch orientation {

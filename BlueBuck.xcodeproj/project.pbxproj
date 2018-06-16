@@ -13,10 +13,10 @@
 		066BCD6620CD8E0F00A46E0C /* ExitLevelPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066BCD6520CD8E0F00A46E0C /* ExitLevelPopup.swift */; };
 		066BCD6820CD9D6400A46E0C /* TutorialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066BCD6720CD9D6400A46E0C /* TutorialController.swift */; };
 		066BCD6A20CD9D9200A46E0C /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066BCD6920CD9D9200A46E0C /* TutorialView.swift */; };
+		066BCD6C20D4B46C00A46E0C /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = 066BCD6B20D4B46C00A46E0C /* Resources */; };
 		0698324520B39E0D00F0CC52 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0698324420B39E0D00F0CC52 /* ButtonView.swift */; };
 		0698324720B39E6600F0CC52 /* ViewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0698324620B39E6600F0CC52 /* ViewConfig.swift */; };
 		0698324920B3B4BB00F0CC52 /* ObjectiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0698324820B3B4BB00F0CC52 /* ObjectiveView.swift */; };
-		0698324B20B4F23100F0CC52 /* Gotham-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0698324A20B4F23100F0CC52 /* Gotham-Bold.ttf */; };
 		0698324E20B5076700F0CC52 /* SingleObjective.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0698324D20B5076700F0CC52 /* SingleObjective.swift */; };
 		0698325020B6E7A200F0CC52 /* ObjectiveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0698324F20B6E7A200F0CC52 /* ObjectiveModel.swift */; };
 		0698325220BAE81100F0CC52 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0698325120BAE81100F0CC52 /* Search.swift */; };
@@ -42,10 +42,10 @@
 		066BCD6520CD8E0F00A46E0C /* ExitLevelPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitLevelPopup.swift; sourceTree = "<group>"; };
 		066BCD6720CD9D6400A46E0C /* TutorialController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialController.swift; sourceTree = "<group>"; };
 		066BCD6920CD9D9200A46E0C /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
+		066BCD6B20D4B46C00A46E0C /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = "<group>"; };
 		0698324420B39E0D00F0CC52 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		0698324620B39E6600F0CC52 /* ViewConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConfig.swift; sourceTree = "<group>"; };
 		0698324820B3B4BB00F0CC52 /* ObjectiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectiveView.swift; sourceTree = "<group>"; };
-		0698324A20B4F23100F0CC52 /* Gotham-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Bold.ttf"; sourceTree = "<group>"; };
 		0698324D20B5076700F0CC52 /* SingleObjective.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleObjective.swift; sourceTree = "<group>"; };
 		0698324F20B6E7A200F0CC52 /* ObjectiveModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectiveModel.swift; sourceTree = "<group>"; };
 		0698325120BAE81100F0CC52 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
@@ -112,13 +112,13 @@
 		06BB07D620A7D08C00895113 /* BlueBuck */ = {
 			isa = PBXGroup;
 			children = (
+				066BCD6B20D4B46C00A46E0C /* Resources */,
 				0698324C20B5065E00F0CC52 /* View */,
 				06BB07D720A7D08C00895113 /* AppDelegate.swift */,
 				06BB07DD20A7D08C00895113 /* GameScene.swift */,
 				06DFE61B20A9239900633D78 /* LevelsViewController.swift */,
 				06BB07DF20A7D08C00895113 /* GameViewController.swift */,
 				06BB07E420A7D08E00895113 /* Assets.xcassets */,
-				0698324A20B4F23100F0CC52 /* Gotham-Bold.ttf */,
 				06BB07F420A7E73B00895113 /* Main.storyboard */,
 				06BB07E920A7D08E00895113 /* Info.plist */,
 				06BB07EF20A7D11E00895113 /* Model.xcdatamodeld */,
@@ -194,8 +194,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				06BB07F520A7E73B00895113 /* Main.storyboard in Resources */,
-				0698324B20B4F23100F0CC52 /* Gotham-Bold.ttf in Resources */,
 				06BB07E520A7D08E00895113 /* Assets.xcassets in Resources */,
+				066BCD6C20D4B46C00A46E0C /* Resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
