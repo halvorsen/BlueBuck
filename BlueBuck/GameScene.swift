@@ -134,7 +134,8 @@ class GameScene: SKScene {
             case .landscapeLeft, .landscapeRight:
                 sortedBlocks = blocks.sorted { $0.location.row < $1.location.row }
             }
-            Sound.play(file: "sparkle.wav")
+            Effects.sparkleSoundEffect?.play()
+//            Sound.play(file: "sparkle.wav")
             for i in 0..<sortedBlocks.count {
                 
                 twinkleNode[i].position = sortedBlocks[i].shapeNode.position
@@ -224,8 +225,6 @@ class GameScene: SKScene {
             
             let modifiedFrame = CGRect(x: squares[i].shapeNode.frame.origin.x - 5, y: squares[i].shapeNode.frame.origin.y - 5, width: squares[i].shapeNode.frame.width + 10, height: squares[i].shapeNode.frame.width + 10)
             if modifiedFrame.contains(tapLocation) {
-                print(isNotTutorial)
-                print(i)
                 guard isNotTutorial || i == tutorialAllowableIndex else { return }
                 gameDelegate?.incrementMoveCounter()
                 tappedOn(squares[i], orientation: orientation)
@@ -323,9 +322,9 @@ class GameScene: SKScene {
         unlocked = false
         let random = Int(arc4random_uniform(3))
         if random < 1 {
-            Sound.play(file: "slide1.wav")
+            Effects.slide1SoundEffect?.play()
         } else {
-            Sound.play(file: "slide2.wav")
+            Effects.slide2SoundEffect?.play()
         }
        
         replace(block: block, orientation: orientation)

@@ -20,7 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         Sound.enabled = true
-        Sound.play(file: "defaultButton.wav")
+        Effects.buttonSoundEffect?.play()
+//        Sound.play(file: "defaultButton.wav")
         if UserDefaults.standard.bool(forKey: "blueBuckLaunchedBefore") { // Subsequent Launches
          
             let viewController = LevelsViewController()

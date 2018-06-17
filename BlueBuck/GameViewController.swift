@@ -116,12 +116,14 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
     }
     
     @objc private func gameCenterTouchUpInside(_ sender: UIButton) {
-        Sound.play(file: "defaultButton.wav")
+        Effects.buttonSoundEffect?.play()
+//        Sound.play(file: "defaultButton.wav")
         //display game center controller
     }
     
     @objc private func okayTouchUpInside(_ sender: UIButton) {
-        Sound.play(file: "defaultButton.wav")
+        Effects.buttonSoundEffect?.play()
+//        Sound.play(file: "defaultButton.wav")
         dismiss(animated: true)
     }
     
@@ -160,12 +162,14 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
     }
     
     @objc private func dismissGame() {
-        Sound.play(file: "defaultButton.wav")
+        Effects.buttonSoundEffect?.play()
+//        Sound.play(file: "defaultButton.wav")
         dismiss(animated: true)
     }
     
     @objc private func refreshGame() {
-        Sound.play(file: "defaultButton.wav")
+        Effects.buttonSoundEffect?.play()
+//        Sound.play(file: "defaultButton.wav")
         scene.refreshGame()
     }
     
@@ -200,7 +204,6 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
     @objc private func tapOutsideGame(_ tapGesture: UITapGestureRecognizer) {
         
         guard isNotTutorial else { return }
-        Sound.play(file: "defaultButton.wav")
         toggleButtonsAndObjectives()
     }
     
@@ -319,6 +322,7 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
         displayPopup()
         if let presenter = presentingViewController as? LevelsViewController {
         saveHighScore(movesCounter, level: presenter.currentLevel)
+        presenter.setTextLabels()
         }
         
     }

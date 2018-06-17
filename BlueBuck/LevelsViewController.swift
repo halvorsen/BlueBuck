@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftySound
 
 class LevelsViewController: UIViewController, TutorialDelegate {
     
@@ -53,6 +54,11 @@ class LevelsViewController: UIViewController, TutorialDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        Effects.buttonSoundEffect?.volume = 0.05
+        Effects.slide1SoundEffect?.volume = 0.05
+        Effects.slide2SoundEffect?.volume = 0.05
+        Effects.sparkleSoundEffect?.volume = 0.05
         
         view.addSubview(levelsView)
         
@@ -264,5 +270,8 @@ class LevelsViewController: UIViewController, TutorialDelegate {
     }
     override var prefersStatusBarHidden: Bool {
         return true
+    }
+    internal func setTextLabels() {
+        levelsView.setScoreLabelText()
     }
 }

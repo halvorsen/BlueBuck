@@ -49,12 +49,18 @@ internal final class LevelsView: UIScrollView {
         }
     }
     
-    private func setScoreLabels() {
-        
+    internal func setScoreLabelText() {
         for i in 0..<scoreLabels.count {
             if let score = MyUser.shared.playerScores[String(i)] {
                 scoreLabels[i].text = score
+                scoreLabels[i].sizeToFit()
             }
+        }
+    }
+    
+    private func setScoreLabels() {
+        setScoreLabelText()
+        for i in 0..<scoreLabels.count {
             
 //            scoreLabels[i].text = "10" // Remove
             scoreLabels[i].textColor = .white
