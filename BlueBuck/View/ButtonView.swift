@@ -35,7 +35,7 @@ class ButtonView: UIView {
         
         exit.setImage(#imageLiteral(resourceName: "exit"), for: .normal)
         refresh.setImage(#imageLiteral(resourceName: "restart"), for: .normal)
-        moves.text = "31"
+        moves.text = "0"
         moves.font = UIFont(name: "GothamBold", size: 31)
         moves.textColor = Color.blackLighter2
         addSubview(exit)

@@ -9,6 +9,7 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import SwiftySound
 
 
 class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecognizerDelegate {
@@ -115,10 +116,12 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
     }
     
     @objc private func gameCenterTouchUpInside(_ sender: UIButton) {
+        Sound.play(file: "defaultButton.wav")
         //display game center controller
     }
     
     @objc private func okayTouchUpInside(_ sender: UIButton) {
+        Sound.play(file: "defaultButton.wav")
         dismiss(animated: true)
     }
     
@@ -157,10 +160,12 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
     }
     
     @objc private func dismissGame() {
+        Sound.play(file: "defaultButton.wav")
         dismiss(animated: true)
     }
     
     @objc private func refreshGame() {
+        Sound.play(file: "defaultButton.wav")
         scene.refreshGame()
     }
     
@@ -180,6 +185,11 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
         }
         
     }
+    var movesCounter = 0
+    internal func incrementMoveCounter() {
+        movesCounter += 1
+        buttonView.moves.text = String(movesCounter)
+    }
     
     internal func tapOnGame() {
         if viewsOn {
@@ -188,7 +198,9 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
     }
     
     @objc private func tapOutsideGame(_ tapGesture: UITapGestureRecognizer) {
+        
         guard isNotTutorial else { return }
+        Sound.play(file: "defaultButton.wav")
         toggleButtonsAndObjectives()
     }
     
@@ -305,6 +317,32 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
     internal func gameComplete() {
         //Display sucess popup first
         displayPopup()
+        if let presenter = presentingViewController as? LevelsViewController {
+        saveHighScore(movesCounter, level: presenter.currentLevel)
+        }
+        
+    }
+    
+    private func saveHighScore(_ score: Int, level: Int) {
+        let scoreString = String(score)
+        let levelString = String(level)
+        if let currentHighScore = MyUser.shared.playerScores[levelString],
+            let currentHigh = Int(currentHighScore) {
+            if score < currentHigh {
+                MyUser.shared.playerScores[levelString] = scoreString
+                MyFileManager.writeJsonFile(filename: "userScores", input: MyUser.shared.playerScores)
+                sendScoreToGameCenter(score, level: level)
+            }
+            
+        } else {
+            MyUser.shared.playerScores[levelString] = scoreString
+            MyFileManager.writeJsonFile(filename: "userScores", input: MyUser.shared.playerScores)
+            sendScoreToGameCenter(score, level: level)
+        }
+        
+    }
+    private func sendScoreToGameCenter(_ score: Int, level: Int) {
+        
     }
     
 }

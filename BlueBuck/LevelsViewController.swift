@@ -173,10 +173,11 @@ class LevelsViewController: UIViewController, TutorialDelegate {
         tutorialView?.removeFromSuperview()
         removePopup()
     }
-    
+    var currentLevel = 0
     @objc private func levelTouchUpInside(_ sender: UIButton) {
         levelsView.isUserInteractionEnabled = false
         if let level = Levels.levelByTag[sender.tag] {
+            currentLevel = sender.tag
         loadGame(level)
         }
     }
@@ -197,7 +198,7 @@ class LevelsViewController: UIViewController, TutorialDelegate {
     }
     
     internal func doneTutorial() {
-        print("done tutorial")
+      
         tutorialView = tutorialController?.tutorialView?.imageViews[.levelView]
         tutorialController?.gameView = nil
         tutorialController?.levelView = nil

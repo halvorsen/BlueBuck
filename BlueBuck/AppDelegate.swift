@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftySound
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,7 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        
+        Sound.enabled = true
+        Sound.play(file: "defaultButton.wav")
         if UserDefaults.standard.bool(forKey: "blueBuckLaunchedBefore") { // Subsequent Launches
          
             let viewController = LevelsViewController()

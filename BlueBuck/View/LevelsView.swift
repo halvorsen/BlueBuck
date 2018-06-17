@@ -11,6 +11,7 @@ import UIKit
 internal final class LevelsView: UIScrollView {
     private lazy var levelBackgroundView = UIImageView(image: #imageLiteral(resourceName: "LevelsBackground"))
     internal var buttons: [UIButton] = []
+    internal var scoreLabels: [UILabel] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -18,6 +19,7 @@ internal final class LevelsView: UIScrollView {
         backgroundColor = Color.black
         for _ in 0..<buttonLocations.count {
             buttons.append(UIButton())
+            scoreLabels.append(UILabel())
         }
         showsVerticalScrollIndicator = false
         contentSize = CGSize(width: 375, height: 3000)
@@ -36,11 +38,35 @@ internal final class LevelsView: UIScrollView {
             buttons[i].tag = i
             buttons[i].backgroundColor = Color.white
             buttons[i].center = buttonLocations[i]
+         
         }
+        
+        setScoreLabels()
       
         contentOffset.y = contentSize.height - 667
         for button in buttons {
             addSubview(button)
+        }
+    }
+    
+    private func setScoreLabels() {
+        
+        for i in 0..<scoreLabels.count {
+            if let score = MyUser.shared.playerScores[String(i)] {
+                scoreLabels[i].text = score
+            }
+            
+//            scoreLabels[i].text = "10" // Remove
+            scoreLabels[i].textColor = .white
+            scoreLabels[i].alpha = 0.7
+            scoreLabels[i].font = UIFont(name: "GothamBold", size: 18)
+            
+            scoreLabels[i].frame.origin = buttons[i].center
+            scoreLabels[i].frame.origin.x += 35
+            scoreLabels[i].frame.origin.y += 15
+            scoreLabels[i].addTextSpacing(value: 1.77)
+            scoreLabels[i].sizeToFit()
+            addSubview(scoreLabels[i])
         }
     }
     

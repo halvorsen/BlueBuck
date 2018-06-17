@@ -31,7 +31,7 @@ internal final class Levels {
         19: .level20,
         20: .level21,
         21: .level22,
-        22: .levelEgg
+        -1: .levelEgg
     ]
     
     internal static let blockTypeArray: [BuckLevel: [BlockType]] = [

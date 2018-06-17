@@ -1,0 +1,24 @@
+PODS:
+  - GCHelper (0.5.1)
+  - SwiftySound (1.0.0)
+  - SwiftyStoreKit (0.13.1)
+
+DEPENDENCIES:
+  - GCHelper (~> 0.5)
+  - SwiftySound
+  - SwiftyStoreKit
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - GCHelper
+    - SwiftySound
+    - SwiftyStoreKit
+
+SPEC CHECKSUMS:
+  GCHelper: 8097baaa32e35ec425058cc5fb308c3a307947c8
+  SwiftySound: b9c3370956fd4ed65ed79d45563070077a50a2cd
+  SwiftyStoreKit: c36bb7841dd51a485ce5c38abf9e96fba988741f
+
+PODFILE CHECKSUM: 6f4a042029e3aa645efa9e5469d75112f2911bdd
+
+COCOAPODS: 1.5.3

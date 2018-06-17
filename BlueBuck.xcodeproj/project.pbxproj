@@ -9,11 +9,18 @@
 /* Begin PBXBuildFile section */
 		06149F0D20BCE0F6009BCF58 /* BlockTwinkle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06149F0C20BCE0F6009BCF58 /* BlockTwinkle.swift */; };
 		06149F0F20C0EEA1009BCF58 /* EnterLevelPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06149F0E20C0EEA1009BCF58 /* EnterLevelPopup.swift */; };
+		061AF51220D5FFF200F459A2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061AF51120D5FFF200F459A2 /* Extensions.swift */; };
+		0661094F20D4C190001C30A8 /* sparkle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0661094B20D4C190001C30A8 /* sparkle.wav */; };
+		0661095020D4C190001C30A8 /* slide1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0661094C20D4C190001C30A8 /* slide1.wav */; };
+		0661095120D4C190001C30A8 /* defaultButton.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0661094D20D4C190001C30A8 /* defaultButton.wav */; };
+		0661095220D4C190001C30A8 /* slide2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0661094E20D4C190001C30A8 /* slide2.wav */; };
+		0661095420D4C204001C30A8 /* Gotham-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0661095320D4C204001C30A8 /* Gotham-Bold.ttf */; };
+		0661095620D5D566001C30A8 /* MyFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0661095520D5D566001C30A8 /* MyFileManager.swift */; };
+		0661095820D5DC52001C30A8 /* MyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0661095720D5DC52001C30A8 /* MyUser.swift */; };
 		066BCD6420CCC42E00A46E0C /* BlockConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066BCD6320CCC42E00A46E0C /* BlockConfig.swift */; };
 		066BCD6620CD8E0F00A46E0C /* ExitLevelPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066BCD6520CD8E0F00A46E0C /* ExitLevelPopup.swift */; };
 		066BCD6820CD9D6400A46E0C /* TutorialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066BCD6720CD9D6400A46E0C /* TutorialController.swift */; };
 		066BCD6A20CD9D9200A46E0C /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066BCD6920CD9D9200A46E0C /* TutorialView.swift */; };
-		066BCD6C20D4B46C00A46E0C /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = 066BCD6B20D4B46C00A46E0C /* Resources */; };
 		0698324520B39E0D00F0CC52 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0698324420B39E0D00F0CC52 /* ButtonView.swift */; };
 		0698324720B39E6600F0CC52 /* ViewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0698324620B39E6600F0CC52 /* ViewConfig.swift */; };
 		0698324920B3B4BB00F0CC52 /* ObjectiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0698324820B3B4BB00F0CC52 /* ObjectiveView.swift */; };
@@ -27,22 +34,29 @@
 		06BB07E520A7D08E00895113 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06BB07E420A7D08E00895113 /* Assets.xcassets */; };
 		06BB07F120A7D11E00895113 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06BB07EF20A7D11E00895113 /* Model.xcdatamodeld */; };
 		06BB07F320A7D8C000895113 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB07F220A7D8C000895113 /* GameView.swift */; };
-		06BB07F520A7E73B00895113 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06BB07F420A7E73B00895113 /* Main.storyboard */; };
 		06DFE61620A90D9200633D78 /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DFE61520A90D9200633D78 /* Block.swift */; };
 		06DFE61820A9110600633D78 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DFE61720A9110600633D78 /* Game.swift */; };
 		06DFE61A20A9144700633D78 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DFE61920A9144700633D78 /* Constant.swift */; };
 		06DFE61C20A9239900633D78 /* LevelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DFE61B20A9239900633D78 /* LevelsViewController.swift */; };
 		06DFE61E20A9283700633D78 /* Levels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DFE61D20A9283700633D78 /* Levels.swift */; };
+		C8250A3354B79A57717984F5 /* Pods_BlueBuck.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6857CB62CCD594193892B685 /* Pods_BlueBuck.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		06149F0C20BCE0F6009BCF58 /* BlockTwinkle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockTwinkle.swift; sourceTree = "<group>"; };
 		06149F0E20C0EEA1009BCF58 /* EnterLevelPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterLevelPopup.swift; sourceTree = "<group>"; };
+		061AF51120D5FFF200F459A2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		0661094B20D4C190001C30A8 /* sparkle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sparkle.wav; sourceTree = "<group>"; };
+		0661094C20D4C190001C30A8 /* slide1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = slide1.wav; sourceTree = "<group>"; };
+		0661094D20D4C190001C30A8 /* defaultButton.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = defaultButton.wav; sourceTree = "<group>"; };
+		0661094E20D4C190001C30A8 /* slide2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = slide2.wav; sourceTree = "<group>"; };
+		0661095320D4C204001C30A8 /* Gotham-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Bold.ttf"; sourceTree = "<group>"; };
+		0661095520D5D566001C30A8 /* MyFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFileManager.swift; sourceTree = "<group>"; };
+		0661095720D5DC52001C30A8 /* MyUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUser.swift; sourceTree = "<group>"; };
 		066BCD6320CCC42E00A46E0C /* BlockConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockConfig.swift; sourceTree = "<group>"; };
 		066BCD6520CD8E0F00A46E0C /* ExitLevelPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitLevelPopup.swift; sourceTree = "<group>"; };
 		066BCD6720CD9D6400A46E0C /* TutorialController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialController.swift; sourceTree = "<group>"; };
 		066BCD6920CD9D9200A46E0C /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
-		066BCD6B20D4B46C00A46E0C /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = "<group>"; };
 		0698324420B39E0D00F0CC52 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		0698324620B39E6600F0CC52 /* ViewConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConfig.swift; sourceTree = "<group>"; };
 		0698324820B3B4BB00F0CC52 /* ObjectiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectiveView.swift; sourceTree = "<group>"; };
@@ -58,12 +72,14 @@
 		06BB07E920A7D08E00895113 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06BB07F020A7D11E00895113 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		06BB07F220A7D8C000895113 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
-		06BB07F420A7E73B00895113 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		06DFE61520A90D9200633D78 /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 		06DFE61720A9110600633D78 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		06DFE61920A9144700633D78 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		06DFE61B20A9239900633D78 /* LevelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelsViewController.swift; sourceTree = "<group>"; };
 		06DFE61D20A9283700633D78 /* Levels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Levels.swift; sourceTree = "<group>"; };
+		6857CB62CCD594193892B685 /* Pods_BlueBuck.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BlueBuck.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3BFB845D5D766F461457524 /* Pods-BlueBuck.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueBuck.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlueBuck/Pods-BlueBuck.debug.xcconfig"; sourceTree = "<group>"; };
+		BD4CBB0F9B782CB77B18F036 /* Pods-BlueBuck.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueBuck.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlueBuck/Pods-BlueBuck.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,16 +87,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8250A3354B79A57717984F5 /* Pods_BlueBuck.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		008E101D0F8AC522B690CECD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B3BFB845D5D766F461457524 /* Pods-BlueBuck.debug.xcconfig */,
+				BD4CBB0F9B782CB77B18F036 /* Pods-BlueBuck.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		06395AD5D9962E4BBDAFE90B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6857CB62CCD594193892B685 /* Pods_BlueBuck.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0698324C20B5065E00F0CC52 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				06BB07F220A7D8C000895113 /* GameView.swift */,
 				0698324420B39E0D00F0CC52 /* ButtonView.swift */,
 				0698324820B3B4BB00F0CC52 /* ObjectiveView.swift */,
 				0698324D20B5076700F0CC52 /* SingleObjective.swift */,
@@ -98,6 +131,8 @@
 			children = (
 				06BB07D620A7D08C00895113 /* BlueBuck */,
 				06BB07D520A7D08C00895113 /* Products */,
+				008E101D0F8AC522B690CECD /* Pods */,
+				06395AD5D9962E4BBDAFE90B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,14 +147,18 @@
 		06BB07D620A7D08C00895113 /* BlueBuck */ = {
 			isa = PBXGroup;
 			children = (
-				066BCD6B20D4B46C00A46E0C /* Resources */,
 				0698324C20B5065E00F0CC52 /* View */,
+				0661094D20D4C190001C30A8 /* defaultButton.wav */,
+				0661094C20D4C190001C30A8 /* slide1.wav */,
+				0661094E20D4C190001C30A8 /* slide2.wav */,
+				0661094B20D4C190001C30A8 /* sparkle.wav */,
+				0661095320D4C204001C30A8 /* Gotham-Bold.ttf */,
+				06BB07F220A7D8C000895113 /* GameView.swift */,
 				06BB07D720A7D08C00895113 /* AppDelegate.swift */,
 				06BB07DD20A7D08C00895113 /* GameScene.swift */,
 				06DFE61B20A9239900633D78 /* LevelsViewController.swift */,
 				06BB07DF20A7D08C00895113 /* GameViewController.swift */,
 				06BB07E420A7D08E00895113 /* Assets.xcassets */,
-				06BB07F420A7E73B00895113 /* Main.storyboard */,
 				06BB07E920A7D08E00895113 /* Info.plist */,
 				06BB07EF20A7D11E00895113 /* Model.xcdatamodeld */,
 				06DFE61520A90D9200633D78 /* Block.swift */,
@@ -131,6 +170,9 @@
 				0698325120BAE81100F0CC52 /* Search.swift */,
 				066BCD6320CCC42E00A46E0C /* BlockConfig.swift */,
 				066BCD6720CD9D6400A46E0C /* TutorialController.swift */,
+				0661095520D5D566001C30A8 /* MyFileManager.swift */,
+				0661095720D5DC52001C30A8 /* MyUser.swift */,
+				061AF51120D5FFF200F459A2 /* Extensions.swift */,
 			);
 			path = BlueBuck;
 			sourceTree = "<group>";
@@ -142,9 +184,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 06BB07EC20A7D08E00895113 /* Build configuration list for PBXNativeTarget "BlueBuck" */;
 			buildPhases = (
+				CBD6F26BCA2BB562AEEBA4B1 /* [CP] Check Pods Manifest.lock */,
 				06BB07D020A7D08C00895113 /* Sources */,
 				06BB07D120A7D08C00895113 /* Frameworks */,
 				06BB07D220A7D08C00895113 /* Resources */,
+				7117EA484BB31B406A373FC5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -193,13 +237,59 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06BB07F520A7E73B00895113 /* Main.storyboard in Resources */,
+				0661095220D4C190001C30A8 /* slide2.wav in Resources */,
 				06BB07E520A7D08E00895113 /* Assets.xcassets in Resources */,
-				066BCD6C20D4B46C00A46E0C /* Resources in Resources */,
+				0661095020D4C190001C30A8 /* slide1.wav in Resources */,
+				0661095420D4C204001C30A8 /* Gotham-Bold.ttf in Resources */,
+				0661095120D4C190001C30A8 /* defaultButton.wav in Resources */,
+				0661094F20D4C190001C30A8 /* sparkle.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7117EA484BB31B406A373FC5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BlueBuck/Pods-BlueBuck-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GCHelper/GCHelper.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftySound/SwiftySound.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GCHelper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftySound.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyStoreKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BlueBuck/Pods-BlueBuck-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CBD6F26BCA2BB562AEEBA4B1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BlueBuck-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		06BB07D020A7D08C00895113 /* Sources */ = {
@@ -209,6 +299,7 @@
 				06149F0F20C0EEA1009BCF58 /* EnterLevelPopup.swift in Sources */,
 				0698324520B39E0D00F0CC52 /* ButtonView.swift in Sources */,
 				0698324720B39E6600F0CC52 /* ViewConfig.swift in Sources */,
+				0661095820D5DC52001C30A8 /* MyUser.swift in Sources */,
 				0698325020B6E7A200F0CC52 /* ObjectiveModel.swift in Sources */,
 				06DFE61E20A9283700633D78 /* Levels.swift in Sources */,
 				066BCD6620CD8E0F00A46E0C /* ExitLevelPopup.swift in Sources */,
@@ -218,6 +309,7 @@
 				066BCD6A20CD9D9200A46E0C /* TutorialView.swift in Sources */,
 				06149F0D20BCE0F6009BCF58 /* BlockTwinkle.swift in Sources */,
 				06BB07DE20A7D08C00895113 /* GameScene.swift in Sources */,
+				0661095620D5D566001C30A8 /* MyFileManager.swift in Sources */,
 				06BB07E020A7D08C00895113 /* GameViewController.swift in Sources */,
 				06DFE61820A9110600633D78 /* Game.swift in Sources */,
 				06DFE61A20A9144700633D78 /* Constant.swift in Sources */,
@@ -225,6 +317,7 @@
 				0698325420BC402700F0CC52 /* LevelsView.swift in Sources */,
 				0698324E20B5076700F0CC52 /* SingleObjective.swift in Sources */,
 				06DFE61620A90D9200633D78 /* Block.swift in Sources */,
+				061AF51220D5FFF200F459A2 /* Extensions.swift in Sources */,
 				06BB07F120A7D11E00895113 /* Model.xcdatamodeld in Sources */,
 				0698325220BAE81100F0CC52 /* Search.swift in Sources */,
 				0698324920B3B4BB00F0CC52 /* ObjectiveView.swift in Sources */,
@@ -351,6 +444,7 @@
 		};
 		06BB07ED20A7D08E00895113 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3BFB845D5D766F461457524 /* Pods-BlueBuck.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -370,6 +464,7 @@
 		};
 		06BB07EE20A7D08E00895113 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BD4CBB0F9B782CB77B18F036 /* Pods-BlueBuck.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

@@ -8,11 +8,13 @@
 import Foundation
 import SpriteKit
 import GameplayKit
+import SwiftySound
 
 internal protocol GameSceneDelegate: class {
     func tapOnGame()
     func updatePatternViews()
     func gameComplete()
+    func incrementMoveCounter()
 }
 
 class GameScene: SKScene {
@@ -132,6 +134,7 @@ class GameScene: SKScene {
             case .landscapeLeft, .landscapeRight:
                 sortedBlocks = blocks.sorted { $0.location.row < $1.location.row }
             }
+            Sound.play(file: "sparkle.wav")
             for i in 0..<sortedBlocks.count {
                 
                 twinkleNode[i].position = sortedBlocks[i].shapeNode.position
@@ -224,9 +227,9 @@ class GameScene: SKScene {
                 print(isNotTutorial)
                 print(i)
                 guard isNotTutorial || i == tutorialAllowableIndex else { return }
-               
+                gameDelegate?.incrementMoveCounter()
                 tappedOn(squares[i], orientation: orientation)
-            
+                
                 didTapOnBlock(squares[i])
                
                 return
@@ -248,10 +251,10 @@ class GameScene: SKScene {
         addChild(newBlock.shapeNode)
         
     }
-    
+    var switchSound = true
     private func moveQueueBlocksIntoOpenings() {
         let drop = SKAction.moveBy(x: 0, y: -21, duration: dropTime)
-    
+
             for block in [squaresQueue[1], squaresQueue[2], squaresQueue[3], squaresQueue[4]] {
                     block.shapeNode.run(drop)
             }
@@ -297,7 +300,7 @@ class GameScene: SKScene {
         block.shapeNode.removeFromParent()
      
         self.moveBlocksIntoOpenings(block, orientation: orientation, squares: squares)
-
+        
         self.moveQueueBlocksIntoOpenings()
 
         self.squares[replacementBlock.indexOfBlockInSquareArray].blockType = game.allBlockType[game.currentQueueIndex()]
@@ -318,7 +321,13 @@ class GameScene: SKScene {
     private func tappedOn(_ block: Block, orientation: UIDeviceOrientation) {
         guard unlocked else { return }
         unlocked = false
-        
+        let random = Int(arc4random_uniform(3))
+        if random < 1 {
+            Sound.play(file: "slide1.wav")
+        } else {
+            Sound.play(file: "slide2.wav")
+        }
+       
         replace(block: block, orientation: orientation)
         
         
