@@ -15,13 +15,14 @@ internal protocol GameSceneDelegate: class {
     func updatePatternViews()
     func gameComplete()
     func incrementMoveCounter()
+    func resetMoveCounter()
 }
 
 class GameScene: SKScene {
     
     internal var isNotTutorial = true
     internal weak var gameDelegate: GameSceneDelegate?
-    private var unlocked = true
+    internal var unlocked = true
     private var dropTime: Double = 0.2
     internal var objectiveModel: ObjectiveModel?
     let tap = UITapGestureRecognizer()
@@ -81,17 +82,18 @@ class GameScene: SKScene {
     }
     
     internal func refreshGame() {
-        // moves equal to zero
-        // reset objectives
-        // reset grid
+        removeAllActions()
+        removeAllChildren()
+        objectiveModel?.resetPatternArray()
+        gameDelegate?.resetMoveCounter()
         guard let game = game else { return }
         game.resetIndex()
-        game.setShapeNodes()
+     
         for i in 0..<game.blockConfigs.count {
-            game.blockQueue[i].location = game.blockConfigs[i].location
-            game.blockQueue[i].blockType = game.blockConfigs[i].blockType
+            game.originalAllBlocks[i].location = game.blockConfigs[i].location
+            game.originalAllBlocks[i].blockType = game.blockConfigs[i].blockType
         }
-        
+        game.setShapeNodes()
         squares.removeAll()
         var _index = 0
         for row in game.startBoard {
@@ -102,7 +104,7 @@ class GameScene: SKScene {
             }
         }
         squaresQueue = Array(game.blockQueue[50...99])
-        removeAllChildren()
+        
         
         for square in squares {
             addChild(square.shapeNode)
@@ -110,7 +112,11 @@ class GameScene: SKScene {
         for square in [squaresQueue[0], squaresQueue[1], squaresQueue[2], squaresQueue[3], squaresQueue[4]] {
             addChild(square.shapeNode)
         }
-        
+
+        for child in children {
+        child.removeAllActions()
+        }
+
     }
     
     private func search(for patterns: [Pattern]) -> (gameOver: Bool, successBlocks: [Block]) {
@@ -135,7 +141,7 @@ class GameScene: SKScene {
                 sortedBlocks = blocks.sorted { $0.location.row < $1.location.row }
             }
             Effects.sparkleSoundEffect?.play()
-//            Sound.play(file: "sparkle.wav")
+
             for i in 0..<sortedBlocks.count {
                 
                 twinkleNode[i].position = sortedBlocks[i].shapeNode.position
@@ -226,7 +232,7 @@ class GameScene: SKScene {
             let modifiedFrame = CGRect(x: squares[i].shapeNode.frame.origin.x - 5, y: squares[i].shapeNode.frame.origin.y - 5, width: squares[i].shapeNode.frame.width + 10, height: squares[i].shapeNode.frame.width + 10)
             if modifiedFrame.contains(tapLocation) {
                 guard isNotTutorial || i == tutorialAllowableIndex else { return }
-                gameDelegate?.incrementMoveCounter()
+                
                 tappedOn(squares[i], orientation: orientation)
                 
                 didTapOnBlock(squares[i])
@@ -250,11 +256,13 @@ class GameScene: SKScene {
         addChild(newBlock.shapeNode)
         
     }
+    var count23 = 0
     var switchSound = true
     private func moveQueueBlocksIntoOpenings() {
         let drop = SKAction.moveBy(x: 0, y: -21, duration: dropTime)
 
             for block in [squaresQueue[1], squaresQueue[2], squaresQueue[3], squaresQueue[4]] {
+                
                     block.shapeNode.run(drop)
             }
         
@@ -319,6 +327,8 @@ class GameScene: SKScene {
     internal var orientation = UIDevice.current.orientation
     private func tappedOn(_ block: Block, orientation: UIDeviceOrientation) {
         guard unlocked else { return }
+     
+        gameDelegate?.incrementMoveCounter()
         unlocked = false
         let random = Int(arc4random_uniform(3))
         if random < 1 {
@@ -383,7 +393,7 @@ class GameScene: SKScene {
     }
     
     private func dropWithOrientationUp(_ index: (row: Int, column: Int), squares: [Block]) {
-        
+        print("dropwithorientationup")
         let drop = SKAction.moveBy(x: 0, y: -48, duration: dropTime)
 
         for block in squares {
@@ -391,6 +401,8 @@ class GameScene: SKScene {
                 if block.location.column == index.column && block.location.row < index.row {
                     block.location.row += 1
                     block.shapeNode.run(drop)
+                    print("drop1\(count23)")
+                    count23 += 1
                 }
        
         }

@@ -38,6 +38,9 @@ internal final class LevelsView: UIScrollView {
             buttons[i].tag = i
             buttons[i].backgroundColor = Color.white
             buttons[i].center = buttonLocations[i]
+            if i > 14 && !MyUser.shared.playerHasPaid {
+                buttons[i].setTitle("🔒", for: .normal)
+            }
          
         }
         
@@ -62,17 +65,17 @@ internal final class LevelsView: UIScrollView {
         setScoreLabelText()
         for i in 0..<scoreLabels.count {
             
-//            scoreLabels[i].text = "10" // Remove
             scoreLabels[i].textColor = .white
             scoreLabels[i].alpha = 0.7
             scoreLabels[i].font = UIFont(name: "GothamBold", size: 18)
             
             scoreLabels[i].frame.origin = buttons[i].center
-            scoreLabels[i].frame.origin.x += 35
+            scoreLabels[i].frame.origin.x += 45
             scoreLabels[i].frame.origin.y += 15
             scoreLabels[i].addTextSpacing(value: 1.77)
             scoreLabels[i].sizeToFit()
             addSubview(scoreLabels[i])
+            
         }
     }
     

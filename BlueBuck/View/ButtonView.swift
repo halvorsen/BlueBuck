@@ -27,6 +27,7 @@ class ButtonView: UIView {
             }
             refresh.transform = CGAffineTransform(rotationAngle: config.rotation)
             moves.transform = CGAffineTransform(rotationAngle: config.rotation)
+            moves.sizeToFit()
         }
     }
 

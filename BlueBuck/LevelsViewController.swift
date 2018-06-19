@@ -20,6 +20,7 @@ class LevelsViewController: UIViewController, TutorialDelegate {
     private lazy var mask = UIView(frame: view.bounds)
     internal var doTutorial = false
     internal var tutorialView: UIImageView?
+    internal let cover = UIView()
     let popupConfig = Popup()
     
     var config: ViewConfig? {
@@ -82,6 +83,23 @@ class LevelsViewController: UIViewController, TutorialDelegate {
             mask.backgroundColor = Color.black
             view.addSubview(mask)
         }
+        cover.frame = CGRect(x: 0, y: 0, width: 375, height: 1000)
+
+        levelsView.addSubview(cover)
+        
+        let gradient:CAGradientLayer = CAGradientLayer()
+        gradient.frame.size = cover.frame.size
+        gradient.colors = [Color.black.cgColor,Color.black.withAlphaComponent(0).cgColor]
+        gradient.locations = [0.0, 1.0]
+        self.cover.layer.addSublayer(gradient)
+        
+        cover.layer.insertSublayer(gradient, at: 0)
+        
+        if MyUser.shared.playerHasPaid {
+            cover.isHidden = true
+        } else {
+            cover.isHidden = false
+        }
     }
     var gameViewController: GameViewController?
     override func viewDidAppear(_ animated: Bool) {
@@ -140,6 +158,9 @@ class LevelsViewController: UIViewController, TutorialDelegate {
         for button in levelsView.buttons {
             button.transform = CGAffineTransform(rotationAngle: rotation)
         }
+        for label in levelsView.scoreLabels {
+            label.transform = CGAffineTransform(rotationAngle: rotation)
+        }
         enterLevelPopup?.transform = CGAffineTransform(rotationAngle: rotation)
     }
     
@@ -170,21 +191,28 @@ class LevelsViewController: UIViewController, TutorialDelegate {
     }
     
     @objc private func cancelTouchUpInside(_ sender: UIButton) {
+        Effects.buttonSoundEffect?.play()
         removePopup()
         tutorialView?.removeFromSuperview()
     }
     
     @objc private func okayTouchUpInside(_ sender: UIButton) {
+        Effects.buttonSoundEffect?.play()
         presentGame()
         tutorialView?.removeFromSuperview()
         removePopup()
     }
     var currentLevel = 0
     @objc private func levelTouchUpInside(_ sender: UIButton) {
-        levelsView.isUserInteractionEnabled = false
-        if let level = Levels.levelByTag[sender.tag] {
-            currentLevel = sender.tag
-        loadGame(level)
+        if sender.tag < 15 || MyUser.shared.playerHasPaid {
+            Effects.buttonSoundEffect?.play()
+            levelsView.isUserInteractionEnabled = false
+            if let level = Levels.levelByTag[sender.tag] {
+                currentLevel = sender.tag
+                loadGame(level)
+            }
+        } else {
+            // show IAP popup
         }
     }
 

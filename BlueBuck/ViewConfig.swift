@@ -11,8 +11,8 @@ import UIKit
 internal class ViewConfig {
     var backFrame = CGRect(x: 129, y: 40, width: 24, height: 24)
     var refreshFrame = CGRect(x: 169, y: 31, width: 40, height: 39)
-    var movesOrigin: CGPoint? = CGPoint(x: 223, y: 41)
-    var movesCenter: CGPoint? = nil
+    var movesOrigin: CGPoint? = nil
+    var movesCenter: CGPoint? = CGPoint(x: 237, y: 55)
     var buttonViewFrame = CGRect(x: 0, y: 0, width: 375, height: 70)
     var objectiveFrame = CGRect(x: 0, y: 569, width: 375, height: 98)
     var objectiveCenter1 = CGPoint(x: 112, y: 49)
@@ -40,7 +40,7 @@ internal final class PortraitDown: ViewConfig {
     override init() {
         super.init()
         rotation = CGFloat.pi
-        movesOrigin = CGPoint(x: 223, y: 33)
+        movesCenter = CGPoint(x: 237, y: 46)
         objectiveCountHorizontalAdjustment = -29
         objectiveCountVerticalAdjustment = -18
         backFrame = CGRect(x: 129, y: 37, width: 24, height: 24)
@@ -51,8 +51,7 @@ internal final class LandscapeRight: ViewConfig {
     override init() {
         super.init()
         rotation = CGFloat.pi * -0.5
-        movesOrigin = nil
-        movesCenter = CGPoint(x: 240, y: 52)
+        movesCenter = CGPoint(x: 237, y: 52)
         objectiveCountHorizontalAdjustment = 32
         objectiveCountVerticalAdjustment = 0
         backFrame = CGRect(x: 129, y: 37, width: 24, height: 24)
@@ -63,7 +62,6 @@ internal final class LandscapeLeft: ViewConfig {
     override init() {
         super.init()
         rotation = CGFloat.pi * 0.5
-        movesOrigin = nil
         movesCenter = CGPoint(x: 237, y: 52)
         objectiveCountHorizontalAdjustment = -32
         objectiveCountVerticalAdjustment = 0

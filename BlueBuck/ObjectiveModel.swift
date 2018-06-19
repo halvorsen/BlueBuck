@@ -22,11 +22,16 @@ internal final class ObjectiveModel {
     
     init(objectives: [(pattern: Pattern, amount: Int)]) {
         for objective in objectives {
-            patternArray.append((pattern: objective.pattern, objective: objective.amount, completed: 0))
+            originalPatternArray.append((pattern: objective.pattern, objective: objective.amount, completed: 0))
         }
+        patternArray = originalPatternArray
     }
-    
+    private(set) internal var originalPatternArray: [(pattern: Pattern, objective: Int, completed: Int)] = []
     private(set) internal var patternArray: [(pattern: Pattern, objective: Int, completed: Int)] = []
+    
+    internal func resetPatternArray() {
+        patternArray = originalPatternArray
+    }
     
     internal func remainingPatternToFind(at patternPlace: PatternPlace) -> Int? {
         switch patternPlace {

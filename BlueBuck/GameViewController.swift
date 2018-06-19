@@ -117,13 +117,13 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
     
     @objc private func gameCenterTouchUpInside(_ sender: UIButton) {
         Effects.buttonSoundEffect?.play()
-//        Sound.play(file: "defaultButton.wav")
+
         //display game center controller
     }
     
     @objc private func okayTouchUpInside(_ sender: UIButton) {
         Effects.buttonSoundEffect?.play()
-//        Sound.play(file: "defaultButton.wav")
+
         dismiss(animated: true)
     }
     
@@ -158,19 +158,28 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
             break
         }
         rotateIcon()
+        if exitLevelPopup?.alpha == 1.0 {
+            displayPopup()
+        }
+        
         didRotateDevice(orientation)
     }
     
     @objc private func dismissGame() {
         Effects.buttonSoundEffect?.play()
-//        Sound.play(file: "defaultButton.wav")
+
         dismiss(animated: true)
     }
     
     @objc private func refreshGame() {
+        guard scene.unlocked else { return }
+        DispatchQueue.main.async { [weak self] in
+    
+        self?.scene.removeAllActions()
         Effects.buttonSoundEffect?.play()
-//        Sound.play(file: "defaultButton.wav")
-        scene.refreshGame()
+        self?.scene.refreshGame()
+        self?.updatePatternViews()
+        }
     }
     
     private func addTapViews() {
@@ -193,6 +202,13 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
     internal func incrementMoveCounter() {
         movesCounter += 1
         buttonView.moves.text = String(movesCounter)
+        buttonView.moves.sizeToFit()
+    }
+    
+    internal func resetMoveCounter() {
+        movesCounter = 0
+        buttonView.moves.text = String(movesCounter)
+        buttonView.moves.sizeToFit()
     }
     
     internal func tapOnGame() {
@@ -291,6 +307,7 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
         guard let rotationAngle = rotationAngle[orientation],
             let exitLevelPopup = exitLevelPopup else {return}
         exitLevelPopup.transform = CGAffineTransform(rotationAngle: rotationAngle)
+        exitLevelPopup.title.text = String(movesCounter) + " Moves"
         UIView.animate(withDuration: 0.4) {
             exitLevelPopup.alpha = 1.0
         }
@@ -310,7 +327,7 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
         exitLevelPopup.translatesAutoresizingMaskIntoConstraints = false
         layoutConstraints.append(exitLevelPopup.centerXAnchor.constraint(equalTo: view.centerXAnchor))
         layoutConstraints.append(exitLevelPopup.centerYAnchor.constraint(equalTo: view.centerYAnchor))
-        layoutConstraints.append(exitLevelPopup.heightAnchor.constraint(equalTo: exitLevelPopup.widthAnchor, multiplier: 0.58))
+        layoutConstraints.append(exitLevelPopup.heightAnchor.constraint(equalTo: exitLevelPopup.widthAnchor, multiplier: 0.6))
         layoutConstraints.append(exitLevelPopup.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75))
     }
     private func enableConstraints() {
@@ -334,17 +351,18 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
             let currentHigh = Int(currentHighScore) {
             if score < currentHigh {
                 MyUser.shared.playerScores[levelString] = scoreString
-                MyFileManager.writeJsonFile(filename: "userScores", input: MyUser.shared.playerScores)
+               _ =  MyFileManager.writeJsonFile(filename: "userScores", input: MyUser.shared.playerScores)
                 sendScoreToGameCenter(score, level: level)
             }
             
         } else {
             MyUser.shared.playerScores[levelString] = scoreString
-            MyFileManager.writeJsonFile(filename: "userScores", input: MyUser.shared.playerScores)
+          _ =  MyFileManager.writeJsonFile(filename: "userScores", input: MyUser.shared.playerScores)
             sendScoreToGameCenter(score, level: level)
         }
         
     }
+    
     private func sendScoreToGameCenter(_ score: Int, level: Int) {
         
     }

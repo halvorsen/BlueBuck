@@ -82,6 +82,9 @@ internal final class Game {
             blockQueue[k].shapeNode.lineJoin = .miter
             blockQueue[k].shapeNode.position = newLocation
         }
+        for l in 55..<100 {
+            blockQueue[l].shapeNode.position = CGPoint(x: 0.0, y: 0.0)
+        }
     }
     
     internal func currentQueueIndex() -> Int {
