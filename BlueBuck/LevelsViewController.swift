@@ -84,7 +84,7 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
             view.addSubview(mask)
         }
         cover.frame = CGRect(x: 0, y: 0, width: 375, height: 1000)
-
+        cover.isUserInteractionEnabled = false
         levelsView.addSubview(cover)
         
         let gradient:CAGradientLayer = CAGradientLayer()
@@ -133,6 +133,7 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
                 removePopup()
             }
         }
+        
     }
     
     deinit {
@@ -212,7 +213,23 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
                 loadGame(level)
             }
         } else {
-            // show IAP popup
+            // create the alert
+            let alert = UIAlertController(title: "Unlock", message: """
+Score 10 or better on five levels
+-or-
+Purchase game to unlock everything. All current, future and "Easter Egg" levels
+""", preferredStyle: UIAlertControllerStyle.alert)
+            
+            // add the actions (buttons)
+            alert.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.default) { _ in
+                //            inAppPurchase()
+            })
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { _ in
+                
+            })
+            
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
         }
     }
 
