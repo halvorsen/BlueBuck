@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BlueBuck/GameScene.swift"
-            timestampString = "551073910.568137"
+            timestampString = "551155988.448437"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "312"
-            endingLineNumber = "312"
+            startingLineNumber = "314"
+            endingLineNumber = "314"
             landmarkName = "replace(block:orientation:)"
             landmarkType = "7">
          </BreakpointContent>

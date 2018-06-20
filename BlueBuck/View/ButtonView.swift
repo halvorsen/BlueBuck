@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ButtonView: UIView {
+final class ButtonView: UIView {
     
     let exit = UIButton()
     let refresh = UIButton()

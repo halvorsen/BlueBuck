@@ -11,6 +11,7 @@
 		06149F0F20C0EEA1009BCF58 /* EnterLevelPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06149F0E20C0EEA1009BCF58 /* EnterLevelPopup.swift */; };
 		061AF51220D5FFF200F459A2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061AF51120D5FFF200F459A2 /* Extensions.swift */; };
 		061AF51420D6058000F459A2 /* Effects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061AF51320D6058000F459A2 /* Effects.swift */; };
+		061AF51620D9EC4100F459A2 /* SuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061AF51520D9EC4100F459A2 /* SuccessView.swift */; };
 		0661094F20D4C190001C30A8 /* sparkle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0661094B20D4C190001C30A8 /* sparkle.wav */; };
 		0661095020D4C190001C30A8 /* slide1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0661094C20D4C190001C30A8 /* slide1.wav */; };
 		0661095120D4C190001C30A8 /* defaultButton.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0661094D20D4C190001C30A8 /* defaultButton.wav */; };
@@ -48,6 +49,7 @@
 		06149F0E20C0EEA1009BCF58 /* EnterLevelPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterLevelPopup.swift; sourceTree = "<group>"; };
 		061AF51120D5FFF200F459A2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		061AF51320D6058000F459A2 /* Effects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effects.swift; sourceTree = "<group>"; };
+		061AF51520D9EC4100F459A2 /* SuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessView.swift; sourceTree = "<group>"; };
 		0661094B20D4C190001C30A8 /* sparkle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sparkle.wav; sourceTree = "<group>"; };
 		0661094C20D4C190001C30A8 /* slide1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = slide1.wav; sourceTree = "<group>"; };
 		0661094D20D4C190001C30A8 /* defaultButton.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = defaultButton.wav; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				06149F0E20C0EEA1009BCF58 /* EnterLevelPopup.swift */,
 				066BCD6520CD8E0F00A46E0C /* ExitLevelPopup.swift */,
 				066BCD6920CD9D9200A46E0C /* TutorialView.swift */,
+				061AF51520D9EC4100F459A2 /* SuccessView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				06BB07D820A7D08C00895113 /* AppDelegate.swift in Sources */,
 				0698325420BC402700F0CC52 /* LevelsView.swift in Sources */,
 				0698324E20B5076700F0CC52 /* SingleObjective.swift in Sources */,
+				061AF51620D9EC4100F459A2 /* SuccessView.swift in Sources */,
 				06DFE61620A90D9200633D78 /* Block.swift in Sources */,
 				061AF51220D5FFF200F459A2 /* Extensions.swift in Sources */,
 				06BB07F120A7D11E00895113 /* Model.xcdatamodeld in Sources */,

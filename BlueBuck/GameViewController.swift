@@ -12,7 +12,7 @@ import GameplayKit
 import SwiftySound
 
 
-class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecognizerDelegate {
+final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecognizerDelegate {
     
     internal var scene = GameScene()
     internal var gameView: GameView?
@@ -32,6 +32,7 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
     private var layoutConstraints = [NSLayoutConstraint]()
     internal var didRotateDevice: (UIDeviceOrientation) -> Void = {_ in}
     internal var isNotTutorial = true
+    private var successView: Success!
     
     var config: ViewConfig? {
         didSet {
@@ -112,6 +113,10 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
             orientation = .portrait
         }
         rotateIcon()
+        successView = Success(frame: view.bounds)
+        successView.isHidden = true
+        view.addSubview(successView)
+        
         
     }
     
@@ -159,7 +164,7 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
         }
         rotateIcon()
         if exitLevelPopup?.alpha == 1.0 {
-            displayPopup()
+            rotatePopups()
         }
         
         didRotateDevice(orientation)
@@ -303,14 +308,34 @@ class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecogniz
         
     }
     
-    private func displayPopup() {
+    private func rotatePopups() {
         guard let rotationAngle = rotationAngle[orientation],
             let exitLevelPopup = exitLevelPopup else {return}
         exitLevelPopup.transform = CGAffineTransform(rotationAngle: rotationAngle)
+        successView.transform = CGAffineTransform(rotationAngle: rotationAngle)
+        
+    }
+    
+    private func displayPopup() {
+        rotatePopups()
+        guard let exitLevelPopup = exitLevelPopup else {return}
+        
         exitLevelPopup.title.text = String(movesCounter) + " Moves"
-        UIView.animate(withDuration: 0.4) {
-            exitLevelPopup.alpha = 1.0
+        UIView.animate(withDuration: 0.4, animations: {
+           
+                self.successView.isHidden = false
+            
+        }) { _ in
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0, execute: {
+                self.successView.isHidden = true
+                UIView.animate(withDuration: 0.4) {
+                    exitLevelPopup.alpha = 1.0
+                }
+            })
+            
         }
+        
         self.baseView.isUserInteractionEnabled = false
         
     }

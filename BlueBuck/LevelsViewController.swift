@@ -9,7 +9,7 @@
 import UIKit
 import SwiftySound
 
-class LevelsViewController: UIViewController, TutorialDelegate {
+final class LevelsViewController: UIViewController, TutorialDelegate {
     
     private var game: Game?
     private lazy var levelsView = LevelsView(frame: view.bounds)

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ObjectiveView: UIView {
+final class ObjectiveView: UIView {
     
     var objectives: [SingleObjective] = []
     let objectiveCounts: [UILabel] = [UILabel(),UILabel(),UILabel()]

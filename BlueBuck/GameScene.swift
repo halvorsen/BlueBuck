@@ -18,7 +18,7 @@ internal protocol GameSceneDelegate: class {
     func resetMoveCounter()
 }
 
-class GameScene: SKScene {
+final class GameScene: SKScene {
     
     internal var isNotTutorial = true
     internal weak var gameDelegate: GameSceneDelegate?
@@ -158,8 +158,10 @@ class GameScene: SKScene {
                 twinkleNode[i].animate(time: animateTime) { [weak self] in
                     self?.twinkleNode[i].removeFromParent()
                     if i == (sortedBlocks.count - 1) {
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
                         self?.didFinishAnimateBlocks()
                         completion()
+                        }
                     }
                 }
             }
@@ -362,8 +364,10 @@ class GameScene: SKScene {
                 if completedGame {
                     weakself.gameComplete()
                 } else if successBlocks.count > 0 {
+                    print("successBlocks.count > 0")
                     weakself.searchAndUpdateViewsAndAnimateBlocks()
                 } else {
+                    print("weakself.unlocked = true")
                     weakself.unlocked = true
                 }
                 
@@ -393,7 +397,7 @@ class GameScene: SKScene {
     }
     
     private func dropWithOrientationUp(_ index: (row: Int, column: Int), squares: [Block]) {
-        print("dropwithorientationup")
+
         let drop = SKAction.moveBy(x: 0, y: -48, duration: dropTime)
 
         for block in squares {
@@ -401,7 +405,6 @@ class GameScene: SKScene {
                 if block.location.column == index.column && block.location.row < index.row {
                     block.location.row += 1
                     block.shapeNode.run(drop)
-                    print("drop1\(count23)")
                     count23 += 1
                 }
        

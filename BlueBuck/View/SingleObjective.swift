@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SingleObjective: UIView {
+final class SingleObjective: UIView {
     
     var square: [Bool]
     var squareView = [Square]()
@@ -50,7 +50,7 @@ class SingleObjective: UIView {
    
 }
 
-class Square: UIView {
+final class Square: UIView {
     var color = Color.blackLighter2
     override func draw(_ rect: CGRect) {
         var path = UIBezierPath()

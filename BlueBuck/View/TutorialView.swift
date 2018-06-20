@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TutorialView: UIView {
+final class TutorialView: UIView {
     internal let imageViews: [TutorialScreen: UIImageView] = [
         .tapToEliminate: UIImageView(image: #imageLiteral(resourceName: "Tutorial1")),
         .createShapes: UIImageView(image: #imageLiteral(resourceName: "Tutorial2")),
