@@ -34,6 +34,34 @@ internal final class Levels {
         -1: .levelEgg
     ]
     
+    internal static let blockTitle: [BuckLevel: String] = [
+        .level1: "Level 1",
+        .level2: "Level 2",
+        .level3: "Level 3",
+        .level4: "Level 4",
+        .level5: "Level 5",
+        .level6: "Level 6",
+        .level7: "Level 7",
+        .level8: "Level 8",
+        .level9: "Level 9",
+        .level10: "Level 10",
+        .level11: "Level 11",
+        .level12: "Level 12",
+        .level13: "Level 13",
+        .level14: "Level 14",
+        .level15: "Level 15",
+        .level16: "Level 16",
+        .level17: "Level 18",
+        .level18: "Level 19",
+        .level19: "Level 20",
+        .level20: "Level 21",
+        .level21: "Level 22",
+        .level22: "Level 23",
+        .levelEgg: "Level X"
+    
+    
+    ]
+    
     internal static let blockTypeArray: [BuckLevel: [BlockType]] = [
         
         .level1: [
@@ -538,6 +566,9 @@ internal final class Levels {
             .yellow, .white, .yellow, .white, .green,
             .blue, .white, .green, .white, .blue,
             .yellow, .white, .yellow, .pink, .yellow,
+            .blue, .blue, .pink, .yellow, .white,
+            .blue, .green, .pink, .green, .pink,
+            .green, .yellow, .blue, .green, .blue
         ]
         
         ]

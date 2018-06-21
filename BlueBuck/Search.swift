@@ -336,6 +336,10 @@ internal final class Search {
                 let block6 = dictionary[primative.row - 2]?[primative.column + 1],
                 let block7 = dictionary[primative.row - 2]?[primative.column + 2] {
                 if [primative.block.blockType, block1.blockType, block2.blockType, block3.blockType, block4.blockType, block5.blockType, block6.blockType, block7.blockType].allEqual() {
+                    if block6.blockType == .blue {
+                        
+                        NotificationCenter.default.post(name: Notification.Name("FoundBuck"), object: nil)
+                    }
                     foundPatterns.append([primative.block, block0, block1, block2, block3, block4, block5, block6, block7])
                 }
             }

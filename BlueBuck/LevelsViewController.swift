@@ -21,6 +21,7 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
     internal var doTutorial = false
     internal var tutorialView: UIImageView?
     internal let cover = UIView()
+    internal var easterEggController: EasterEggController?
     let popupConfig = Popup()
     
     var config: ViewConfig? {
@@ -31,7 +32,7 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
     }
     
     private func displayPopup() {
-       
+        
         guard let buckLevel = game?.level,
             let objectives = ObjectiveModel.objectivesByLevel[buckLevel] else { return }
         var patterns: [SingleObjective] = []
@@ -47,15 +48,16 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
         guard let enterLevelPopup = enterLevelPopup else { return }
         objectiveView.frame = enterLevelPopup.centerView.bounds
         enterLevelPopup.centerView.addSubview(objectiveView)
+    
         UIView.animate(withDuration: 0.4) {
             enterLevelPopup.alpha = 1.0
         }
-
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         Effects.buttonSoundEffect?.volume = 0.05
         Effects.slide1SoundEffect?.volume = 0.05
         Effects.slide2SoundEffect?.volume = 0.05
@@ -76,7 +78,7 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
         
         enterLevelPopup.cancel.addTarget(self, action: #selector(cancelTouchUpInside(_:)), for: .touchUpInside)
         enterLevelPopup.okay.addTarget(self, action: #selector(okayTouchUpInside(_:)), for: .touchUpInside)
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         
         if doTutorial {
@@ -100,6 +102,7 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
         } else {
             cover.isHidden = false
         }
+        
     }
     var gameViewController: GameViewController?
     override func viewDidAppear(_ animated: Bool) {
@@ -126,12 +129,15 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
                     weakself.tutorialController = TutorialController()
                     weakself.tutorialController?.setTarget(gameView: gameViewController.gameView!, levelView: weakself.view, delegate: weakself)
                     weakself.tutorialController?.setClosures(gameViewController: gameViewController)
-                        weakself.mask.removeFromSuperview()
-                        gameViewController.orientation = .portrait
-                        gameViewController.rotateIcon()
+                    weakself.mask.removeFromSuperview()
+                    gameViewController.orientation = .portrait
+                    gameViewController.rotateIcon()
                 }
                 removePopup()
             }
+        }
+        if MyUser.shared.playerHasFoundBlueBuck || MyUser.shared.playerHas10ScoreFor6Of15 || MyUser.shared.playerHasPaid {
+            easterEggController = EasterEggController.init(controller: self, view: levelsView)
         }
         
     }
@@ -141,7 +147,7 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
     }
     
     @objc private func orientationDidChange() {
-     
+        
         let orientation =  UIDevice.current.orientation
         var rotation: CGFloat = 0.0
         switch orientation {
@@ -163,6 +169,7 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
             label.transform = CGAffineTransform(rotationAngle: rotation)
         }
         enterLevelPopup?.transform = CGAffineTransform(rotationAngle: rotation)
+        easterEggController?.orientationDidChange(orientation: orientation)
     }
     
     private func setupConstraints() {
@@ -177,18 +184,18 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
     private func enableConstraints() {
         NSLayoutConstraint.activate(layoutConstraints)
     }
-
+    
     
     private func removePopup() {
         
         UIView.animate(withDuration: 0.4, animations: {
-        self.enterLevelPopup?.alpha = 0.0
+            self.enterLevelPopup?.alpha = 0.0
         }) { _ in
             self.objectiveView?.removeFromSuperview()
             self.objectiveView = nil
             self.levelsView.isUserInteractionEnabled = true
         }
-   
+        
     }
     
     @objc private func cancelTouchUpInside(_ sender: UIButton) {
@@ -213,26 +220,23 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
                 loadGame(level)
             }
         } else {
-            // create the alert
             let alert = UIAlertController(title: "Unlock", message: """
-Score 10 or better on five levels
+Score 10 or better on six levels
 -or-
 Purchase game to unlock everything. All current, future and "Easter Egg" levels
 """, preferredStyle: UIAlertControllerStyle.alert)
             
-            // add the actions (buttons)
             alert.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.default) { _ in
                 //            inAppPurchase()
             })
             alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { _ in
-                
+                // do nothing?
             })
             
-            // show the alert
             self.present(alert, animated: true, completion: nil)
         }
     }
-
+    
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         enableConstraints()
     }
@@ -249,7 +253,7 @@ Purchase game to unlock everything. All current, future and "Easter Egg" levels
     }
     
     internal func doneTutorial() {
-      
+        
         tutorialView = tutorialController?.tutorialView?.imageViews[.levelView]
         tutorialController?.gameView = nil
         tutorialController?.levelView = nil
@@ -288,8 +292,9 @@ Purchase game to unlock everything. All current, future and "Easter Egg" levels
             }
         }
         game = Game(blocks: blocks, blockConfigs: blockConfigs, level: level)
+        enterLevelPopup?.title.text = Levels.blockTitle[level]
         displayPopup()
-       
+        
     }
     
     private func createLevelsUtility() { // create and print a random level

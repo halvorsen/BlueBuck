@@ -10,6 +10,7 @@ import UIKit
 import SpriteKit
 import GameplayKit
 import SwiftySound
+import AudioToolbox
 
 
 final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecognizerDelegate {
@@ -17,7 +18,7 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
     internal var scene = GameScene()
     internal var gameView: GameView?
     private var buttonView = ButtonView()
-    private var iconView = UIImageView(image: #imageLiteral(resourceName: "buckIcon"))
+    internal var iconView = UIImageView(image: #imageLiteral(resourceName: "buckIcon"))
     internal var objectiveModel: ObjectiveModel?
     private var objectiveView: ObjectiveView?
     private var tapView: (top: UIView, bottom: UIView, left: UIView, right: UIView) = (UIView(),UIView(),UIView(),UIView())
@@ -33,6 +34,7 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
     internal var didRotateDevice: (UIDeviceOrientation) -> Void = {_ in}
     internal var isNotTutorial = true
     private var successView: Success!
+    private var findBuckController: FindBuckController?
     
     var config: ViewConfig? {
         didSet {
@@ -54,6 +56,7 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
             guard let bools = ObjectiveModel.patternData[objective.pattern] else { return }
             patterns.append(SingleObjective(square: bools))
         }
+        findBuckController = FindBuckController(controller: self)
         baseView.frame = view.bounds
         baseView.backgroundColor = .clear
         view.addSubview(baseView)
@@ -137,7 +140,7 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
     }
     
     @objc private func orientationDidChange() {
-    
+        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         if didntChangeTooQuickly && viewsOn {
             toggleButtonsAndObjectives()
         }

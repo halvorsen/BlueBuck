@@ -12,6 +12,8 @@
 		061AF51220D5FFF200F459A2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061AF51120D5FFF200F459A2 /* Extensions.swift */; };
 		061AF51420D6058000F459A2 /* Effects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061AF51320D6058000F459A2 /* Effects.swift */; };
 		061AF51620D9EC4100F459A2 /* SuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061AF51520D9EC4100F459A2 /* SuccessView.swift */; };
+		061AF51820DB1CB600F459A2 /* EasterEggController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061AF51720DB1CB600F459A2 /* EasterEggController.swift */; };
+		061AF51A20DB4B9B00F459A2 /* FindBuckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061AF51920DB4B9B00F459A2 /* FindBuckController.swift */; };
 		0661094F20D4C190001C30A8 /* sparkle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0661094B20D4C190001C30A8 /* sparkle.wav */; };
 		0661095020D4C190001C30A8 /* slide1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0661094C20D4C190001C30A8 /* slide1.wav */; };
 		0661095120D4C190001C30A8 /* defaultButton.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0661094D20D4C190001C30A8 /* defaultButton.wav */; };
@@ -50,6 +52,8 @@
 		061AF51120D5FFF200F459A2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		061AF51320D6058000F459A2 /* Effects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effects.swift; sourceTree = "<group>"; };
 		061AF51520D9EC4100F459A2 /* SuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessView.swift; sourceTree = "<group>"; };
+		061AF51720DB1CB600F459A2 /* EasterEggController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasterEggController.swift; sourceTree = "<group>"; };
+		061AF51920DB4B9B00F459A2 /* FindBuckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindBuckController.swift; sourceTree = "<group>"; };
 		0661094B20D4C190001C30A8 /* sparkle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sparkle.wav; sourceTree = "<group>"; };
 		0661094C20D4C190001C30A8 /* slide1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = slide1.wav; sourceTree = "<group>"; };
 		0661094D20D4C190001C30A8 /* defaultButton.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = defaultButton.wav; sourceTree = "<group>"; };
@@ -163,6 +167,7 @@
 				06BB07DD20A7D08C00895113 /* GameScene.swift */,
 				06DFE61B20A9239900633D78 /* LevelsViewController.swift */,
 				06BB07DF20A7D08C00895113 /* GameViewController.swift */,
+				061AF51720DB1CB600F459A2 /* EasterEggController.swift */,
 				06BB07E420A7D08E00895113 /* Assets.xcassets */,
 				06BB07E920A7D08E00895113 /* Info.plist */,
 				06BB07EF20A7D11E00895113 /* Model.xcdatamodeld */,
@@ -179,6 +184,7 @@
 				0661095720D5DC52001C30A8 /* MyUser.swift */,
 				061AF51120D5FFF200F459A2 /* Extensions.swift */,
 				061AF51320D6058000F459A2 /* Effects.swift */,
+				061AF51920DB4B9B00F459A2 /* FindBuckController.swift */,
 			);
 			path = BlueBuck;
 			sourceTree = "<group>";
@@ -319,8 +325,10 @@
 				06BB07E020A7D08C00895113 /* GameViewController.swift in Sources */,
 				06DFE61820A9110600633D78 /* Game.swift in Sources */,
 				06DFE61A20A9144700633D78 /* Constant.swift in Sources */,
+				061AF51A20DB4B9B00F459A2 /* FindBuckController.swift in Sources */,
 				06BB07D820A7D08C00895113 /* AppDelegate.swift in Sources */,
 				0698325420BC402700F0CC52 /* LevelsView.swift in Sources */,
+				061AF51820DB1CB600F459A2 /* EasterEggController.swift in Sources */,
 				0698324E20B5076700F0CC52 /* SingleObjective.swift in Sources */,
 				061AF51620D9EC4100F459A2 /* SuccessView.swift in Sources */,
 				06DFE61620A90D9200633D78 /* Block.swift in Sources */,

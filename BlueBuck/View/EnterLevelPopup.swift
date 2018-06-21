@@ -21,7 +21,7 @@ internal final class EnterLevelPopup: UIView {
         backgroundColor = Color.blackPopup
         layer.cornerRadius = 15
         clipsToBounds = true
-        title.text = "Level 1"
+        title.text = "Level"
         title.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
         title.textAlignment = .center
         title.textColor = .white
