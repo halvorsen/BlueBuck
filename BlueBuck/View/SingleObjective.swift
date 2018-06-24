@@ -24,13 +24,13 @@ final class SingleObjective: UIView {
     
     init(square: [Bool]) {
         self.square = square
-        super.init(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+        super.init(frame: CGRect(x: 0, y: 0, width: 44*Global.screenWidthScalar, height: 44*Global.screenWidthScalar))
         for i in 0...2 {
             for j in 0...2 {
                 let k = i*3 + j
                 if square.count > k {
                     if square[k] {
-                        let newSquare = Square(frame: CGRect(x: CGFloat(j)*17, y: CGFloat(i)*17, width: 10, height: 10))
+                        let newSquare = Square(frame: CGRect(x: CGFloat(j)*17*Global.screenWidthScalar, y: CGFloat(i)*17*Global.screenWidthScalar, width: 10*Global.screenWidthScalar, height: 10*Global.screenWidthScalar))
                         if popUp {
                             newSquare.color = Color.white
                         }

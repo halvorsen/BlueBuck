@@ -81,7 +81,7 @@ internal final class ObjectiveModel {
         .level4: [(.rino1, 2),(.goose1, 2),(.stag1, 1)],
         .level5: [(.bat1, 2),(.falcon, 1),(.stag1, 2)],
         .level6: [(.bat1, 3)],
-        .level7: [(.rino1, 2),(.rino2, 2),(.monkey, 2)],
+        .level7: [(.rino1, 2),(.rino2, 2),(.elephant, 2)],
         .level8: [(.giraffe1, 1),(.giraffe2, 3),(.giraffe3, 1)],
         .level9: [(.stag1, 2),(.monkey, 2)],
         .level10: [(.goose1, 2),(.goose2, 2),(.goose3, 2)],

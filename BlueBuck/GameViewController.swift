@@ -10,8 +10,6 @@ import UIKit
 import SpriteKit
 import GameplayKit
 import SwiftySound
-import AudioToolbox
-
 
 final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecognizerDelegate {
     
@@ -35,11 +33,12 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
     internal var isNotTutorial = true
     private var successView: Success!
     private var findBuckController: FindBuckController?
+    private let buttonViewSize = CGSize(width: 375*Global.screenWidthScalar, height: 70*Global.screenWidthScalar)
     
     var config: ViewConfig? {
         didSet {
              guard let config = config else { return }
-            buttonView.frame = config.buttonViewFrame
+       
             objectiveView?.frame = config.objectiveFrame
             buttonView.config = config
             objectiveView?.config = config
@@ -56,7 +55,9 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
             guard let bools = ObjectiveModel.patternData[objective.pattern] else { return }
             patterns.append(SingleObjective(square: bools))
         }
+        if !MyUser.shared.playerHasFoundBlueBuck {
         findBuckController = FindBuckController(controller: self)
+        }
         baseView.frame = view.bounds
         baseView.backgroundColor = .clear
         view.addSubview(baseView)
@@ -64,14 +65,14 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
         guard let objectiveView = objectiveView else { return }
         view.backgroundColor = Color.black
         gameView = GameView()
-        gameView?.frame.size = CGSize(width: 375, height: 667)
+        gameView?.frame.size = CGSize(width: 375*Global.screenWidthScalar, height: 667*Global.screenWidthScalar)
         gameView?.center = view.center
         config = portaitConfig
         buttonView.config = portaitConfig
         objectiveView.config = portaitConfig
         iconView.alpha = 0.92
-        iconView.frame.size = CGSize(width: 16, height: 17)
-        iconView.center = CGPoint(x: 349, y: 642.5)
+        iconView.frame.size = CGSize(width: 16*Global.screenWidthScalar, height: 17*Global.screenWidthScalar)
+        iconView.center = CGPoint(x: 349*Global.screenWidthScalar, y: 642.5*Global.screenWidthScalar)
         baseView.addSubview(gameView!)
         addTapViews()
         
@@ -119,7 +120,12 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
         successView = Success(frame: view.bounds)
         successView.isHidden = true
         view.addSubview(successView)
-        
+        buttonView.frame.size = buttonViewSize
+        buttonView.center.x = view.center.x
+        buttonView.frame.origin.y = 0
+        if UIScreen.main.bounds.height > 810 {
+            buttonView.frame.origin.y = 72.5
+        }
         
     }
     
@@ -140,7 +146,7 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
     }
     
     @objc private func orientationDidChange() {
-        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        
         if didntChangeTooQuickly && viewsOn {
             toggleButtonsAndObjectives()
         }
@@ -163,8 +169,9 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
         case .landscapeRight:
             orientation = .landscapeRight
         default:
-            break
+            return
         }
+   
         rotateIcon()
         if exitLevelPopup?.alpha == 1.0 {
             rotatePopups()
@@ -193,11 +200,25 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
     private func addTapViews() {
         guard let objectiveView = objectiveView else { return }
         
-        tapView.top.frame = CGRect(x: 0, y: 0, width: 375, height: 98)
-        tapView.bottom.frame = CGRect(x: 0, y: 569, width: 375, height: 98)
-        tapView.left.frame = CGRect(x: 0, y: 98, width: 73, height: 471)
-        tapView.right.frame = CGRect(x: 302, y: 98, width: 73, height: 471)
+        tapView.top.frame = CGRect(x: 0, y: 0, width: 375*Global.screenWidthScalar, height: 98*Global.screenWidthScalar)
+        if UIScreen.main.bounds.height > 810 {
+            tapView.top.frame.size.height += 72
+        }
+        tapView.bottom.frame = CGRect(x: 0, y: 569*Global.screenWidthScalar, width: 375*Global.screenWidthScalar, height: 98*Global.screenWidthScalar)
+        if UIScreen.main.bounds.height > 810 {
+            tapView.bottom.frame.size.height += 72
+            tapView.bottom.frame.origin.y += 72
+        }
+        tapView.left.frame = CGRect(x: 0, y: 98*Global.screenWidthScalar, width: 73*Global.screenWidthScalar, height: 471*Global.screenHeightScalar)
+        if UIScreen.main.bounds.height > 810 {
+            tapView.left.frame.origin.y += 72
+        }
+        tapView.right.frame = CGRect(x: 302*Global.screenWidthScalar, y: 98*Global.screenWidthScalar, width: 73*Global.screenWidthScalar, height: 471*Global.screenWidthScalar)
+        if UIScreen.main.bounds.height > 810 {
+            tapView.right.frame.origin.y += 72
+        }
         for tapView in [tapView.top, tapView.bottom, tapView.left, tapView.right, buttonView, objectiveView] {
+            
             let tap = UITapGestureRecognizer(target: self, action: #selector(tapOutsideGame(_:)))
             tap.delegate = self
             baseView.addSubview(tapView)

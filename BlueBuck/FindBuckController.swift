@@ -28,11 +28,21 @@ final class FindBuckController {
             bucks.append(buck)
         }
     }
-    
+    var once = true
     @objc internal func foundBuck() {
-        MyUser.shared.playerHasFoundBlueBuck = true
-        MyUser.shared.writeCurrentUserState()
-        buckAnimation()
+        if once {
+            once = false
+            MyUser.shared.playerHasFoundBlueBuck = true
+            MyUser.shared.writeCurrentUserState()
+            buckAnimation()
+    
+            if let presenter = controller.presentingViewController as? LevelsViewController {
+                presenter.easterEggController = EasterEggController.init(controller: presenter, view: presenter.levelsView)
+                if let eec = presenter.easterEggController {
+                eec.view.addSubview(eec.key)
+                }
+            }
+        }
     }
     
     internal func buckAnimation() {

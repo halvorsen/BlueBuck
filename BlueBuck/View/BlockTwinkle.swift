@@ -50,24 +50,24 @@ internal final class BlockTwinkle: SKNode {
     
     private let location: [CGPoint] = [
     
-    CGPoint(x: 23, y: -4),
-    CGPoint(x: 17, y: 10),
-    CGPoint(x: 22, y: -21),
-    CGPoint(x: -20, y: 24),
-    CGPoint(x: 0, y: -18),
-    CGPoint(x: -30, y: 13),
-    CGPoint(x: 18, y: -13),
-    CGPoint(x: 11, y: 15),
-    CGPoint(x: -16, y: 13),
-    CGPoint(x: -19, y: 0),
-    CGPoint(x: 23, y: 22),
-    CGPoint(x: 2, y: 19),
-    CGPoint(x: -16, y: -10),
-    CGPoint(x: -7, y: 15),
-    CGPoint(x: -9, y: 13),
-    CGPoint(x: 14, y: -1),
-    CGPoint(x: -11, y: 22),
-    CGPoint(x: -17, y: -19)
+    CGPoint(x: 23*Global.screenWidthScalar, y: -4*Global.screenWidthScalar),
+    CGPoint(x: 17*Global.screenWidthScalar, y: 10*Global.screenWidthScalar),
+    CGPoint(x: 22*Global.screenWidthScalar, y: -21*Global.screenWidthScalar),
+    CGPoint(x: -20*Global.screenWidthScalar, y: 24*Global.screenWidthScalar),
+    CGPoint(x: 0, y: -18*Global.screenWidthScalar),
+    CGPoint(x: -30*Global.screenWidthScalar, y: 13*Global.screenWidthScalar),
+    CGPoint(x: 18*Global.screenWidthScalar, y: -13*Global.screenWidthScalar),
+    CGPoint(x: 11*Global.screenWidthScalar, y: 15*Global.screenWidthScalar),
+    CGPoint(x: -16*Global.screenWidthScalar, y: 13*Global.screenWidthScalar),
+    CGPoint(x: -19*Global.screenWidthScalar, y: 0*Global.screenWidthScalar),
+    CGPoint(x: 23*Global.screenWidthScalar, y: 22*Global.screenWidthScalar),
+    CGPoint(x: 2*Global.screenWidthScalar, y: 19*Global.screenWidthScalar),
+    CGPoint(x: -16*Global.screenWidthScalar, y: -10*Global.screenWidthScalar),
+    CGPoint(x: -7*Global.screenWidthScalar, y: 15*Global.screenWidthScalar),
+    CGPoint(x: -9*Global.screenWidthScalar, y: 13*Global.screenWidthScalar),
+    CGPoint(x: 14*Global.screenWidthScalar, y: -1*Global.screenWidthScalar),
+    CGPoint(x: -11*Global.screenWidthScalar, y: 22*Global.screenWidthScalar),
+    CGPoint(x: -17*Global.screenWidthScalar, y: -19*Global.screenWidthScalar)
     
     ]
 }

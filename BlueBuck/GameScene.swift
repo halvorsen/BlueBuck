@@ -32,6 +32,11 @@ final class GameScene: SKScene {
     internal var squaresQueue: [Block] = []
     private var tutorialAllowableIndex: Int = 17
     internal var twinkleNode = [BlockTwinkle]()
+    private let smallSize = CGSize(width: 14, height: 14)
+    private let newBlockPosition = CGPoint(x: 56.5*Global.screenWidthScalar, y: 560.5*Global.screenWidthScalar)
+    private let moveQueueDistance: CGFloat = -21*Global.screenWidthScalar
+    private let shapeLineWidth: CGFloat = 5*Global.screenWidthScalar
+    private let dropDistance: CGFloat = 48*Global.screenWidthScalar
     
     deinit {
         for child in self.children {
@@ -231,7 +236,7 @@ final class GameScene: SKScene {
         tapLocation.y = UIScreen.main.bounds.height - tapLocation.y
         for i in 0..<squares.count {
             
-            let modifiedFrame = CGRect(x: squares[i].shapeNode.frame.origin.x - 5, y: squares[i].shapeNode.frame.origin.y - 5, width: squares[i].shapeNode.frame.width + 10, height: squares[i].shapeNode.frame.width + 10)
+            let modifiedFrame = CGRect(x: squares[i].shapeNode.frame.origin.x - 5*Global.screenWidthScalar, y: squares[i].shapeNode.frame.origin.y - 5*Global.screenWidthScalar, width: squares[i].shapeNode.frame.width + 10*Global.screenWidthScalar, height: squares[i].shapeNode.frame.width + 10*Global.screenWidthScalar)
             if modifiedFrame.contains(tapLocation) {
                 guard isNotTutorial || i == tutorialAllowableIndex else { return }
                 
@@ -247,21 +252,21 @@ final class GameScene: SKScene {
     
     private func addBlockToQueue(_ newBlock: Block) {
         
-        newBlock.shapeNode = SKShapeNode(rectOf: CGSize(width: 14, height: 14), cornerRadius: 0)
+        newBlock.shapeNode = SKShapeNode(rectOf: smallSize, cornerRadius: 0)
         newBlock.shapeNode.lineWidth = 3
         
         if let color = color[newBlock.blockType] {
             newBlock.shapeNode.strokeColor = color
         }
         newBlock.shapeNode.lineJoin = .miter
-        newBlock.shapeNode.position = CGPoint(x: 56.5, y: 560.5)
+        newBlock.shapeNode.position = newBlockPosition
         addChild(newBlock.shapeNode)
         
     }
     var count23 = 0
     var switchSound = true
     private func moveQueueBlocksIntoOpenings() {
-        let drop = SKAction.moveBy(x: 0, y: -21, duration: dropTime)
+        let drop = SKAction.moveBy(x: 0, y: moveQueueDistance, duration: dropTime)
 
             for block in [squaresQueue[1], squaresQueue[2], squaresQueue[3], squaresQueue[4]] {
                 
@@ -278,7 +283,7 @@ final class GameScene: SKScene {
         replacement = replacementBlock
         replacementBlock.shapeNode.lineJoin = .miter
         replacementBlock.shapeNode.path = Path.big
-        replacementBlock.shapeNode.lineWidth = 5
+        replacementBlock.shapeNode.lineWidth = shapeLineWidth
         
         var newPosition = CGPoint()
         switch orientation {
@@ -398,7 +403,7 @@ final class GameScene: SKScene {
     
     private func dropWithOrientationUp(_ index: (row: Int, column: Int), squares: [Block]) {
 
-        let drop = SKAction.moveBy(x: 0, y: -48, duration: dropTime)
+        let drop = SKAction.moveBy(x: 0, y: -dropDistance, duration: dropTime)
 
         for block in squares {
          
@@ -413,7 +418,7 @@ final class GameScene: SKScene {
     }
     private func dropWithOrientationUpSideDown(_ index: (row: Int, column: Int), squares: [Block]) {
         
-        let drop = SKAction.moveBy(x: 0, y: 48, duration: dropTime)
+        let drop = SKAction.moveBy(x: 0, y: dropDistance, duration: dropTime)
         
         for block in squares {
             
@@ -427,7 +432,7 @@ final class GameScene: SKScene {
     }
     private func dropWithOrientationLeft(_ index: (row: Int, column: Int), squares: [Block]) {
         
-        let drop = SKAction.moveBy(x: -48, y: 0, duration: dropTime)
+        let drop = SKAction.moveBy(x: -dropDistance, y: 0, duration: dropTime)
         
         for block in squares {
             
@@ -441,7 +446,7 @@ final class GameScene: SKScene {
     }
     private func dropWithOrientationRight(_ index: (row: Int, column: Int), squares: [Block]) {
         
-        let drop = SKAction.moveBy(x: 48, y: 0, duration: dropTime)
+        let drop = SKAction.moveBy(x: dropDistance, y: 0, duration: dropTime)
         
         for block in squares {
             

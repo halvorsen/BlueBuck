@@ -30,13 +30,14 @@ class TutorialController {
     }
     
     func setTarget(gameView: UIView, levelView: UIView, delegate: TutorialDelegate) {
-        tutorialView = TutorialView(frame: CGRect(x: 0, y: 0, width: 375, height: 667))
+        tutorialView = TutorialView(frame: CGRect(x: 0, y: 0, width: 375*Global.screenWidthScalar, height: 667*Global.screenWidthScalar))
         self.delegate = delegate
         self.gameView = gameView
         self.levelView = levelView
         tutorialView?.removeFromSuperview()
         guard let tutorialView = tutorialView else { return }
         self.gameView?.addSubview(tutorialView)
+        tutorialView.imageViews[.levelView]!.frame.size = CGSize(width: 375*Global.screenWidthScalar, height: 667*Global.screenWidthScalar)
         self.levelView?.addSubview(tutorialView.imageViews[.levelView]!)
     }
     
@@ -48,9 +49,9 @@ class TutorialController {
             if [TutorialScreen.returnPhone1, TutorialScreen.returnPhone2].contains(weakself.currentTutorialScreen) && orientation == .portrait {
                 weakself.tutorialView?.removeFromSuperview()
                 gameViewController.dismiss(animated: true, completion: {
-                    print("DISMISS")
+        
                     weakself.currentTutorialScreen = .levelView
-                    print(weakself.delegate)
+          
                     weakself.delegate?.doneTutorial()
                 })
                 

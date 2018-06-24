@@ -12,7 +12,7 @@ import SwiftySound
 final class LevelsViewController: UIViewController, TutorialDelegate {
     
     private var game: Game?
-    private lazy var levelsView = LevelsView(frame: view.bounds)
+    internal lazy var levelsView = LevelsView(frame: view.bounds)
     private var enterLevelPopup: EnterLevelPopup?
     private var layoutConstraints = [NSLayoutConstraint]()
     private var objectiveView: ObjectiveView?
@@ -23,6 +23,7 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
     internal let cover = UIView()
     internal var easterEggController: EasterEggController?
     let popupConfig = Popup()
+    private let effectsVolume: Float = 0.05
     
     var config: ViewConfig? {
         didSet {
@@ -58,10 +59,10 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Effects.buttonSoundEffect?.volume = 0.05
-        Effects.slide1SoundEffect?.volume = 0.05
-        Effects.slide2SoundEffect?.volume = 0.05
-        Effects.sparkleSoundEffect?.volume = 0.05
+        Effects.buttonSoundEffect?.volume = effectsVolume
+        Effects.slide1SoundEffect?.volume = effectsVolume
+        Effects.slide2SoundEffect?.volume = effectsVolume
+        Effects.sparkleSoundEffect?.volume = effectsVolume
         
         view.addSubview(levelsView)
         
@@ -85,7 +86,7 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
             mask.backgroundColor = Color.black
             view.addSubview(mask)
         }
-        cover.frame = CGRect(x: 0, y: 0, width: 375, height: 1000)
+        cover.frame = CGRect(x: 0, y: 0, width: 375*Global.screenWidthScalar, height: 1000*Global.screenWidthScalar)
         cover.isUserInteractionEnabled = false
         levelsView.addSubview(cover)
         
@@ -124,6 +125,7 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
                 gameViewController.modalTransitionStyle = .crossDissolve
                 gameViewController.scene.isNotTutorial = false
                 gameViewController.isNotTutorial = false
+                
                 present(gameViewController, animated: true) { [weak self] in
                     guard let weakself = self else { return }
                     weakself.tutorialController = TutorialController()
@@ -206,6 +208,7 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
     
     @objc private func okayTouchUpInside(_ sender: UIButton) {
         Effects.buttonSoundEffect?.play()
+      
         presentGame()
         tutorialView?.removeFromSuperview()
         removePopup()

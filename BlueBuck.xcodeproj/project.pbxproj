@@ -168,6 +168,7 @@
 				06DFE61B20A9239900633D78 /* LevelsViewController.swift */,
 				06BB07DF20A7D08C00895113 /* GameViewController.swift */,
 				061AF51720DB1CB600F459A2 /* EasterEggController.swift */,
+				061AF51920DB4B9B00F459A2 /* FindBuckController.swift */,
 				06BB07E420A7D08E00895113 /* Assets.xcassets */,
 				06BB07E920A7D08E00895113 /* Info.plist */,
 				06BB07EF20A7D11E00895113 /* Model.xcdatamodeld */,
@@ -184,7 +185,6 @@
 				0661095720D5DC52001C30A8 /* MyUser.swift */,
 				061AF51120D5FFF200F459A2 /* Extensions.swift */,
 				061AF51320D6058000F459A2 /* Effects.swift */,
-				061AF51920DB4B9B00F459A2 /* FindBuckController.swift */,
 			);
 			path = BlueBuck;
 			sourceTree = "<group>";

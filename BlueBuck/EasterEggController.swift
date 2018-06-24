@@ -19,18 +19,19 @@ final class EasterEggController {
         self.controller = controller
         self.view = view
         
-        eggLevel.frame.size = CGSize(width: 70, height: 70)
+        eggLevel.frame.size = CGSize(width: 70*Global.screenWidthScalar, height: 70*Global.screenWidthScalar)
         eggLevel.layer.cornerRadius = eggLevel.frame.size.width * 0.5
         eggLevel.layer.borderColor = Color.blue.cgColor
         eggLevel.layer.borderWidth = 4
         eggLevel.clipsToBounds = true
         eggLevel.setImage(#imageLiteral(resourceName: "buckIcon"), for: .normal)
-        eggLevel.center = CGPoint(x: view.contentSize.width - 60, y: view.contentSize.height - 60)
+        eggLevel.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+        eggLevel.center = CGPoint(x: view.contentSize.width - 60*Global.screenWidthScalar, y: view.contentSize.height - 60*Global.screenWidthScalar)
         
         key.contentMode = .scaleAspectFit
         key.setImage(#imageLiteral(resourceName: "key"), for: .normal)
-        key.frame.size = CGSize(width: 70, height: 70)
-        key.center = CGPoint(x: view.contentSize.width - 60, y: view.contentSize.height - 45)
+        key.frame.size = CGSize(width: 70*Global.screenWidthScalar, height: 70*Global.screenWidthScalar)
+        key.center = CGPoint(x: view.contentSize.width - 60*Global.screenWidthScalar, y: view.contentSize.height - 45*Global.screenWidthScalar)
         key.isHidden = false
         
         if MyUser.shared.playerHasUnlockedEasterEgg1 {
@@ -57,7 +58,7 @@ final class EasterEggController {
         MyUser.shared.writeCurrentUserState()
         key.isHidden = true
         
-        eggLevel.center = CGPoint(x: view.contentSize.width - 60, y: view.contentSize.height - 45)
+        eggLevel.center = CGPoint(x: view.contentSize.width - 60*Global.screenWidthScalar, y: view.contentSize.height - 45*Global.screenWidthScalar)
         
         view.addSubview(eggLevel)
     }
@@ -66,8 +67,21 @@ final class EasterEggController {
     internal func orientationDidChange(orientation: UIDeviceOrientation) {
         if orientation == .portraitUpsideDown {
             key.isEnabled = true
+            
         } else {
             key.isEnabled = false
+        }
+        switch orientation {
+        case .portrait:
+            eggLevel.transform = CGAffineTransform(rotationAngle: 0)
+        case .portraitUpsideDown:
+            eggLevel.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+        case .landscapeLeft:
+            eggLevel.transform = CGAffineTransform(rotationAngle: CGFloat.pi * 0.5)
+        case .landscapeRight:
+            eggLevel.transform = CGAffineTransform(rotationAngle: CGFloat.pi * -0.5)
+        default:
+            break
         }
     }
     
