@@ -32,7 +32,7 @@ final class GameScene: SKScene {
     internal var squaresQueue: [Block] = []
     private var tutorialAllowableIndex: Int = 17
     internal var twinkleNode = [BlockTwinkle]()
-    private let smallSize = CGSize(width: 14, height: 14)
+    private let smallSize = CGSize(width: 14*Global.screenWidthScalar, height: 14*Global.screenWidthScalar)
     private let newBlockPosition = CGPoint(x: 56.5*Global.screenWidthScalar, y: 560.5*Global.screenWidthScalar)
     private let moveQueueDistance: CGFloat = -21*Global.screenWidthScalar
     private let shapeLineWidth: CGFloat = 5*Global.screenWidthScalar
@@ -234,6 +234,9 @@ final class GameScene: SKScene {
         gameDelegate?.tapOnGame()
         var tapLocation = gesture.location(in: view)
         tapLocation.y = UIScreen.main.bounds.height - tapLocation.y
+        if UIScreen.main.bounds.height > 810 {
+            tapLocation.y -= 145
+        }
         for i in 0..<squares.count {
             
             let modifiedFrame = CGRect(x: squares[i].shapeNode.frame.origin.x - 5*Global.screenWidthScalar, y: squares[i].shapeNode.frame.origin.y - 5*Global.screenWidthScalar, width: squares[i].shapeNode.frame.width + 10*Global.screenWidthScalar, height: squares[i].shapeNode.frame.width + 10*Global.screenWidthScalar)
