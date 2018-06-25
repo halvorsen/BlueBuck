@@ -19,7 +19,7 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
     private var objectiveView: ObjectiveView?
     private var tutorialController: TutorialController?
     private lazy var mask = UIView(frame: view.bounds)
-    internal var doTutorial = true
+    internal var doTutorial = false
     internal var tutorialView: UIImageView?
     internal let cover = UIView()
     internal var easterEggController: EasterEggController?
