@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftySound
+import SwiftyStoreKit
 
 final class LevelsViewController: UIViewController, TutorialDelegate {
     
@@ -24,7 +25,7 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
     internal var easterEggController: EasterEggController?
     let popupConfig = Popup()
     private let effectsVolume: Float = 0.05
-    
+    private var activityView = UIActivityIndicatorView(activityIndicatorStyle: .white)
     var config: ViewConfig? {
         didSet {
             guard let config = config else { return }
@@ -213,7 +214,7 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
         tutorialView?.removeFromSuperview()
         removePopup()
     }
-    var currentLevel = 0
+    var currentLevel = -1
     @objc private func levelTouchUpInside(_ sender: UIButton) {
         if sender.tag < 15 || MyUser.shared.playerHasPaid {
             Effects.buttonSoundEffect?.play()
@@ -226,19 +227,70 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
             let alert = UIAlertController(title: "Unlock", message: """
 Score 10 or better on six levels
 -or-
-Purchase game to unlock everything. All current, future and "Easter Egg" levels
+Purchase game to unlock everything. All current, future and hidden levels
 """, preferredStyle: UIAlertControllerStyle.alert)
             
-            alert.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.default) { _ in
-                //            inAppPurchase()
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) { _ in
+                self.purchase()
+            })
+            alert.addAction(UIAlertAction(title: "Restore Purchase", style: UIAlertActionStyle.default) { _ in
+                self.activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+                self.activityView.center = self.view.center
+                self.activityView.startAnimating()
+                self.activityView.alpha = 1.0
+                self.view.addSubview(self.activityView)
+                
+                SwiftyStoreKit.restorePurchases(atomically: true) { results in
+                    if results.restoreFailedPurchases.count > 0 {
+                        print("Restore Failed: \(results.restoreFailedPurchases)")
+                    }
+                    else if results.restoredPurchases.count > 0 {
+                        MyUser.shared.playerHasPaid = true
+                        MyUser.shared.writeCurrentUserState()
+                    }
+                    else {
+                        print("Nothing to Restore")
+                    }
+                    self.activityView.removeFromSuperview()
+                }
+                
+             
             })
             alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { _ in
-                // do nothing?
+                // do nothing
             })
             
             self.present(alert, animated: true, completion: nil)
         }
     }
+    
+    @objc func purchase(productId: String = "com.halvorsen.bluebuck.unlockEverything") {
+        
+        activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        activityView.center = view.center
+        activityView.startAnimating()
+        activityView.alpha = 1.0
+        view.addSubview(activityView)
+        SwiftyStoreKit.purchaseProduct(productId) { [weak self] result in
+            guard let weakself = self else {return}
+      
+            switch result {
+                
+            case .success( _):
+                MyUser.shared.playerHasPaid = true
+                MyUser.shared.writeCurrentUserState()
+                weakself.unlockLevelsUI()
+                weakself.unlockEasterLevelUI()
+            case .error(let error):
+                
+                print("error: \(error)")
+                print("Purchase Failed: \(error)")
+                
+            }
+            weakself.activityView.removeFromSuperview()
+        }
+    }
+
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         enableConstraints()
@@ -254,6 +306,19 @@ Purchase game to unlock everything. All current, future and "Easter Egg" levels
             present(viewController, animated: true)
         }
     }
+    
+    internal func unlockLevelsUI() {
+        mask.removeFromSuperview()
+        for i in 0..<levelsView.buttons.count {
+            levelsView.buttons[i].setTitle("\(i + 1)", for: .normal)
+        }
+        
+    }
+    
+    private func unlockEasterLevelUI() {
+        levelsView.addSubview((easterEggController?.eggLevel)!)
+    }
+    
     
     internal func doneTutorial() {
         

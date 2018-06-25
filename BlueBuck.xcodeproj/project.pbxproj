@@ -21,6 +21,7 @@
 		0661095420D4C204001C30A8 /* Gotham-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0661095320D4C204001C30A8 /* Gotham-Bold.ttf */; };
 		0661095620D5D566001C30A8 /* MyFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0661095520D5D566001C30A8 /* MyFileManager.swift */; };
 		0661095820D5DC52001C30A8 /* MyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0661095720D5DC52001C30A8 /* MyUser.swift */; };
+		06658ACA20E055AB0008A306 /* GameCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06658AC920E055AB0008A306 /* GameCenterManager.swift */; };
 		066BCD6420CCC42E00A46E0C /* BlockConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066BCD6320CCC42E00A46E0C /* BlockConfig.swift */; };
 		066BCD6620CD8E0F00A46E0C /* ExitLevelPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066BCD6520CD8E0F00A46E0C /* ExitLevelPopup.swift */; };
 		066BCD6820CD9D6400A46E0C /* TutorialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066BCD6720CD9D6400A46E0C /* TutorialController.swift */; };
@@ -61,6 +62,7 @@
 		0661095320D4C204001C30A8 /* Gotham-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Bold.ttf"; sourceTree = "<group>"; };
 		0661095520D5D566001C30A8 /* MyFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFileManager.swift; sourceTree = "<group>"; };
 		0661095720D5DC52001C30A8 /* MyUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUser.swift; sourceTree = "<group>"; };
+		06658AC920E055AB0008A306 /* GameCenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterManager.swift; sourceTree = "<group>"; };
 		066BCD6320CCC42E00A46E0C /* BlockConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockConfig.swift; sourceTree = "<group>"; };
 		066BCD6520CD8E0F00A46E0C /* ExitLevelPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitLevelPopup.swift; sourceTree = "<group>"; };
 		066BCD6720CD9D6400A46E0C /* TutorialController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialController.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				0661095720D5DC52001C30A8 /* MyUser.swift */,
 				061AF51120D5FFF200F459A2 /* Extensions.swift */,
 				061AF51320D6058000F459A2 /* Effects.swift */,
+				06658AC920E055AB0008A306 /* GameCenterManager.swift */,
 			);
 			path = BlueBuck;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				06149F0D20BCE0F6009BCF58 /* BlockTwinkle.swift in Sources */,
 				06BB07DE20A7D08C00895113 /* GameScene.swift in Sources */,
 				0661095620D5D566001C30A8 /* MyFileManager.swift in Sources */,
+				06658ACA20E055AB0008A306 /* GameCenterManager.swift in Sources */,
 				06BB07E020A7D08C00895113 /* GameViewController.swift in Sources */,
 				06DFE61820A9110600633D78 /* Game.swift in Sources */,
 				06DFE61A20A9144700633D78 /* Constant.swift in Sources */,
@@ -465,13 +469,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H7YBLWSAMD;
+				DEVELOPMENT_TEAM = PFDY3PS57G;
 				INFOPLIST_FILE = BlueBuck/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Halvorsen.BlueBuck;
+				PRODUCT_BUNDLE_IDENTIFIER = com.halvorsen.bluebuckapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -485,13 +489,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H7YBLWSAMD;
+				DEVELOPMENT_TEAM = PFDY3PS57G;
 				INFOPLIST_FILE = BlueBuck/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Halvorsen.BlueBuck;
+				PRODUCT_BUNDLE_IDENTIFIER = com.halvorsen.bluebuckapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -97,7 +97,7 @@ internal final class ObjectiveModel {
         .level20: [(.falcon, 3),(.turtle1, 2),(.stag4, 2)],
         .level21: [(.giraffe1, 2),(.elephant, 3),(.turtle1, 2)],
         .level22: [(.ram2, 3),(.ram1, 4)],
-        .levelEgg: [(.elephant, 5)]
+        .levelEgg: [(.elephant, 2)]
     
     ]
     /*

@@ -69,7 +69,7 @@ final class MyUser {
             ])
     }
     
-    var playerScores: [String: String] = [:] 
+    var playerScores: [String: String] = [:]
     
     var playerHasPaid: Bool = false
     

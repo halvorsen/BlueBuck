@@ -10,6 +10,7 @@ import UIKit
 import SpriteKit
 import GameplayKit
 import SwiftySound
+import GCHelper
 
 final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRecognizerDelegate {
     
@@ -55,7 +56,7 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
             guard let bools = ObjectiveModel.patternData[objective.pattern] else { return }
             patterns.append(SingleObjective(square: bools))
         }
-        if !MyUser.shared.playerHasFoundBlueBuck {
+        if !MyUser.shared.playerHasFoundBlueBuck && !MyUser.shared.playerHasPaid {
         findBuckController = FindBuckController(controller: self)
         }
         baseView.frame = view.bounds
@@ -73,6 +74,9 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
         iconView.alpha = 0.92
         iconView.frame.size = CGSize(width: 16*Global.screenWidthScalar, height: 17*Global.screenWidthScalar)
         iconView.center = CGPoint(x: 349*Global.screenWidthScalar, y: 642.5*Global.screenWidthScalar)
+        if UIScreen.main.bounds.height > 810 {
+            iconView.center.y = 787.5
+        }
         baseView.addSubview(gameView!)
         addTapViews()
         
@@ -131,8 +135,7 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
     
     @objc private func gameCenterTouchUpInside(_ sender: UIButton) {
         Effects.buttonSoundEffect?.play()
-
-        //display game center controller
+        GCHelper.sharedInstance.showGameCenter(self, viewState: .leaderboards)
     }
     
     @objc private func okayTouchUpInside(_ sender: UIButton) {
@@ -384,7 +387,6 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
     }
     
     internal func gameComplete() {
-        //Display sucess popup first
         displayPopup()
         if let presenter = presentingViewController as? LevelsViewController {
         saveHighScore(movesCounter, level: presenter.currentLevel)
@@ -402,6 +404,8 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
                 MyUser.shared.playerScores[levelString] = scoreString
                _ =  MyFileManager.writeJsonFile(filename: "userScores", input: MyUser.shared.playerScores)
                 sendScoreToGameCenter(score, level: level)
+                saveTotalScoreAndSendToGameCenter()
+                checkToSeeIfPlayerHasScoredUnder10_6Times()
             }
             
         } else {
@@ -412,8 +416,37 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
         
     }
     
+    private func  checkToSeeIfPlayerHasScoredUnder10_6Times() {
+        var count = 0
+        for (_,value) in MyUser.shared.playerScores {
+            if Int(value)! < 11 {
+                count += 1
+            }
+        }
+        if count > 5 {
+            MyUser.shared.playerHas10ScoreFor6Of15 = true
+            MyUser.shared.writeCurrentUserState()
+            if let controller = presentingViewController as? LevelsViewController {
+                controller.unlockLevelsUI()
+            }
+        }
+    }
+    
+    private func saveTotalScoreAndSendToGameCenter() {
+        var score: Int = 0
+        for (_,value) in MyUser.shared.playerScores {
+            score += (50 - Int(value)!)*100
+        }
+        GCHelper.sharedInstance.reportLeaderboardIdentifier("blueBuckAllLevels", score: score)
+    }
+    
     private func sendScoreToGameCenter(_ score: Int, level: Int) {
-        
+        let actualLevel = level + 1
+        print("score: \(score)")
+        print("level: \(actualLevel)")
+        let identifier = "blueBuckLevel" + String(actualLevel)
+        print("id: \(identifier)")
+        GCHelper.sharedInstance.reportLeaderboardIdentifier(identifier, score: score)
     }
     
 }

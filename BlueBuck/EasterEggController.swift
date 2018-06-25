@@ -25,7 +25,7 @@ final class EasterEggController {
         eggLevel.layer.borderWidth = 4
         eggLevel.clipsToBounds = true
         eggLevel.setImage(#imageLiteral(resourceName: "buckIcon"), for: .normal)
-        eggLevel.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+        orientationDidChange(orientation: UIDevice.current.orientation)
         eggLevel.center = CGPoint(x: view.contentSize.width - 60*Global.screenWidthScalar, y: view.contentSize.height - 60*Global.screenWidthScalar)
         
         key.contentMode = .scaleAspectFit

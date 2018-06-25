@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftySound
+import GCHelper
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         Sound.enabled = true
-//        Sound.play(file: "defaultButton.wav")
+
         if UserDefaults.standard.bool(forKey: "blueBuckLaunchedBefore") { // Subsequent Launches
          
             let viewController = LevelsViewController()
@@ -36,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.makeKeyAndVisible()
             
         }
-      
+        GCHelper.sharedInstance.authenticateLocalUser()
         return true
     }
 
