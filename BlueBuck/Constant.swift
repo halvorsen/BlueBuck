@@ -25,12 +25,13 @@ internal struct Color {
 }
 
 internal struct Path {
-    internal static let big = CGPath(rect: CGRect(x: 0, y: 0, width: 33*Global.screenWidthScalar, height: 33*Global.screenWidthScalar), transform: nil)
-    internal static let small = CGPath(rect: CGRect(x: 0, y: 0, width: 14*Global.screenWidthScalar, height: 14*Global.screenWidthScalar), transform: nil)
+    internal static let big = CGPath(rect: CGRect(x: 0, y: 0, width: 33*Global.screenCommonScalar, height: 33*Global.screenCommonScalar), transform: nil)
+    internal static let small = CGPath(rect: CGRect(x: 0, y: 0, width: 14*Global.screenCommonScalar, height: 14*Global.screenCommonScalar), transform: nil)
 }
 
 internal struct Global {
-    internal static let screenWidthScalar: CGFloat = UIScreen.main.bounds.width/375
+    internal static var screenCommonScalar: CGFloat = UIScreen.main.bounds.width/375
     internal static let screenHeightScalar: CGFloat = UIScreen.main.bounds.height/667
+    internal static let screenWidthScalar: CGFloat = UIScreen.main.bounds.width/375
     
 }

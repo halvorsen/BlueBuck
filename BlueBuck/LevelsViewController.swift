@@ -19,7 +19,7 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
     private var objectiveView: ObjectiveView?
     private var tutorialController: TutorialController?
     private lazy var mask = UIView(frame: view.bounds)
-    internal var doTutorial = false
+    internal var doTutorial = true
     internal var tutorialView: UIImageView?
     internal let cover = UIView()
     internal var easterEggController: EasterEggController?
@@ -59,14 +59,12 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //320x480
         Effects.buttonSoundEffect?.volume = effectsVolume
         Effects.slide1SoundEffect?.volume = effectsVolume
         Effects.slide2SoundEffect?.volume = effectsVolume
         Effects.sparkleSoundEffect?.volume = effectsVolume
-        
         view.addSubview(levelsView)
-        
         for button in levelsView.buttons {
             button.addTarget(self, action: #selector(levelTouchUpInside(_:)), for: .touchUpInside)
         }
@@ -87,9 +85,11 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
             mask.backgroundColor = Color.black
             view.addSubview(mask)
         }
-        cover.frame = CGRect(x: 0, y: 0, width: 375*Global.screenWidthScalar, height: 1000*Global.screenWidthScalar)
+        cover.frame = CGRect(x: 0, y: 0, width: 375*Global.screenWidthScalar, height: 1000*Global.screenCommonScalar)
         cover.isUserInteractionEnabled = false
+        if !MyUser.shared.playerHas10ScoreFor6Of15 && !MyUser.shared.playerHasPaid {
         levelsView.addSubview(cover)
+        }
         
         let gradient:CAGradientLayer = CAGradientLayer()
         gradient.frame.size = cover.frame.size
@@ -130,7 +130,7 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
                 present(gameViewController, animated: true) { [weak self] in
                     guard let weakself = self else { return }
                     weakself.tutorialController = TutorialController()
-                    weakself.tutorialController?.setTarget(gameView: gameViewController.gameView!, levelView: weakself.view, delegate: weakself)
+                    weakself.tutorialController?.setTarget(baseView: gameViewController.baseView, levelView: weakself.view, delegate: weakself)
                     weakself.tutorialController?.setClosures(gameViewController: gameViewController)
                     weakself.mask.removeFromSuperview()
                     gameViewController.orientation = .portrait
@@ -216,7 +216,7 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
     }
     var currentLevel = -1
     @objc private func levelTouchUpInside(_ sender: UIButton) {
-        if sender.tag < 15 || MyUser.shared.playerHasPaid {
+        if sender.tag < 15 || MyUser.shared.playerHasPaid || MyUser.shared.playerHas10ScoreFor6Of15 {
             Effects.buttonSoundEffect?.play()
             levelsView.isUserInteractionEnabled = false
             if let level = Levels.levelByTag[sender.tag] {
@@ -234,11 +234,6 @@ Purchase game to unlock everything. All current, future and hidden levels
                 self.purchase()
             })
             alert.addAction(UIAlertAction(title: "Restore Purchase", style: UIAlertActionStyle.default) { _ in
-                self.activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-                self.activityView.center = self.view.center
-                self.activityView.startAnimating()
-                self.activityView.alpha = 1.0
-                self.view.addSubview(self.activityView)
                 
                 SwiftyStoreKit.restorePurchases(atomically: true) { results in
                     if results.restoreFailedPurchases.count > 0 {
@@ -266,11 +261,6 @@ Purchase game to unlock everything. All current, future and hidden levels
     
     @objc func purchase(productId: String = "com.halvorsen.bluebuck.unlockEverything") {
         
-        activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-        activityView.center = view.center
-        activityView.startAnimating()
-        activityView.alpha = 1.0
-        view.addSubview(activityView)
         SwiftyStoreKit.purchaseProduct(productId) { [weak self] result in
             guard let weakself = self else {return}
       
@@ -309,6 +299,7 @@ Purchase game to unlock everything. All current, future and hidden levels
     
     internal func unlockLevelsUI() {
         mask.removeFromSuperview()
+        cover.removeFromSuperview()
         for i in 0..<levelsView.buttons.count {
             levelsView.buttons[i].setTitle("\(i + 1)", for: .normal)
         }
@@ -316,6 +307,7 @@ Purchase game to unlock everything. All current, future and hidden levels
     }
     
     private func unlockEasterLevelUI() {
+        easterEggController = EasterEggController.init(controller: self, view: levelsView)
         levelsView.addSubview((easterEggController?.eggLevel)!)
     }
     

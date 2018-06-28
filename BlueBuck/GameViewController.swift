@@ -34,7 +34,7 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
     internal var isNotTutorial = true
     private var successView: Success!
     private var findBuckController: FindBuckController?
-    private let buttonViewSize = CGSize(width: 375*Global.screenWidthScalar, height: 70*Global.screenWidthScalar)
+    private let buttonViewSize = CGSize(width: 375*Global.screenCommonScalar, height: 70*Global.screenCommonScalar)
     
     var config: ViewConfig? {
         didSet {
@@ -66,14 +66,14 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
         guard let objectiveView = objectiveView else { return }
         view.backgroundColor = Color.black
         gameView = GameView()
-        gameView?.frame.size = CGSize(width: 375*Global.screenWidthScalar, height: 667*Global.screenWidthScalar)
+        gameView?.frame.size = CGSize(width: 375*Global.screenCommonScalar, height: 667*Global.screenCommonScalar)
         gameView?.center = view.center
         config = portaitConfig
         buttonView.config = portaitConfig
         objectiveView.config = portaitConfig
         iconView.alpha = 0.92
-        iconView.frame.size = CGSize(width: 16*Global.screenWidthScalar, height: 17*Global.screenWidthScalar)
-        iconView.center = CGPoint(x: 349*Global.screenWidthScalar, y: 642.5*Global.screenWidthScalar)
+        iconView.frame.size = CGSize(width: 16*Global.screenCommonScalar, height: 17*Global.screenCommonScalar)
+        iconView.center = CGPoint(x: 349*Global.screenCommonScalar, y: 642.5*Global.screenCommonScalar)
         if UIScreen.main.bounds.height > 810 {
             iconView.center.y = 787.5
         }
@@ -203,20 +203,20 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
     private func addTapViews() {
         guard let objectiveView = objectiveView else { return }
         
-        tapView.top.frame = CGRect(x: 0, y: 0, width: 375*Global.screenWidthScalar, height: 98*Global.screenWidthScalar)
+        tapView.top.frame = CGRect(x: 0, y: 0, width: 375*Global.screenCommonScalar, height: 98*Global.screenCommonScalar)
         if UIScreen.main.bounds.height > 810 {
             tapView.top.frame.size.height += 72
         }
-        tapView.bottom.frame = CGRect(x: 0, y: 569*Global.screenWidthScalar, width: 375*Global.screenWidthScalar, height: 98*Global.screenWidthScalar)
+        tapView.bottom.frame = CGRect(x: 0, y: 569*Global.screenCommonScalar, width: 375*Global.screenCommonScalar, height: 98*Global.screenCommonScalar)
         if UIScreen.main.bounds.height > 810 {
             tapView.bottom.frame.size.height += 72
             tapView.bottom.frame.origin.y += 72
         }
-        tapView.left.frame = CGRect(x: 0, y: 98*Global.screenWidthScalar, width: 73*Global.screenWidthScalar, height: 471*Global.screenHeightScalar)
+        tapView.left.frame = CGRect(x: 0, y: 98*Global.screenCommonScalar, width: 73*Global.screenCommonScalar, height: 471*Global.screenCommonScalar)
         if UIScreen.main.bounds.height > 810 {
             tapView.left.frame.origin.y += 72
         }
-        tapView.right.frame = CGRect(x: 302*Global.screenWidthScalar, y: 98*Global.screenWidthScalar, width: 73*Global.screenWidthScalar, height: 471*Global.screenWidthScalar)
+        tapView.right.frame = CGRect(x: 302*Global.screenCommonScalar, y: 98*Global.screenCommonScalar, width: 73*Global.screenCommonScalar, height: 471*Global.screenCommonScalar)
         if UIScreen.main.bounds.height > 810 {
             tapView.right.frame.origin.y += 72
         }
@@ -320,9 +320,9 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
     
     internal func updatePatternViews() {
         guard let objectiveModel = objectiveModel else {return}
-        for i in 0..<objectiveModel.patternArray.count {
-            objectiveView?.objectiveCounts[i].text = String(objectiveModel.patternArray[i].objective - objectiveModel.patternArray[i].completed)
-        }
+//        for i in 0..<objectiveModel.patternArray.count {
+//            objectiveView?.objectiveCounts[i].text = String(objectiveModel.patternArray[i].objective - objectiveModel.patternArray[i].completed)
+//        }
         for i in 0..<objectiveModel.patternArray.count {
             if objectiveModel.patternArray[i].objective < objectiveModel.patternArray[i].completed {
                 print("error in patterns count")
@@ -330,6 +330,9 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
             if objectiveModel.patternArray[i].objective == objectiveModel.patternArray[i].completed {
                 objectiveView?.objectiveCounts[i].text = ""
                 objectiveView?.objectiveCompletes[i].isHidden = false
+            } else {
+                objectiveView?.objectiveCounts[i].text = String(objectiveModel.patternArray[i].objective - objectiveModel.patternArray[i].completed)
+                objectiveView?.objectiveCompletes[i].isHidden = true
             }
         }
         
@@ -402,16 +405,18 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
             let currentHigh = Int(currentHighScore) {
             if score < currentHigh {
                 MyUser.shared.playerScores[levelString] = scoreString
-               _ =  MyFileManager.writeJsonFile(filename: "userScores", input: MyUser.shared.playerScores)
+                _ =  MyFileManager.writeJsonFile(filename: "userScores", input: MyUser.shared.playerScores)
                 sendScoreToGameCenter(score, level: level)
-                saveTotalScoreAndSendToGameCenter()
+                self.saveTotalScoreAndSendToGameCenter()
                 checkToSeeIfPlayerHasScoredUnder10_6Times()
             }
             
         } else {
             MyUser.shared.playerScores[levelString] = scoreString
-          _ =  MyFileManager.writeJsonFile(filename: "userScores", input: MyUser.shared.playerScores)
+            _ =  MyFileManager.writeJsonFile(filename: "userScores", input: MyUser.shared.playerScores)
             sendScoreToGameCenter(score, level: level)
+            self.saveTotalScoreAndSendToGameCenter()
+            checkToSeeIfPlayerHasScoredUnder10_6Times()
         }
         
     }
@@ -437,7 +442,7 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
         for (_,value) in MyUser.shared.playerScores {
             score += (50 - Int(value)!)*100
         }
-        GCHelper.sharedInstance.reportLeaderboardIdentifier("blueBuckAllLevels", score: score)
+        GCHelper.sharedInstance.reportLeaderboardIdentifier("blueBuckTotalScore", score: score)
     }
     
     private func sendScoreToGameCenter(_ score: Int, level: Int) {

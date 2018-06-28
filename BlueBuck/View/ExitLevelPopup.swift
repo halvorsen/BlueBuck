@@ -20,10 +20,10 @@ internal final class ExitLevelPopup: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = Color.blackPopup
-        layer.cornerRadius = 15*Global.screenWidthScalar
+        layer.cornerRadius = 15*Global.screenCommonScalar
         clipsToBounds = true
         title.text = "14 Moves"
-        title.font = UIFont(name: "HelveticaNeue-Bold", size: 20*Global.screenWidthScalar)
+        title.font = UIFont(name: "HelveticaNeue-Bold", size: 20*Global.screenCommonScalar)
         title.textAlignment = .center
         title.textColor = .white
         thumbsUpBackground.backgroundColor = Color.blackDarker
@@ -34,11 +34,11 @@ internal final class ExitLevelPopup: UIView {
         addSubview(thumbsUpImageView)
         
         okay.backgroundColor = Color.white
-        okay.layer.cornerRadius = 20*Global.screenWidthScalar
+        okay.layer.cornerRadius = 20*Global.screenCommonScalar
         okay.clipsToBounds = true
         okay.setTitle("Continue", for: .normal)
         okay.setTitleColor(Color.black, for: .normal)
-        okay.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 18*Global.screenWidthScalar)
+        okay.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 18*Global.screenCommonScalar)
         gameCenter.setImage(#imageLiteral(resourceName: "gameCenter"), for: .normal)
         gameCenter.backgroundColor = Color.blackDarker
         
@@ -62,8 +62,8 @@ internal final class ExitLevelPopup: UIView {
         
         okay.translatesAutoresizingMaskIntoConstraints = false
         layoutContraints.append(okay.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.26))
-        layoutContraints.append(okay.rightAnchor.constraint(equalTo: rightAnchor, constant: -15*Global.screenWidthScalar))
-        layoutContraints.append(okay.leftAnchor.constraint(equalTo:  gameCenter.rightAnchor, constant: 15*Global.screenWidthScalar))
+        layoutContraints.append(okay.rightAnchor.constraint(equalTo: rightAnchor, constant: -15*Global.screenCommonScalar))
+        layoutContraints.append(okay.leftAnchor.constraint(equalTo:  gameCenter.rightAnchor, constant: 15*Global.screenCommonScalar))
         layoutContraints.append(okay.centerYAnchor.constraint(equalTo:  gameCenter.centerYAnchor))
         
         thumbsUpBackground.translatesAutoresizingMaskIntoConstraints = false

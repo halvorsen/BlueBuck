@@ -44,7 +44,7 @@ internal final class Game {
             var rowBlocks : [Block] = []
       
             for j in 0..<5 {
-                let newLocation = CGPoint(x: (91.5 + 48*CGFloat(j))*Global.screenWidthScalar, y: (549 - 48*CGFloat(i))*Global.screenWidthScalar)
+                let newLocation = CGPoint(x: (91.5 + 48*CGFloat(j))*Global.screenCommonScalar, y: (549 - 48*CGFloat(i))*Global.screenCommonScalar)
                 newRow.append(newLocation)
                 let index = 5*i + j
                 rowBlocks.append(blocks[index])
@@ -58,9 +58,9 @@ internal final class Game {
     internal func setShapeNodes() {
         for i in 0..<10 {
             for j in 0..<5 {
-                let newLocation = CGPoint(x: (91.5 + 48*CGFloat(j))*Global.screenWidthScalar, y: (549 - 48*CGFloat(i))*Global.screenWidthScalar)
+                let newLocation = CGPoint(x: (91.5 + 48*CGFloat(j))*Global.screenCommonScalar, y: (549 - 48*CGFloat(i))*Global.screenCommonScalar)
                 let index = 5*i + j
-                blockQueue[index].shapeNode.lineWidth = 5
+                blockQueue[index].shapeNode.lineWidth = 5*Global.screenCommonScalar
                 if originalAllBlocks.count > (index),
                     let color = color[blockQueue[index].blockType] {
                     blockQueue[index].shapeNode.strokeColor = color
@@ -72,9 +72,9 @@ internal final class Game {
         }
         
         for k in 50..<55 {
-            let newLocation = CGPoint(x: 56.5*Global.screenWidthScalar, y: (476.5 + (CGFloat(k) - 50)*21)*Global.screenWidthScalar)
-            blockQueue[k].shapeNode = SKShapeNode(rectOf: CGSize(width: 14*Global.screenWidthScalar, height: 14*Global.screenWidthScalar), cornerRadius: 0)
-            blockQueue[k].shapeNode.lineWidth = 3*Global.screenWidthScalar
+            let newLocation = CGPoint(x: 56.5*Global.screenCommonScalar, y: (476.5 + (CGFloat(k) - 50)*21)*Global.screenCommonScalar)
+            blockQueue[k].shapeNode = SKShapeNode(rectOf: CGSize(width: 14*Global.screenCommonScalar, height: 14*Global.screenCommonScalar), cornerRadius: 0)
+            blockQueue[k].shapeNode.lineWidth = 3*Global.screenCommonScalar
             if originalAllBlocks.count > k,
                 let color = color[blockQueue[k].blockType] {
                 blockQueue[k].shapeNode.strokeColor = color
@@ -102,147 +102,147 @@ internal final class Game {
     
     static let centerLocation: [[CGPoint]] = [
         [
-            CGPoint(x: 91.5*Global.screenWidthScalar, y: 549.0*Global.screenWidthScalar),
-            CGPoint(x: 139.5*Global.screenWidthScalar, y: 549.0*Global.screenWidthScalar),
-            CGPoint(x: 187.5*Global.screenWidthScalar, y: 549.0*Global.screenWidthScalar),
-            CGPoint(x: 235.5*Global.screenWidthScalar, y: 549.0*Global.screenWidthScalar),
-            CGPoint(x: 283.5*Global.screenWidthScalar, y: 549.0*Global.screenWidthScalar),
+            CGPoint(x: 91.5*Global.screenCommonScalar, y: 549.0*Global.screenCommonScalar),
+            CGPoint(x: 139.5*Global.screenCommonScalar, y: 549.0*Global.screenCommonScalar),
+            CGPoint(x: 187.5*Global.screenCommonScalar, y: 549.0*Global.screenCommonScalar),
+            CGPoint(x: 235.5*Global.screenCommonScalar, y: 549.0*Global.screenCommonScalar),
+            CGPoint(x: 283.5*Global.screenCommonScalar, y: 549.0*Global.screenCommonScalar),
             ],
         [
-            CGPoint(x: 91.5*Global.screenWidthScalar, y: 501.0*Global.screenWidthScalar),
-            CGPoint(x: 139.5*Global.screenWidthScalar, y: 501.0*Global.screenWidthScalar),
-            CGPoint(x: 187.5*Global.screenWidthScalar, y: 501.0*Global.screenWidthScalar),
-            CGPoint(x: 235.5*Global.screenWidthScalar, y: 501.0*Global.screenWidthScalar),
-            CGPoint(x: 283.5*Global.screenWidthScalar, y: 501.0*Global.screenWidthScalar),
+            CGPoint(x: 91.5*Global.screenCommonScalar, y: 501.0*Global.screenCommonScalar),
+            CGPoint(x: 139.5*Global.screenCommonScalar, y: 501.0*Global.screenCommonScalar),
+            CGPoint(x: 187.5*Global.screenCommonScalar, y: 501.0*Global.screenCommonScalar),
+            CGPoint(x: 235.5*Global.screenCommonScalar, y: 501.0*Global.screenCommonScalar),
+            CGPoint(x: 283.5*Global.screenCommonScalar, y: 501.0*Global.screenCommonScalar),
             ],
         [
-            CGPoint(x: 91.5*Global.screenWidthScalar, y: 453.0*Global.screenWidthScalar),
-            CGPoint(x: 139.5*Global.screenWidthScalar, y: 453.0*Global.screenWidthScalar),
-            CGPoint(x: 187.5*Global.screenWidthScalar, y: 453.0*Global.screenWidthScalar),
-            CGPoint(x: 235.5*Global.screenWidthScalar, y: 453.0*Global.screenWidthScalar),
-            CGPoint(x: 283.5*Global.screenWidthScalar, y: 453.0*Global.screenWidthScalar),
+            CGPoint(x: 91.5*Global.screenCommonScalar, y: 453.0*Global.screenCommonScalar),
+            CGPoint(x: 139.5*Global.screenCommonScalar, y: 453.0*Global.screenCommonScalar),
+            CGPoint(x: 187.5*Global.screenCommonScalar, y: 453.0*Global.screenCommonScalar),
+            CGPoint(x: 235.5*Global.screenCommonScalar, y: 453.0*Global.screenCommonScalar),
+            CGPoint(x: 283.5*Global.screenCommonScalar, y: 453.0*Global.screenCommonScalar),
             ],
         [
-            CGPoint(x: 91.5*Global.screenWidthScalar, y: 405.0*Global.screenWidthScalar),
-            CGPoint(x: 139.5*Global.screenWidthScalar, y: 405.0*Global.screenWidthScalar),
-            CGPoint(x: 187.5*Global.screenWidthScalar, y: 405.0*Global.screenWidthScalar),
-            CGPoint(x: 235.5*Global.screenWidthScalar, y: 405.0*Global.screenWidthScalar),
-            CGPoint(x: 283.5*Global.screenWidthScalar, y: 405.0*Global.screenWidthScalar),
+            CGPoint(x: 91.5*Global.screenCommonScalar, y: 405.0*Global.screenCommonScalar),
+            CGPoint(x: 139.5*Global.screenCommonScalar, y: 405.0*Global.screenCommonScalar),
+            CGPoint(x: 187.5*Global.screenCommonScalar, y: 405.0*Global.screenCommonScalar),
+            CGPoint(x: 235.5*Global.screenCommonScalar, y: 405.0*Global.screenCommonScalar),
+            CGPoint(x: 283.5*Global.screenCommonScalar, y: 405.0*Global.screenCommonScalar),
             ],
         [
-            CGPoint(x: 91.5*Global.screenWidthScalar, y: 357.0*Global.screenWidthScalar),
-            CGPoint(x: 139.5*Global.screenWidthScalar, y: 357.0*Global.screenWidthScalar),
-            CGPoint(x: 187.5*Global.screenWidthScalar, y: 357.0*Global.screenWidthScalar),
-            CGPoint(x: 235.5*Global.screenWidthScalar, y: 357.0*Global.screenWidthScalar),
-            CGPoint(x: 283.5*Global.screenWidthScalar, y: 357.0*Global.screenWidthScalar),
+            CGPoint(x: 91.5*Global.screenCommonScalar, y: 357.0*Global.screenCommonScalar),
+            CGPoint(x: 139.5*Global.screenCommonScalar, y: 357.0*Global.screenCommonScalar),
+            CGPoint(x: 187.5*Global.screenCommonScalar, y: 357.0*Global.screenCommonScalar),
+            CGPoint(x: 235.5*Global.screenCommonScalar, y: 357.0*Global.screenCommonScalar),
+            CGPoint(x: 283.5*Global.screenCommonScalar, y: 357.0*Global.screenCommonScalar),
             ],
         [
-            CGPoint(x: 91.5*Global.screenWidthScalar, y: 309.0*Global.screenWidthScalar),
-            CGPoint(x: 139.5*Global.screenWidthScalar, y: 309.0*Global.screenWidthScalar),
-            CGPoint(x: 187.5*Global.screenWidthScalar, y: 309.0*Global.screenWidthScalar),
-            CGPoint(x: 235.5*Global.screenWidthScalar, y: 309.0*Global.screenWidthScalar),
-            CGPoint(x: 283.5*Global.screenWidthScalar, y: 309.0*Global.screenWidthScalar),
+            CGPoint(x: 91.5*Global.screenCommonScalar, y: 309.0*Global.screenCommonScalar),
+            CGPoint(x: 139.5*Global.screenCommonScalar, y: 309.0*Global.screenCommonScalar),
+            CGPoint(x: 187.5*Global.screenCommonScalar, y: 309.0*Global.screenCommonScalar),
+            CGPoint(x: 235.5*Global.screenCommonScalar, y: 309.0*Global.screenCommonScalar),
+            CGPoint(x: 283.5*Global.screenCommonScalar, y: 309.0*Global.screenCommonScalar),
             ],
         [
-            CGPoint(x: 91.5*Global.screenWidthScalar, y: 261.0*Global.screenWidthScalar),
-            CGPoint(x: 139.5*Global.screenWidthScalar, y: 261.0*Global.screenWidthScalar),
-            CGPoint(x: 187.5*Global.screenWidthScalar, y: 261.0*Global.screenWidthScalar),
-            CGPoint(x: 235.5*Global.screenWidthScalar, y: 261.0*Global.screenWidthScalar),
-            CGPoint(x: 283.5*Global.screenWidthScalar, y: 261.0*Global.screenWidthScalar),
+            CGPoint(x: 91.5*Global.screenCommonScalar, y: 261.0*Global.screenCommonScalar),
+            CGPoint(x: 139.5*Global.screenCommonScalar, y: 261.0*Global.screenCommonScalar),
+            CGPoint(x: 187.5*Global.screenCommonScalar, y: 261.0*Global.screenCommonScalar),
+            CGPoint(x: 235.5*Global.screenCommonScalar, y: 261.0*Global.screenCommonScalar),
+            CGPoint(x: 283.5*Global.screenCommonScalar, y: 261.0*Global.screenCommonScalar),
             ],
         [
-            CGPoint(x: 91.5*Global.screenWidthScalar, y: 213.0*Global.screenWidthScalar),
-            CGPoint(x: 139.5*Global.screenWidthScalar, y: 213.0*Global.screenWidthScalar),
-            CGPoint(x: 187.5*Global.screenWidthScalar, y: 213.0*Global.screenWidthScalar),
-            CGPoint(x: 235.5*Global.screenWidthScalar, y: 213.0*Global.screenWidthScalar),
-            CGPoint(x: 283.5*Global.screenWidthScalar, y: 213.0*Global.screenWidthScalar),
+            CGPoint(x: 91.5*Global.screenCommonScalar, y: 213.0*Global.screenCommonScalar),
+            CGPoint(x: 139.5*Global.screenCommonScalar, y: 213.0*Global.screenCommonScalar),
+            CGPoint(x: 187.5*Global.screenCommonScalar, y: 213.0*Global.screenCommonScalar),
+            CGPoint(x: 235.5*Global.screenCommonScalar, y: 213.0*Global.screenCommonScalar),
+            CGPoint(x: 283.5*Global.screenCommonScalar, y: 213.0*Global.screenCommonScalar),
             ],
         [
-            CGPoint(x: 91.5*Global.screenWidthScalar, y: 165.0*Global.screenWidthScalar),
-            CGPoint(x: 139.5*Global.screenWidthScalar, y: 165.0*Global.screenWidthScalar),
-            CGPoint(x: 187.5*Global.screenWidthScalar, y: 165.0*Global.screenWidthScalar),
-            CGPoint(x: 235.5*Global.screenWidthScalar, y: 165.0*Global.screenWidthScalar),
-            CGPoint(x: 283.5*Global.screenWidthScalar, y: 165.0*Global.screenWidthScalar),
+            CGPoint(x: 91.5*Global.screenCommonScalar, y: 165.0*Global.screenCommonScalar),
+            CGPoint(x: 139.5*Global.screenCommonScalar, y: 165.0*Global.screenCommonScalar),
+            CGPoint(x: 187.5*Global.screenCommonScalar, y: 165.0*Global.screenCommonScalar),
+            CGPoint(x: 235.5*Global.screenCommonScalar, y: 165.0*Global.screenCommonScalar),
+            CGPoint(x: 283.5*Global.screenCommonScalar, y: 165.0*Global.screenCommonScalar),
             ],
         [
-            CGPoint(x: 91.5*Global.screenWidthScalar, y: 117.0*Global.screenWidthScalar),
-            CGPoint(x: 139.5*Global.screenWidthScalar, y: 117.0*Global.screenWidthScalar),
-            CGPoint(x: 187.5*Global.screenWidthScalar, y: 117.0*Global.screenWidthScalar),
-            CGPoint(x: 235.5*Global.screenWidthScalar, y: 117.0*Global.screenWidthScalar),
-            CGPoint(x: 283.5*Global.screenWidthScalar, y: 117.0*Global.screenWidthScalar),
+            CGPoint(x: 91.5*Global.screenCommonScalar, y: 117.0*Global.screenCommonScalar),
+            CGPoint(x: 139.5*Global.screenCommonScalar, y: 117.0*Global.screenCommonScalar),
+            CGPoint(x: 187.5*Global.screenCommonScalar, y: 117.0*Global.screenCommonScalar),
+            CGPoint(x: 235.5*Global.screenCommonScalar, y: 117.0*Global.screenCommonScalar),
+            CGPoint(x: 283.5*Global.screenCommonScalar, y: 117.0*Global.screenCommonScalar),
             ]
     ]
     
     static let originLocation: [[CGPoint]] = [
         [
-            CGPoint(x: 75.0*Global.screenWidthScalar, y: 532.5*Global.screenWidthScalar),
-            CGPoint(x: 123.0*Global.screenWidthScalar, y: 532.5*Global.screenWidthScalar),
-            CGPoint(x: 171.0*Global.screenWidthScalar, y: 532.5*Global.screenWidthScalar),
-            CGPoint(x: 219.0*Global.screenWidthScalar, y: 532.5*Global.screenWidthScalar),
-            CGPoint(x: 267.0*Global.screenWidthScalar, y: 532.5*Global.screenWidthScalar),
+            CGPoint(x: 75.0*Global.screenCommonScalar, y: 532.5*Global.screenCommonScalar),
+            CGPoint(x: 123.0*Global.screenCommonScalar, y: 532.5*Global.screenCommonScalar),
+            CGPoint(x: 171.0*Global.screenCommonScalar, y: 532.5*Global.screenCommonScalar),
+            CGPoint(x: 219.0*Global.screenCommonScalar, y: 532.5*Global.screenCommonScalar),
+            CGPoint(x: 267.0*Global.screenCommonScalar, y: 532.5*Global.screenCommonScalar),
             ],
         [
-            CGPoint(x: 75.0*Global.screenWidthScalar, y: 484.5*Global.screenWidthScalar),
-            CGPoint(x: 123.0*Global.screenWidthScalar, y: 484.5*Global.screenWidthScalar),
-            CGPoint(x: 171.0*Global.screenWidthScalar, y: 484.5*Global.screenWidthScalar),
-            CGPoint(x: 219.0*Global.screenWidthScalar, y: 484.5*Global.screenWidthScalar),
-            CGPoint(x: 267.0*Global.screenWidthScalar, y: 484.5*Global.screenWidthScalar),
+            CGPoint(x: 75.0*Global.screenCommonScalar, y: 484.5*Global.screenCommonScalar),
+            CGPoint(x: 123.0*Global.screenCommonScalar, y: 484.5*Global.screenCommonScalar),
+            CGPoint(x: 171.0*Global.screenCommonScalar, y: 484.5*Global.screenCommonScalar),
+            CGPoint(x: 219.0*Global.screenCommonScalar, y: 484.5*Global.screenCommonScalar),
+            CGPoint(x: 267.0*Global.screenCommonScalar, y: 484.5*Global.screenCommonScalar),
             ],
         [
-            CGPoint(x: 75.0*Global.screenWidthScalar, y: 436.5*Global.screenWidthScalar),
-            CGPoint(x: 123.0*Global.screenWidthScalar, y: 436.5*Global.screenWidthScalar),
-            CGPoint(x: 171.0*Global.screenWidthScalar, y: 436.5*Global.screenWidthScalar),
-            CGPoint(x: 219.0*Global.screenWidthScalar, y: 436.5*Global.screenWidthScalar),
-            CGPoint(x: 267.0*Global.screenWidthScalar, y: 436.5*Global.screenWidthScalar),
+            CGPoint(x: 75.0*Global.screenCommonScalar, y: 436.5*Global.screenCommonScalar),
+            CGPoint(x: 123.0*Global.screenCommonScalar, y: 436.5*Global.screenCommonScalar),
+            CGPoint(x: 171.0*Global.screenCommonScalar, y: 436.5*Global.screenCommonScalar),
+            CGPoint(x: 219.0*Global.screenCommonScalar, y: 436.5*Global.screenCommonScalar),
+            CGPoint(x: 267.0*Global.screenCommonScalar, y: 436.5*Global.screenCommonScalar),
             ],
         [
-            CGPoint(x: 75.0*Global.screenWidthScalar, y: 388.5*Global.screenWidthScalar),
-            CGPoint(x: 123.0*Global.screenWidthScalar, y: 388.5*Global.screenWidthScalar),
-            CGPoint(x: 171.0*Global.screenWidthScalar, y: 388.5*Global.screenWidthScalar),
-            CGPoint(x: 219.0*Global.screenWidthScalar, y: 388.5*Global.screenWidthScalar),
-            CGPoint(x: 267.0*Global.screenWidthScalar, y: 388.5*Global.screenWidthScalar),
+            CGPoint(x: 75.0*Global.screenCommonScalar, y: 388.5*Global.screenCommonScalar),
+            CGPoint(x: 123.0*Global.screenCommonScalar, y: 388.5*Global.screenCommonScalar),
+            CGPoint(x: 171.0*Global.screenCommonScalar, y: 388.5*Global.screenCommonScalar),
+            CGPoint(x: 219.0*Global.screenCommonScalar, y: 388.5*Global.screenCommonScalar),
+            CGPoint(x: 267.0*Global.screenCommonScalar, y: 388.5*Global.screenCommonScalar),
             ],
         [
-            CGPoint(x: 75.0*Global.screenWidthScalar, y: 340.5*Global.screenWidthScalar),
-            CGPoint(x: 123.0*Global.screenWidthScalar, y: 340.5*Global.screenWidthScalar),
-            CGPoint(x: 171.0*Global.screenWidthScalar, y: 340.5*Global.screenWidthScalar),
-            CGPoint(x: 219.0*Global.screenWidthScalar, y: 340.5*Global.screenWidthScalar),
-            CGPoint(x: 267.0*Global.screenWidthScalar, y: 340.5*Global.screenWidthScalar),
+            CGPoint(x: 75.0*Global.screenCommonScalar, y: 340.5*Global.screenCommonScalar),
+            CGPoint(x: 123.0*Global.screenCommonScalar, y: 340.5*Global.screenCommonScalar),
+            CGPoint(x: 171.0*Global.screenCommonScalar, y: 340.5*Global.screenCommonScalar),
+            CGPoint(x: 219.0*Global.screenCommonScalar, y: 340.5*Global.screenCommonScalar),
+            CGPoint(x: 267.0*Global.screenCommonScalar, y: 340.5*Global.screenCommonScalar),
             ],
         [
-            CGPoint(x: 75.0*Global.screenWidthScalar, y: 292.5*Global.screenWidthScalar),
-            CGPoint(x: 123.0*Global.screenWidthScalar, y: 292.5*Global.screenWidthScalar),
-            CGPoint(x: 171.0*Global.screenWidthScalar, y: 292.5*Global.screenWidthScalar),
-            CGPoint(x: 219.0*Global.screenWidthScalar, y: 292.5*Global.screenWidthScalar),
-            CGPoint(x: 267.0*Global.screenWidthScalar, y: 292.5*Global.screenWidthScalar),
+            CGPoint(x: 75.0*Global.screenCommonScalar, y: 292.5*Global.screenCommonScalar),
+            CGPoint(x: 123.0*Global.screenCommonScalar, y: 292.5*Global.screenCommonScalar),
+            CGPoint(x: 171.0*Global.screenCommonScalar, y: 292.5*Global.screenCommonScalar),
+            CGPoint(x: 219.0*Global.screenCommonScalar, y: 292.5*Global.screenCommonScalar),
+            CGPoint(x: 267.0*Global.screenCommonScalar, y: 292.5*Global.screenCommonScalar),
             ],
         [
-            CGPoint(x: 75.0*Global.screenWidthScalar, y: 244.5*Global.screenWidthScalar),
-            CGPoint(x: 123.0*Global.screenWidthScalar, y: 244.5*Global.screenWidthScalar),
-            CGPoint(x: 171.0*Global.screenWidthScalar, y: 244.5*Global.screenWidthScalar),
-            CGPoint(x: 219.0*Global.screenWidthScalar, y: 244.5*Global.screenWidthScalar),
-            CGPoint(x: 267.0*Global.screenWidthScalar, y: 244.5*Global.screenWidthScalar),
+            CGPoint(x: 75.0*Global.screenCommonScalar, y: 244.5*Global.screenCommonScalar),
+            CGPoint(x: 123.0*Global.screenCommonScalar, y: 244.5*Global.screenCommonScalar),
+            CGPoint(x: 171.0*Global.screenCommonScalar, y: 244.5*Global.screenCommonScalar),
+            CGPoint(x: 219.0*Global.screenCommonScalar, y: 244.5*Global.screenCommonScalar),
+            CGPoint(x: 267.0*Global.screenCommonScalar, y: 244.5*Global.screenCommonScalar),
             ],
         [
-            CGPoint(x: 75.0*Global.screenWidthScalar, y: 196.5*Global.screenWidthScalar),
-            CGPoint(x: 123.0*Global.screenWidthScalar, y: 196.5*Global.screenWidthScalar),
-            CGPoint(x: 171.0*Global.screenWidthScalar, y: 196.5*Global.screenWidthScalar),
-            CGPoint(x: 219.0*Global.screenWidthScalar, y: 196.5*Global.screenWidthScalar),
-            CGPoint(x: 267.0*Global.screenWidthScalar, y: 196.5*Global.screenWidthScalar),
+            CGPoint(x: 75.0*Global.screenCommonScalar, y: 196.5*Global.screenCommonScalar),
+            CGPoint(x: 123.0*Global.screenCommonScalar, y: 196.5*Global.screenCommonScalar),
+            CGPoint(x: 171.0*Global.screenCommonScalar, y: 196.5*Global.screenCommonScalar),
+            CGPoint(x: 219.0*Global.screenCommonScalar, y: 196.5*Global.screenCommonScalar),
+            CGPoint(x: 267.0*Global.screenCommonScalar, y: 196.5*Global.screenCommonScalar),
             ],
         [
-            CGPoint(x: 75.0*Global.screenWidthScalar, y: 148.5*Global.screenWidthScalar),
-            CGPoint(x: 123.0*Global.screenWidthScalar, y: 148.5*Global.screenWidthScalar),
-            CGPoint(x: 171.0*Global.screenWidthScalar, y: 148.5*Global.screenWidthScalar),
-            CGPoint(x: 219.0*Global.screenWidthScalar, y: 148.5*Global.screenWidthScalar),
-            CGPoint(x: 267.0*Global.screenWidthScalar, y: 148.5*Global.screenWidthScalar),
+            CGPoint(x: 75.0*Global.screenCommonScalar, y: 148.5*Global.screenCommonScalar),
+            CGPoint(x: 123.0*Global.screenCommonScalar, y: 148.5*Global.screenCommonScalar),
+            CGPoint(x: 171.0*Global.screenCommonScalar, y: 148.5*Global.screenCommonScalar),
+            CGPoint(x: 219.0*Global.screenCommonScalar, y: 148.5*Global.screenCommonScalar),
+            CGPoint(x: 267.0*Global.screenCommonScalar, y: 148.5*Global.screenCommonScalar),
             ],
         [
-            CGPoint(x: 75.0*Global.screenWidthScalar, y: 100.5*Global.screenWidthScalar),
-            CGPoint(x: 123.0*Global.screenWidthScalar, y: 100.5*Global.screenWidthScalar),
-            CGPoint(x: 171.0*Global.screenWidthScalar, y: 100.5*Global.screenWidthScalar),
-            CGPoint(x: 219.0*Global.screenWidthScalar, y: 100.5*Global.screenWidthScalar),
-            CGPoint(x: 267.0*Global.screenWidthScalar, y: 100.5*Global.screenWidthScalar),
+            CGPoint(x: 75.0*Global.screenCommonScalar, y: 100.5*Global.screenCommonScalar),
+            CGPoint(x: 123.0*Global.screenCommonScalar, y: 100.5*Global.screenCommonScalar),
+            CGPoint(x: 171.0*Global.screenCommonScalar, y: 100.5*Global.screenCommonScalar),
+            CGPoint(x: 219.0*Global.screenCommonScalar, y: 100.5*Global.screenCommonScalar),
+            CGPoint(x: 267.0*Global.screenCommonScalar, y: 100.5*Global.screenCommonScalar),
             ],
         ]
     

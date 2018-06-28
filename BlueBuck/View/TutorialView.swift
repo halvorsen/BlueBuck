@@ -26,13 +26,15 @@ final class TutorialView: UIView {
         super.init(frame: frame)
         for (screen, imageView) in imageViews {
             imageView.center = center
-            imageView.frame.size = bounds.size//CGSize(width: 375*Global.screenWidthScalar, height: 667*Global.screenWidthScalar)
+            imageView.frame.size = bounds.size//CGSize(width: 375*Global.screenCommonScalar, height: 667*Global.screenCommonScalar)
+            imageView.center = center
             if screen != .tapToEliminate && screen != .levelView {
             imageView.alpha = 0.0
             }
             if screen != .levelView {
             addSubview(imageView)
             }
+            isUserInteractionEnabled = false
             imageView.isUserInteractionEnabled = false
         }
     }

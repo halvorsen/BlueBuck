@@ -26,7 +26,7 @@ internal final class Block {
     init(location: (row: Int, column: Int), type: BlockType) {
         self.location = location
         self.blockType = type
-        shapeNode = SKShapeNode(rectOf: CGSize(width: 33*Global.screenWidthScalar, height: 33*Global.screenWidthScalar), cornerRadius: 0)
+        shapeNode = SKShapeNode(rectOf: CGSize(width: 33*Global.screenCommonScalar, height: 33*Global.screenCommonScalar), cornerRadius: 0)
     }
     
     internal func set(with config: BlockConfig) {

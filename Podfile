@@ -9,6 +9,8 @@ target 'BlueBuck' do
   pod 'SwiftySound'
   pod 'SwiftyStoreKit'
 pod 'GCHelper', '~> 0.5'
+pod 'Fabric'
+pod 'Crashlytics'
 
 
 end

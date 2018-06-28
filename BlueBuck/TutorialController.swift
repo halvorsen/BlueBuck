@@ -29,16 +29,12 @@ class TutorialController {
         }
     }
     
-    func setTarget(gameView: UIView, levelView: UIView, delegate: TutorialDelegate) {
+    func setTarget(baseView: UIView, levelView: UIView, delegate: TutorialDelegate) {
         
-//        if UIScreen.main.bounds.height > 810 {
-//            tutorialView = TutorialView(frame: CGRect(x: 0, y: 0, width: 375*Global.screenWidthScalar, height: 667*Global.screenWidthScalar))
-//        } else {
-            tutorialView = TutorialView(frame: CGRect(x: 0, y: 0, width: 375*Global.screenWidthScalar, height: 667*Global.screenWidthScalar))
-//        }
-        
+        tutorialView = TutorialView(frame: CGRect(x: 0, y: 0, width: 375*Global.screenCommonScalar, height: 667*Global.screenCommonScalar))
+
         self.delegate = delegate
-        self.gameView = gameView
+        self.gameView = baseView
         self.levelView = levelView
         tutorialView?.removeFromSuperview()
         guard let tutorialView = tutorialView else { return }
@@ -47,7 +43,7 @@ class TutorialController {
         if UIScreen.main.bounds.height > 810 {
             tutorialView.center.y -= 72.5
         }
-//        tutorialView.imageViews[.levelView]!.frame.size = CGSize(width: 375*Global.screenWidthScalar, height: 667*Global.screenWidthScalar)
+//        tutorialView.imageViews[.levelView]!.frame.size = CGSize(width: 375*Global.screenCommonScalar, height: 667*Global.screenCommonScalar)
         self.levelView?.addSubview(tutorialView.imageViews[.levelView]!)
     }
     

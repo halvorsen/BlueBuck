@@ -69,7 +69,7 @@ final class ObjectiveView: UIView {
         
         for label in objectiveCounts {
             label.textAlignment = .center
-            label.font = UIFont(name: "GothamBold", size: 12*Global.screenWidthScalar)
+            label.font = UIFont(name: "GothamBold", size: 12*Global.screenCommonScalar)
             label.textColor = Color.blackLighter2
             label.text = " "
             label.sizeToFit()
@@ -77,7 +77,7 @@ final class ObjectiveView: UIView {
         }
         
         for imageView in objectiveCompletes {
-            imageView.frame.size = CGSize(width: 10*Global.screenWidthScalar, height: 10*Global.screenWidthScalar)
+            imageView.frame.size = CGSize(width: 10*Global.screenCommonScalar, height: 10*Global.screenCommonScalar)
             addSubview(imageView)
             imageView.isHidden = true
         }

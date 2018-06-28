@@ -1,24 +1,33 @@
 PODS:
+  - Crashlytics (3.10.1):
+    - Fabric (~> 1.7.5)
+  - Fabric (1.7.6)
   - GCHelper (0.5.1)
   - SwiftySound (1.0.0)
   - SwiftyStoreKit (0.13.1)
 
 DEPENDENCIES:
+  - Crashlytics
+  - Fabric
   - GCHelper (~> 0.5)
   - SwiftySound
   - SwiftyStoreKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Crashlytics
+    - Fabric
     - GCHelper
     - SwiftySound
     - SwiftyStoreKit
 
 SPEC CHECKSUMS:
+  Crashlytics: aee1a064cbbf99b32efa3f056a5f458d846bc8ff
+  Fabric: f8d42c893bb187326a7968b62abe55c36a987a46
   GCHelper: 8097baaa32e35ec425058cc5fb308c3a307947c8
   SwiftySound: b9c3370956fd4ed65ed79d45563070077a50a2cd
   SwiftyStoreKit: c36bb7841dd51a485ce5c38abf9e96fba988741f
 
-PODFILE CHECKSUM: 6f4a042029e3aa645efa9e5469d75112f2911bdd
+PODFILE CHECKSUM: 4290d4299e8baea5cdaf87c74640704ac31026c3
 
 COCOAPODS: 1.5.3

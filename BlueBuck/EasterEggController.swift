@@ -19,22 +19,22 @@ final class EasterEggController {
         self.controller = controller
         self.view = view
         
-        eggLevel.frame.size = CGSize(width: 70*Global.screenWidthScalar, height: 70*Global.screenWidthScalar)
+        eggLevel.frame.size = CGSize(width: 70*Global.screenCommonScalar, height: 70*Global.screenCommonScalar)
         eggLevel.layer.cornerRadius = eggLevel.frame.size.width * 0.5
         eggLevel.layer.borderColor = Color.blue.cgColor
         eggLevel.layer.borderWidth = 4
         eggLevel.clipsToBounds = true
         eggLevel.setImage(#imageLiteral(resourceName: "buckIcon"), for: .normal)
         orientationDidChange(orientation: UIDevice.current.orientation)
-        eggLevel.center = CGPoint(x: view.contentSize.width - 60*Global.screenWidthScalar, y: view.contentSize.height - 60*Global.screenWidthScalar)
+        eggLevel.center = CGPoint(x: view.contentSize.width - 60*Global.screenCommonScalar, y: view.contentSize.height - 60*Global.screenCommonScalar)
         
         key.contentMode = .scaleAspectFit
         key.setImage(#imageLiteral(resourceName: "key"), for: .normal)
-        key.frame.size = CGSize(width: 70*Global.screenWidthScalar, height: 70*Global.screenWidthScalar)
-        key.center = CGPoint(x: view.contentSize.width - 60*Global.screenWidthScalar, y: view.contentSize.height - 45*Global.screenWidthScalar)
+        key.frame.size = CGSize(width: 70*Global.screenCommonScalar, height: 70*Global.screenCommonScalar)
+        key.center = CGPoint(x: view.contentSize.width - 60*Global.screenCommonScalar, y: view.contentSize.height - 45*Global.screenCommonScalar)
         key.isHidden = false
         
-        if MyUser.shared.playerHasUnlockedEasterEgg1 {
+        if MyUser.shared.playerHasUnlockedEasterEgg1 || MyUser.shared.playerHasPaid {
         view.addSubview(eggLevel)
         }
         else {
@@ -58,7 +58,7 @@ final class EasterEggController {
         MyUser.shared.writeCurrentUserState()
         key.isHidden = true
         
-        eggLevel.center = CGPoint(x: view.contentSize.width - 60*Global.screenWidthScalar, y: view.contentSize.height - 45*Global.screenWidthScalar)
+        eggLevel.center = CGPoint(x: view.contentSize.width - 60*Global.screenCommonScalar, y: view.contentSize.height - 45*Global.screenCommonScalar)
         
         view.addSubview(eggLevel)
     }

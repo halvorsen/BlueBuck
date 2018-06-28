@@ -32,11 +32,11 @@ final class GameScene: SKScene {
     internal var squaresQueue: [Block] = []
     private var tutorialAllowableIndex: Int = 17
     internal var twinkleNode = [BlockTwinkle]()
-    private let smallSize = CGSize(width: 14*Global.screenWidthScalar, height: 14*Global.screenWidthScalar)
-    private let newBlockPosition = CGPoint(x: 56.5*Global.screenWidthScalar, y: 560.5*Global.screenWidthScalar)
-    private let moveQueueDistance: CGFloat = -21*Global.screenWidthScalar
-    private let shapeLineWidth: CGFloat = 5*Global.screenWidthScalar
-    private let dropDistance: CGFloat = 48*Global.screenWidthScalar
+    private let smallSize = CGSize(width: 14*Global.screenCommonScalar, height: 14*Global.screenCommonScalar)
+    private let newBlockPosition = CGPoint(x: 56.5*Global.screenCommonScalar, y: 560.5*Global.screenCommonScalar)
+    private let moveQueueDistance: CGFloat = -21*Global.screenCommonScalar
+    private let shapeLineWidth: CGFloat = 5*Global.screenCommonScalar
+    private let dropDistance: CGFloat = 48*Global.screenCommonScalar
     
     deinit {
         for child in self.children {
@@ -239,7 +239,7 @@ final class GameScene: SKScene {
         }
         for i in 0..<squares.count {
             
-            let modifiedFrame = CGRect(x: squares[i].shapeNode.frame.origin.x - 5*Global.screenWidthScalar, y: squares[i].shapeNode.frame.origin.y - 5*Global.screenWidthScalar, width: squares[i].shapeNode.frame.width + 10*Global.screenWidthScalar, height: squares[i].shapeNode.frame.width + 10*Global.screenWidthScalar)
+            let modifiedFrame = CGRect(x: squares[i].shapeNode.frame.origin.x - 5*Global.screenCommonScalar, y: squares[i].shapeNode.frame.origin.y - 5*Global.screenCommonScalar, width: squares[i].shapeNode.frame.width + 10*Global.screenCommonScalar, height: squares[i].shapeNode.frame.width + 10*Global.screenCommonScalar)
             if modifiedFrame.contains(tapLocation) {
                 guard isNotTutorial || i == tutorialAllowableIndex else { return }
                 
@@ -256,7 +256,7 @@ final class GameScene: SKScene {
     private func addBlockToQueue(_ newBlock: Block) {
         
         newBlock.shapeNode = SKShapeNode(rectOf: smallSize, cornerRadius: 0)
-        newBlock.shapeNode.lineWidth = 3
+        newBlock.shapeNode.lineWidth = 3*Global.screenCommonScalar
         
         if let color = color[newBlock.blockType] {
             newBlock.shapeNode.strokeColor = color
@@ -372,10 +372,8 @@ final class GameScene: SKScene {
                 if completedGame {
                     weakself.gameComplete()
                 } else if successBlocks.count > 0 {
-                    print("successBlocks.count > 0")
                     weakself.searchAndUpdateViewsAndAnimateBlocks()
                 } else {
-                    print("weakself.unlocked = true")
                     weakself.unlocked = true
                 }
                 

@@ -50,24 +50,24 @@ internal final class BlockTwinkle: SKNode {
     
     private let location: [CGPoint] = [
     
-    CGPoint(x: 23*Global.screenWidthScalar, y: -4*Global.screenWidthScalar),
-    CGPoint(x: 17*Global.screenWidthScalar, y: 10*Global.screenWidthScalar),
-    CGPoint(x: 22*Global.screenWidthScalar, y: -21*Global.screenWidthScalar),
-    CGPoint(x: -20*Global.screenWidthScalar, y: 24*Global.screenWidthScalar),
-    CGPoint(x: 0, y: -18*Global.screenWidthScalar),
-    CGPoint(x: -30*Global.screenWidthScalar, y: 13*Global.screenWidthScalar),
-    CGPoint(x: 18*Global.screenWidthScalar, y: -13*Global.screenWidthScalar),
-    CGPoint(x: 11*Global.screenWidthScalar, y: 15*Global.screenWidthScalar),
-    CGPoint(x: -16*Global.screenWidthScalar, y: 13*Global.screenWidthScalar),
-    CGPoint(x: -19*Global.screenWidthScalar, y: 0*Global.screenWidthScalar),
-    CGPoint(x: 23*Global.screenWidthScalar, y: 22*Global.screenWidthScalar),
-    CGPoint(x: 2*Global.screenWidthScalar, y: 19*Global.screenWidthScalar),
-    CGPoint(x: -16*Global.screenWidthScalar, y: -10*Global.screenWidthScalar),
-    CGPoint(x: -7*Global.screenWidthScalar, y: 15*Global.screenWidthScalar),
-    CGPoint(x: -9*Global.screenWidthScalar, y: 13*Global.screenWidthScalar),
-    CGPoint(x: 14*Global.screenWidthScalar, y: -1*Global.screenWidthScalar),
-    CGPoint(x: -11*Global.screenWidthScalar, y: 22*Global.screenWidthScalar),
-    CGPoint(x: -17*Global.screenWidthScalar, y: -19*Global.screenWidthScalar)
+    CGPoint(x: 23*Global.screenCommonScalar, y: -4*Global.screenCommonScalar),
+    CGPoint(x: 17*Global.screenCommonScalar, y: 10*Global.screenCommonScalar),
+    CGPoint(x: 22*Global.screenCommonScalar, y: -21*Global.screenCommonScalar),
+    CGPoint(x: -20*Global.screenCommonScalar, y: 24*Global.screenCommonScalar),
+    CGPoint(x: 0, y: -18*Global.screenCommonScalar),
+    CGPoint(x: -30*Global.screenCommonScalar, y: 13*Global.screenCommonScalar),
+    CGPoint(x: 18*Global.screenCommonScalar, y: -13*Global.screenCommonScalar),
+    CGPoint(x: 11*Global.screenCommonScalar, y: 15*Global.screenCommonScalar),
+    CGPoint(x: -16*Global.screenCommonScalar, y: 13*Global.screenCommonScalar),
+    CGPoint(x: -19*Global.screenCommonScalar, y: 0*Global.screenCommonScalar),
+    CGPoint(x: 23*Global.screenCommonScalar, y: 22*Global.screenCommonScalar),
+    CGPoint(x: 2*Global.screenCommonScalar, y: 19*Global.screenCommonScalar),
+    CGPoint(x: -16*Global.screenCommonScalar, y: -10*Global.screenCommonScalar),
+    CGPoint(x: -7*Global.screenCommonScalar, y: 15*Global.screenCommonScalar),
+    CGPoint(x: -9*Global.screenCommonScalar, y: 13*Global.screenCommonScalar),
+    CGPoint(x: 14*Global.screenCommonScalar, y: -1*Global.screenCommonScalar),
+    CGPoint(x: -11*Global.screenCommonScalar, y: 22*Global.screenCommonScalar),
+    CGPoint(x: -17*Global.screenCommonScalar, y: -19*Global.screenCommonScalar)
     
     ]
 }

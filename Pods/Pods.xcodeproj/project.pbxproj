@@ -3,39 +3,39 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		019E4AB035F4E36D8192008D09875DAB /* Pods-BlueBuck-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E746C629C0BA99F283C58B75D048A298 /* Pods-BlueBuck-dummy.m */; };
 		049B042AFDD87E506ADC9038BA255238 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D668B78D487471D8B03EB825B720D09 /* Foundation.framework */; };
-		1D95BA7796EA06B81C3CDEF05EF3C813 /* OS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B49CB94845E824880AF6FC9791270F2 /* OS.swift */; };
-		284BBD6A94CDF699A28F9C765127F41F /* CompleteTransactionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5AFEF82D6937962B58396793F591E7 /* CompleteTransactionsController.swift */; };
+		1D95BA7796EA06B81C3CDEF05EF3C813 /* OS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788516D7A56BE437A9CE09520FBCC6E2 /* OS.swift */; };
+		284BBD6A94CDF699A28F9C765127F41F /* CompleteTransactionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E70FC647B70BD79ED0137EDF25AC29 /* CompleteTransactionsController.swift */; };
 		2CDD5CA69E35BD44CB87F069EE05A279 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 963461C1F8BDE5451D52A9C5D3814306 /* AVFoundation.framework */; };
-		33B7DE24F5CFC39CD0B61CCCAA3A7EDE /* SwiftyStoreKit+Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997773F2781B7EDCE9C16F6B6990E4F4 /* SwiftyStoreKit+Types.swift */; };
-		3421D3954BE90F03BD62C1377565782F /* SwiftySound-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 72D97C13D4FF5EF0D658D6385385B7E4 /* SwiftySound-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		33B7DE24F5CFC39CD0B61CCCAA3A7EDE /* SwiftyStoreKit+Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A2449B5FD7AC6C9D6C5F9F6BE705D3 /* SwiftyStoreKit+Types.swift */; };
+		3421D3954BE90F03BD62C1377565782F /* SwiftySound-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C1D43BE5F15779A7BC68018B34B878E4 /* SwiftySound-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3DCD331EF276A4B3A9B8AB850183D50B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D668B78D487471D8B03EB825B720D09 /* Foundation.framework */; };
-		4AF71E3682E322A69A4D6DD228BD9177 /* SwiftyStoreKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AEDF250B4A4057DDAD990551ECC6A3FC /* SwiftyStoreKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		550D691E8FAF5FEB6AB2BAF198018B92 /* ProductsInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FDE315FFCAAE30E1FD952E79CAD243 /* ProductsInfoController.swift */; };
-		598118971E608DAC2366F3A421847EFD /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF231D016E9D74DEC55052D018420CA3 /* Sound.swift */; };
+		4AF71E3682E322A69A4D6DD228BD9177 /* SwiftyStoreKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6923E3B48418DBA9659E182A3CD6189F /* SwiftyStoreKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		550D691E8FAF5FEB6AB2BAF198018B92 /* ProductsInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91913538BCEB8DE93B37439AEE264497 /* ProductsInfoController.swift */; };
+		598118971E608DAC2366F3A421847EFD /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC76E8AB02BD735D45DF4CB20563ED2 /* Sound.swift */; };
 		6664214F856BC02F87503B6EBE7EA99E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D668B78D487471D8B03EB825B720D09 /* Foundation.framework */; };
-		674BFAC8F7B174D8C334AD811741F08B /* SwiftySound-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C26927E00CE70E46FC12F0B9F6C2DE /* SwiftySound-dummy.m */; };
-		81D9DD68B90C34416A22040BB58237A7 /* SKProduct+LocalizedPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C04A933EDB109ADB0E3C4B274A7E8FD /* SKProduct+LocalizedPrice.swift */; };
-		98D4E2FCE36FDBC8FDC74A46CA9802EC /* SwiftyStoreKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A722B3B7AD6F3E127DAFB18BD9EAEC /* SwiftyStoreKit-dummy.m */; };
+		674BFAC8F7B174D8C334AD811741F08B /* SwiftySound-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1E5C295D40086C5B762E5B8D76B519 /* SwiftySound-dummy.m */; };
+		81D9DD68B90C34416A22040BB58237A7 /* SKProduct+LocalizedPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9CA7B3218170A98EB530FC4E81A6BB /* SKProduct+LocalizedPrice.swift */; };
+		98D4E2FCE36FDBC8FDC74A46CA9802EC /* SwiftyStoreKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F6ADEF5F69EECD599796D64C8E6D88A1 /* SwiftyStoreKit-dummy.m */; };
 		A150EACD5AE1D2D129449D541E4C25F7 /* Pods-BlueBuck-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C75454A397A2A543FA850A666CF86FA2 /* Pods-BlueBuck-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A9E41333B8B2CBC129020736EDC3D006 /* InAppReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0301E8B95997CE150BDE715C937F14 /* InAppReceipt.swift */; };
-		B6C934230C5BFD7150524E9242B5D591 /* GCHelper-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E76B0C2DB89F2620D327E582BA7FA2C0 /* GCHelper-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BA029AB8236A0392D39DF7168EDAC20F /* PaymentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8ACEA8A4329208B36619DAE3ABB5C1 /* PaymentsController.swift */; };
-		C0B64CB13B9ED01235345079733792E2 /* PaymentQueueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9859C86430E80C2E9C9ED899BF5E431F /* PaymentQueueController.swift */; };
-		C0EB7743ED6C234F404B4DFB08F37818 /* InAppProductQueryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6840395530B746EE77D5AFAF6587D87 /* InAppProductQueryRequest.swift */; };
-		D19D7F15F78CAB71BEB01C8037B8EAFD /* InAppReceiptVerificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAADF60AA48859596EBA7BEB93B24D2E /* InAppReceiptVerificator.swift */; };
-		D41D19808AADF172CE61785144852DB5 /* AppleReceiptValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AB107AEA910FB894C0055DA9FCF964 /* AppleReceiptValidator.swift */; };
+		A9E41333B8B2CBC129020736EDC3D006 /* InAppReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F1C801C40121E1725CA1988053429E /* InAppReceipt.swift */; };
+		B6C934230C5BFD7150524E9242B5D591 /* GCHelper-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E2F2D67F435A1F4938A7D364A1771B8F /* GCHelper-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BA029AB8236A0392D39DF7168EDAC20F /* PaymentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80EFC959AA9BB40E82F486CE66EAA18 /* PaymentsController.swift */; };
+		C0B64CB13B9ED01235345079733792E2 /* PaymentQueueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8642FFADE45015CA280452D6B12B573F /* PaymentQueueController.swift */; };
+		C0EB7743ED6C234F404B4DFB08F37818 /* InAppProductQueryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5446D822406CF71271DC0829F786F2 /* InAppProductQueryRequest.swift */; };
+		D19D7F15F78CAB71BEB01C8037B8EAFD /* InAppReceiptVerificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C62FA9FDEA1F542ABC5E3C69C06C227 /* InAppReceiptVerificator.swift */; };
+		D41D19808AADF172CE61785144852DB5 /* AppleReceiptValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF933769D4934CB535FD7EEDB47CDD0E /* AppleReceiptValidator.swift */; };
 		DA291582EA19046AD69C7930B70FDBC4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D668B78D487471D8B03EB825B720D09 /* Foundation.framework */; };
-		E4EEADCB96158CEA12482A5A72F479C9 /* GCHelper-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD1108B463D51542A02A5F9FEADBF73 /* GCHelper-dummy.m */; };
-		E866802E7F4CC1194AC89DCCA1C0AE7E /* RestorePurchasesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC674C82C229EBA3DEB70C72C7D06BE /* RestorePurchasesController.swift */; };
-		E8DEFAECC216932336C01967737ACBAB /* InAppReceiptRefreshRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38F90D9B3AD2E8CB8D37A1786DD9006 /* InAppReceiptRefreshRequest.swift */; };
-		EC965C5D78F7434DF446D56FD9E58761 /* SwiftyStoreKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839E29FBEED37DE89CA9568D6E5CB0D3 /* SwiftyStoreKit.swift */; };
-		F271DB98F1FB66687880AB90035D37E2 /* GCHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370691B8D82698E31A559CCC830D89F /* GCHelper.swift */; };
+		E4EEADCB96158CEA12482A5A72F479C9 /* GCHelper-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A16B886A0A90A64DDB377EA1D2CF4CA /* GCHelper-dummy.m */; };
+		E866802E7F4CC1194AC89DCCA1C0AE7E /* RestorePurchasesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E757AF68A6481B5ECEFE4DABBACB960 /* RestorePurchasesController.swift */; };
+		E8DEFAECC216932336C01967737ACBAB /* InAppReceiptRefreshRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7F87FD758ABD64B3A8B16FEC78EDBB /* InAppReceiptRefreshRequest.swift */; };
+		EC965C5D78F7434DF446D56FD9E58761 /* SwiftyStoreKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0773087C12481C6B93951161EED1FFE /* SwiftyStoreKit.swift */; };
+		F271DB98F1FB66687880AB90035D37E2 /* GCHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C842DB09E265DAB675CED465E508AA37 /* GCHelper.swift */; };
 		FA83ECFBD411A40750EA91FA4ED3FA87 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A9C0B4605CA287E18286BC5AB25811 /* GameKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,58 +64,69 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0370691B8D82698E31A559CCC830D89F /* GCHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GCHelper.swift; path = Pod/Classes/GCHelper.swift; sourceTree = "<group>"; };
+		00E70FC647B70BD79ED0137EDF25AC29 /* CompleteTransactionsController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CompleteTransactionsController.swift; path = SwiftyStoreKit/CompleteTransactionsController.swift; sourceTree = "<group>"; };
+		02A2449B5FD7AC6C9D6C5F9F6BE705D3 /* SwiftyStoreKit+Types.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "SwiftyStoreKit+Types.swift"; path = "SwiftyStoreKit/SwiftyStoreKit+Types.swift"; sourceTree = "<group>"; };
 		089945277447203E0C165CB195F7FC6E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0D99934E278E0E4FE483680D60637403 /* SwiftySound.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwiftySound.modulemap; sourceTree = "<group>"; };
-		186C6BFC5FAEBF0AC2066A594C591333 /* GCHelper.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GCHelper.xcconfig; sourceTree = "<group>"; };
-		1F5B3B4B45923D7A650AD1B2993B6298 /* Pods_BlueBuck.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BlueBuck.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2352586AF9E47B719BC823071B824B23 /* SwiftySound.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftySound.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		12B3C88CBECA62D6BA275DD0872A46DF /* CLSReport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSReport.h; path = iOS/Crashlytics.framework/Headers/CLSReport.h; sourceTree = "<group>"; };
+		1F5B3B4B45923D7A650AD1B2993B6298 /* Pods_BlueBuck.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_BlueBuck.framework; path = "Pods-BlueBuck.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		22D6BD184CD2A2AC4372F5408FBC173F /* GCHelper.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = GCHelper.modulemap; sourceTree = "<group>"; };
+		2352586AF9E47B719BC823071B824B23 /* SwiftySound.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftySound.framework; path = SwiftySound.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		247FA7E4CAB663936D4C15B381745A40 /* Pods-BlueBuck-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BlueBuck-frameworks.sh"; sourceTree = "<group>"; };
-		38BD027251CC3F40291F521BD89A5F52 /* SwiftySound-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftySound-prefix.pch"; sourceTree = "<group>"; };
-		3BD1108B463D51542A02A5F9FEADBF73 /* GCHelper-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GCHelper-dummy.m"; sourceTree = "<group>"; };
+		2A16B886A0A90A64DDB377EA1D2CF4CA /* GCHelper-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GCHelper-dummy.m"; sourceTree = "<group>"; };
+		2CC76E8AB02BD735D45DF4CB20563ED2 /* Sound.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Sound.swift; path = Sources/Sound.swift; sourceTree = "<group>"; };
+		2F7F87FD758ABD64B3A8B16FEC78EDBB /* InAppReceiptRefreshRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InAppReceiptRefreshRequest.swift; path = SwiftyStoreKit/InAppReceiptRefreshRequest.swift; sourceTree = "<group>"; };
+		32227FB93C938CDFE4D530EF4C866107 /* SwiftyStoreKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyStoreKit-prefix.pch"; sourceTree = "<group>"; };
 		3DA97A08DF19CB34F1EF0B74CEC0606E /* Pods-BlueBuck-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BlueBuck-acknowledgements.markdown"; sourceTree = "<group>"; };
-		4038DE062F7ACE6427C409AA65674157 /* GCHelper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GCHelper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		440945BF7361C4D8DB58F516CBC3DE90 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4038DE062F7ACE6427C409AA65674157 /* GCHelper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GCHelper.framework; path = GCHelper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		468EC9FF1F244E6AA8283445D80F90D1 /* Pods-BlueBuck-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BlueBuck-resources.sh"; sourceTree = "<group>"; };
-		4B49CB94845E824880AF6FC9791270F2 /* OS.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OS.swift; path = SwiftyStoreKit/OS.swift; sourceTree = "<group>"; };
-		4B8ACEA8A4329208B36619DAE3ABB5C1 /* PaymentsController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PaymentsController.swift; path = SwiftyStoreKit/PaymentsController.swift; sourceTree = "<group>"; };
-		4C04A933EDB109ADB0E3C4B274A7E8FD /* SKProduct+LocalizedPrice.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "SKProduct+LocalizedPrice.swift"; path = "SwiftyStoreKit/SKProduct+LocalizedPrice.swift"; sourceTree = "<group>"; };
-		57A722B3B7AD6F3E127DAFB18BD9EAEC /* SwiftyStoreKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftyStoreKit-dummy.m"; sourceTree = "<group>"; };
-		58A8D0B6C62EAD89E99F33342218B904 /* SwiftyStoreKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyStoreKit.xcconfig; sourceTree = "<group>"; };
-		59AB107AEA910FB894C0055DA9FCF964 /* AppleReceiptValidator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppleReceiptValidator.swift; path = SwiftyStoreKit/AppleReceiptValidator.swift; sourceTree = "<group>"; };
-		5C5AFEF82D6937962B58396793F591E7 /* CompleteTransactionsController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CompleteTransactionsController.swift; path = SwiftyStoreKit/CompleteTransactionsController.swift; sourceTree = "<group>"; };
+		4A2EE9347BB38E1EB7DD22EE3CEB31E2 /* FABAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FABAttributes.h; path = iOS/Fabric.framework/Headers/FABAttributes.h; sourceTree = "<group>"; };
+		4C9CA7B3218170A98EB530FC4E81A6BB /* SKProduct+LocalizedPrice.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "SKProduct+LocalizedPrice.swift"; path = "SwiftyStoreKit/SKProduct+LocalizedPrice.swift"; sourceTree = "<group>"; };
+		571F838E2D8C16CC29C2CCBDD3C9B91C /* Crashlytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Crashlytics.h; path = iOS/Crashlytics.framework/Headers/Crashlytics.h; sourceTree = "<group>"; };
+		5D5446D822406CF71271DC0829F786F2 /* InAppProductQueryRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InAppProductQueryRequest.swift; path = SwiftyStoreKit/InAppProductQueryRequest.swift; sourceTree = "<group>"; };
+		61F1C801C40121E1725CA1988053429E /* InAppReceipt.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InAppReceipt.swift; path = SwiftyStoreKit/InAppReceipt.swift; sourceTree = "<group>"; };
+		6284F278CB75D0A2C11DB171CF67AFBD /* CLSLogging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSLogging.h; path = iOS/Crashlytics.framework/Headers/CLSLogging.h; sourceTree = "<group>"; };
+		67596625F7AAF2D62709BC569A5169B7 /* ANSCompatibility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ANSCompatibility.h; path = iOS/Crashlytics.framework/Headers/ANSCompatibility.h; sourceTree = "<group>"; };
+		6923E3B48418DBA9659E182A3CD6189F /* SwiftyStoreKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyStoreKit-umbrella.h"; sourceTree = "<group>"; };
+		6C1E5C295D40086C5B762E5B8D76B519 /* SwiftySound-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftySound-dummy.m"; sourceTree = "<group>"; };
+		6C62FA9FDEA1F542ABC5E3C69C06C227 /* InAppReceiptVerificator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InAppReceiptVerificator.swift; path = SwiftyStoreKit/InAppReceiptVerificator.swift; sourceTree = "<group>"; };
 		6D668B78D487471D8B03EB825B720D09 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		6DC674C82C229EBA3DEB70C72C7D06BE /* RestorePurchasesController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RestorePurchasesController.swift; path = SwiftyStoreKit/RestorePurchasesController.swift; sourceTree = "<group>"; };
-		72D97C13D4FF5EF0D658D6385385B7E4 /* SwiftySound-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftySound-umbrella.h"; sourceTree = "<group>"; };
 		76A9C0B4605CA287E18286BC5AB25811 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/GameKit.framework; sourceTree = DEVELOPER_DIR; };
-		823E52EB0CFF47FE718A51789D9E789F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		839E29FBEED37DE89CA9568D6E5CB0D3 /* SwiftyStoreKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftyStoreKit.swift; path = SwiftyStoreKit/SwiftyStoreKit.swift; sourceTree = "<group>"; };
-		8C582DB5DB75367A26049BA2652B4538 /* SwiftySound.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftySound.xcconfig; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		94FDE315FFCAAE30E1FD952E79CAD243 /* ProductsInfoController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProductsInfoController.swift; path = SwiftyStoreKit/ProductsInfoController.swift; sourceTree = "<group>"; };
+		788516D7A56BE437A9CE09520FBCC6E2 /* OS.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OS.swift; path = SwiftyStoreKit/OS.swift; sourceTree = "<group>"; };
+		8642FFADE45015CA280452D6B12B573F /* PaymentQueueController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PaymentQueueController.swift; path = SwiftyStoreKit/PaymentQueueController.swift; sourceTree = "<group>"; };
+		89D3F5D439A36D3BDFEC46DD22BAB9B9 /* SwiftyStoreKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyStoreKit.xcconfig; sourceTree = "<group>"; };
+		90F4A6553FD4CE0EC513AC2BC0ECD53F /* SwiftySound.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftySound.xcconfig; sourceTree = "<group>"; };
+		91913538BCEB8DE93B37439AEE264497 /* ProductsInfoController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProductsInfoController.swift; path = SwiftyStoreKit/ProductsInfoController.swift; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9495EECBE57F03A9D5C400452D574A58 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		963461C1F8BDE5451D52A9C5D3814306 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
-		9859C86430E80C2E9C9ED899BF5E431F /* PaymentQueueController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PaymentQueueController.swift; path = SwiftyStoreKit/PaymentQueueController.swift; sourceTree = "<group>"; };
-		997773F2781B7EDCE9C16F6B6990E4F4 /* SwiftyStoreKit+Types.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "SwiftyStoreKit+Types.swift"; path = "SwiftyStoreKit/SwiftyStoreKit+Types.swift"; sourceTree = "<group>"; };
-		A6840395530B746EE77D5AFAF6587D87 /* InAppProductQueryRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InAppProductQueryRequest.swift; path = SwiftyStoreKit/InAppProductQueryRequest.swift; sourceTree = "<group>"; };
-		A6D9FFE6A1E603AFB8F2ED71105AF6D9 /* SwiftyStoreKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyStoreKit-prefix.pch"; sourceTree = "<group>"; };
+		9D7F738E61DD0DA19C04E3C83A509C9E /* CLSStackFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSStackFrame.h; path = iOS/Crashlytics.framework/Headers/CLSStackFrame.h; sourceTree = "<group>"; };
+		9E757AF68A6481B5ECEFE4DABBACB960 /* RestorePurchasesController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RestorePurchasesController.swift; path = SwiftyStoreKit/RestorePurchasesController.swift; sourceTree = "<group>"; };
+		A0773087C12481C6B93951161EED1FFE /* SwiftyStoreKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftyStoreKit.swift; path = SwiftyStoreKit/SwiftyStoreKit.swift; sourceTree = "<group>"; };
+		A3B8011BB97168250FAE5F6C5DD2737E /* GCHelper.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GCHelper.xcconfig; sourceTree = "<group>"; };
 		ABB25B4F15721F37808BA18396EF9E2B /* Pods-BlueBuck.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BlueBuck.release.xcconfig"; sourceTree = "<group>"; };
-		AEDF250B4A4057DDAD990551ECC6A3FC /* SwiftyStoreKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyStoreKit-umbrella.h"; sourceTree = "<group>"; };
-		B38F90D9B3AD2E8CB8D37A1786DD9006 /* InAppReceiptRefreshRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InAppReceiptRefreshRequest.swift; path = SwiftyStoreKit/InAppReceiptRefreshRequest.swift; sourceTree = "<group>"; };
+		AE94141D30BB53336317B9EC1D3018D3 /* SwiftyStoreKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwiftyStoreKit.modulemap; sourceTree = "<group>"; };
+		AF5326A4E433BA6911BD2F82E694BC86 /* SwiftySound.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwiftySound.modulemap; sourceTree = "<group>"; };
+		B2D9DCBD8DBD4006EB718089D8B78934 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = iOS/Fabric.framework; sourceTree = "<group>"; };
+		B34464556512845F74038B7B6AFE1752 /* Answers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Answers.h; path = iOS/Crashlytics.framework/Headers/Answers.h; sourceTree = "<group>"; };
+		B6116C67FC2423786E480FF3440BBB31 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1D43BE5F15779A7BC68018B34B878E4 /* SwiftySound-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftySound-umbrella.h"; sourceTree = "<group>"; };
 		C75454A397A2A543FA850A666CF86FA2 /* Pods-BlueBuck-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BlueBuck-umbrella.h"; sourceTree = "<group>"; };
-		C7C4D9975C6C436EF6B2C782BF1D77AB /* GCHelper.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = GCHelper.modulemap; sourceTree = "<group>"; };
-		D060A0F5D2F227420A5151A025B30F35 /* GCHelper-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GCHelper-prefix.pch"; sourceTree = "<group>"; };
-		D9B4E74D9AB25E640EC6EA752FF7840A /* SwiftyStoreKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwiftyStoreKit.modulemap; sourceTree = "<group>"; };
-		DA0301E8B95997CE150BDE715C937F14 /* InAppReceipt.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InAppReceipt.swift; path = SwiftyStoreKit/InAppReceipt.swift; sourceTree = "<group>"; };
-		DAADF60AA48859596EBA7BEB93B24D2E /* InAppReceiptVerificator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InAppReceiptVerificator.swift; path = SwiftyStoreKit/InAppReceiptVerificator.swift; sourceTree = "<group>"; };
+		C80EFC959AA9BB40E82F486CE66EAA18 /* PaymentsController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PaymentsController.swift; path = SwiftyStoreKit/PaymentsController.swift; sourceTree = "<group>"; };
+		C842DB09E265DAB675CED465E508AA37 /* GCHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GCHelper.swift; path = Pod/Classes/GCHelper.swift; sourceTree = "<group>"; };
+		DF933769D4934CB535FD7EEDB47CDD0E /* AppleReceiptValidator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppleReceiptValidator.swift; path = SwiftyStoreKit/AppleReceiptValidator.swift; sourceTree = "<group>"; };
+		DFF8F872129D979EF722F8DDD893D56B /* GCHelper-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GCHelper-prefix.pch"; sourceTree = "<group>"; };
+		E2F2D67F435A1F4938A7D364A1771B8F /* GCHelper-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GCHelper-umbrella.h"; sourceTree = "<group>"; };
+		E5C5FCB379F6E6385F01986657AE08B7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E746C629C0BA99F283C58B75D048A298 /* Pods-BlueBuck-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BlueBuck-dummy.m"; sourceTree = "<group>"; };
-		E76B0C2DB89F2620D327E582BA7FA2C0 /* GCHelper-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GCHelper-umbrella.h"; sourceTree = "<group>"; };
-		E770205FACCD0276E5BBC853903FEA48 /* SwiftyStoreKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyStoreKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E770205FACCD0276E5BBC853903FEA48 /* SwiftyStoreKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftyStoreKit.framework; path = SwiftyStoreKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E77BFB032C475613503FB5A8AF143445 /* Pods-BlueBuck-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BlueBuck-acknowledgements.plist"; sourceTree = "<group>"; };
-		F4B2D65130D503AA5B63F76B9E2B7271 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F603F132B663BB54664C5B84A9C71C93 /* Pods-BlueBuck.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BlueBuck.debug.xcconfig"; sourceTree = "<group>"; };
-		F7C26927E00CE70E46FC12F0B9F6C2DE /* SwiftySound-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftySound-dummy.m"; sourceTree = "<group>"; };
+		F6ADEF5F69EECD599796D64C8E6D88A1 /* SwiftyStoreKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftyStoreKit-dummy.m"; sourceTree = "<group>"; };
+		F7746F7F92A4FD9542EA72E347CFCF0B /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = iOS/Crashlytics.framework; sourceTree = "<group>"; };
 		F9AEBE30713241DA77FB501FBD7079B4 /* Pods-BlueBuck.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-BlueBuck.modulemap"; sourceTree = "<group>"; };
-		FF231D016E9D74DEC55052D018420CA3 /* Sound.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Sound.swift; path = Sources/Sound.swift; sourceTree = "<group>"; };
+		FA6E1C48E35B4798DC0605E4A795DBFA /* CLSAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSAttributes.h; path = iOS/Crashlytics.framework/Headers/CLSAttributes.h; sourceTree = "<group>"; };
+		FC6C05FF41A1A162698CB82829CF5335 /* Fabric.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Fabric.h; path = iOS/Fabric.framework/Headers/Fabric.h; sourceTree = "<group>"; };
+		FF2F1855A31CA0DA1A10653128B59A3A /* SwiftySound-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftySound-prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +167,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05E10C8239792844352DA4AA4EDD9B2B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				57582AE68E6B3D7F1476216680759AB5 /* Crashlytics */,
+				60EC5DFAA7B4241CB45D5086A41E986A /* Fabric */,
+				5B2B6A5A0AC48FADCDABEC9393AED22C /* GCHelper */,
+				60E2E589CCFB113BCEE11F4D403BA43C /* SwiftySound */,
+				CD52E2F7F17F2E69775BE5E0F5C97327 /* SwiftyStoreKit */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		122DA2E5084A4393C29BE363C764795C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,27 +187,79 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		1630A6771B8EFCB6E2F2E20AE97FB33A /* Support Files */ = {
+		25DE60AFB81CB8876B99EB02BB9DD921 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				C7C4D9975C6C436EF6B2C782BF1D77AB /* GCHelper.modulemap */,
-				186C6BFC5FAEBF0AC2066A594C591333 /* GCHelper.xcconfig */,
-				3BD1108B463D51542A02A5F9FEADBF73 /* GCHelper-dummy.m */,
-				D060A0F5D2F227420A5151A025B30F35 /* GCHelper-prefix.pch */,
-				E76B0C2DB89F2620D327E582BA7FA2C0 /* GCHelper-umbrella.h */,
-				440945BF7361C4D8DB58F516CBC3DE90 /* Info.plist */,
+				9495EECBE57F03A9D5C400452D574A58 /* Info.plist */,
+				AE94141D30BB53336317B9EC1D3018D3 /* SwiftyStoreKit.modulemap */,
+				89D3F5D439A36D3BDFEC46DD22BAB9B9 /* SwiftyStoreKit.xcconfig */,
+				F6ADEF5F69EECD599796D64C8E6D88A1 /* SwiftyStoreKit-dummy.m */,
+				32227FB93C938CDFE4D530EF4C866107 /* SwiftyStoreKit-prefix.pch */,
+				6923E3B48418DBA9659E182A3CD6189F /* SwiftyStoreKit-umbrella.h */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/GCHelper";
+			path = "../Target Support Files/SwiftyStoreKit";
 			sourceTree = "<group>";
 		};
-		560FAA7AF714664DA14588BD9496D239 /* GCHelper */ = {
+		54141EA54C1FA96C252932A0E4F5BCED /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				0370691B8D82698E31A559CCC830D89F /* GCHelper.swift */,
-				1630A6771B8EFCB6E2F2E20AE97FB33A /* Support Files */,
+				B6116C67FC2423786E480FF3440BBB31 /* Info.plist */,
+				AF5326A4E433BA6911BD2F82E694BC86 /* SwiftySound.modulemap */,
+				90F4A6553FD4CE0EC513AC2BC0ECD53F /* SwiftySound.xcconfig */,
+				6C1E5C295D40086C5B762E5B8D76B519 /* SwiftySound-dummy.m */,
+				FF2F1855A31CA0DA1A10653128B59A3A /* SwiftySound-prefix.pch */,
+				C1D43BE5F15779A7BC68018B34B878E4 /* SwiftySound-umbrella.h */,
 			);
+			name = "Support Files";
+			path = "../Target Support Files/SwiftySound";
+			sourceTree = "<group>";
+		};
+		57582AE68E6B3D7F1476216680759AB5 /* Crashlytics */ = {
+			isa = PBXGroup;
+			children = (
+				67596625F7AAF2D62709BC569A5169B7 /* ANSCompatibility.h */,
+				B34464556512845F74038B7B6AFE1752 /* Answers.h */,
+				FA6E1C48E35B4798DC0605E4A795DBFA /* CLSAttributes.h */,
+				6284F278CB75D0A2C11DB171CF67AFBD /* CLSLogging.h */,
+				12B3C88CBECA62D6BA275DD0872A46DF /* CLSReport.h */,
+				9D7F738E61DD0DA19C04E3C83A509C9E /* CLSStackFrame.h */,
+				571F838E2D8C16CC29C2CCBDD3C9B91C /* Crashlytics.h */,
+				CFD49CC5F585118F1EA6EAAB40135BB8 /* Frameworks */,
+			);
+			name = Crashlytics;
+			path = Crashlytics;
+			sourceTree = "<group>";
+		};
+		5B2B6A5A0AC48FADCDABEC9393AED22C /* GCHelper */ = {
+			isa = PBXGroup;
+			children = (
+				C842DB09E265DAB675CED465E508AA37 /* GCHelper.swift */,
+				EB84F425AA403E8ADAA8089A108ABC97 /* Support Files */,
+			);
+			name = GCHelper;
 			path = GCHelper;
+			sourceTree = "<group>";
+		};
+		60E2E589CCFB113BCEE11F4D403BA43C /* SwiftySound */ = {
+			isa = PBXGroup;
+			children = (
+				2CC76E8AB02BD735D45DF4CB20563ED2 /* Sound.swift */,
+				54141EA54C1FA96C252932A0E4F5BCED /* Support Files */,
+			);
+			name = SwiftySound;
+			path = SwiftySound;
+			sourceTree = "<group>";
+		};
+		60EC5DFAA7B4241CB45D5086A41E986A /* Fabric */ = {
+			isa = PBXGroup;
+			children = (
+				4A2EE9347BB38E1EB7DD22EE3CEB31E2 /* FABAttributes.h */,
+				FC6C05FF41A1A162698CB82829CF5335 /* Fabric.h */,
+				F9AB37475DC057CB5C399BFEF9385E29 /* Frameworks */,
+			);
+			name = Fabric;
+			path = Fabric;
 			sourceTree = "<group>";
 		};
 		7644AF6E56264544844EF2D673AA8876 /* Products */ = {
@@ -203,69 +278,10 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				122DA2E5084A4393C29BE363C764795C /* Frameworks */,
-				DB8437FD462BF27E22CFB38C7FB8D84D /* Pods */,
+				05E10C8239792844352DA4AA4EDD9B2B /* Pods */,
 				7644AF6E56264544844EF2D673AA8876 /* Products */,
 				F35C1361F9439BD5A5EEC17537C8EBD0 /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		98ACF1748C44FB1EBC2D0C6630CD507A /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				823E52EB0CFF47FE718A51789D9E789F /* Info.plist */,
-				0D99934E278E0E4FE483680D60637403 /* SwiftySound.modulemap */,
-				8C582DB5DB75367A26049BA2652B4538 /* SwiftySound.xcconfig */,
-				F7C26927E00CE70E46FC12F0B9F6C2DE /* SwiftySound-dummy.m */,
-				38BD027251CC3F40291F521BD89A5F52 /* SwiftySound-prefix.pch */,
-				72D97C13D4FF5EF0D658D6385385B7E4 /* SwiftySound-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/SwiftySound";
-			sourceTree = "<group>";
-		};
-		9B1270F7367BFE10C2AC3BD1868DC56E /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				F4B2D65130D503AA5B63F76B9E2B7271 /* Info.plist */,
-				D9B4E74D9AB25E640EC6EA752FF7840A /* SwiftyStoreKit.modulemap */,
-				58A8D0B6C62EAD89E99F33342218B904 /* SwiftyStoreKit.xcconfig */,
-				57A722B3B7AD6F3E127DAFB18BD9EAEC /* SwiftyStoreKit-dummy.m */,
-				A6D9FFE6A1E603AFB8F2ED71105AF6D9 /* SwiftyStoreKit-prefix.pch */,
-				AEDF250B4A4057DDAD990551ECC6A3FC /* SwiftyStoreKit-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/SwiftyStoreKit";
-			sourceTree = "<group>";
-		};
-		B3EC67600144C21687CA8FFF14D3326E /* SwiftyStoreKit */ = {
-			isa = PBXGroup;
-			children = (
-				59AB107AEA910FB894C0055DA9FCF964 /* AppleReceiptValidator.swift */,
-				5C5AFEF82D6937962B58396793F591E7 /* CompleteTransactionsController.swift */,
-				A6840395530B746EE77D5AFAF6587D87 /* InAppProductQueryRequest.swift */,
-				DA0301E8B95997CE150BDE715C937F14 /* InAppReceipt.swift */,
-				B38F90D9B3AD2E8CB8D37A1786DD9006 /* InAppReceiptRefreshRequest.swift */,
-				DAADF60AA48859596EBA7BEB93B24D2E /* InAppReceiptVerificator.swift */,
-				4B49CB94845E824880AF6FC9791270F2 /* OS.swift */,
-				9859C86430E80C2E9C9ED899BF5E431F /* PaymentQueueController.swift */,
-				4B8ACEA8A4329208B36619DAE3ABB5C1 /* PaymentsController.swift */,
-				94FDE315FFCAAE30E1FD952E79CAD243 /* ProductsInfoController.swift */,
-				6DC674C82C229EBA3DEB70C72C7D06BE /* RestorePurchasesController.swift */,
-				4C04A933EDB109ADB0E3C4B274A7E8FD /* SKProduct+LocalizedPrice.swift */,
-				839E29FBEED37DE89CA9568D6E5CB0D3 /* SwiftyStoreKit.swift */,
-				997773F2781B7EDCE9C16F6B6990E4F4 /* SwiftyStoreKit+Types.swift */,
-				9B1270F7367BFE10C2AC3BD1868DC56E /* Support Files */,
-			);
-			path = SwiftyStoreKit;
-			sourceTree = "<group>";
-		};
-		B8E579BF7B9989B34E92AC138F47B6DA /* SwiftySound */ = {
-			isa = PBXGroup;
-			children = (
-				FF231D016E9D74DEC55052D018420CA3 /* Sound.swift */,
-				98ACF1748C44FB1EBC2D0C6630CD507A /* Support Files */,
-			);
-			path = SwiftySound;
 			sourceTree = "<group>";
 		};
 		C9C343B974AEF9FD2E0CFA01950B1E24 /* Pods-BlueBuck */ = {
@@ -286,14 +302,49 @@
 			path = "Target Support Files/Pods-BlueBuck";
 			sourceTree = "<group>";
 		};
-		DB8437FD462BF27E22CFB38C7FB8D84D /* Pods */ = {
+		CD52E2F7F17F2E69775BE5E0F5C97327 /* SwiftyStoreKit */ = {
 			isa = PBXGroup;
 			children = (
-				560FAA7AF714664DA14588BD9496D239 /* GCHelper */,
-				B8E579BF7B9989B34E92AC138F47B6DA /* SwiftySound */,
-				B3EC67600144C21687CA8FFF14D3326E /* SwiftyStoreKit */,
+				DF933769D4934CB535FD7EEDB47CDD0E /* AppleReceiptValidator.swift */,
+				00E70FC647B70BD79ED0137EDF25AC29 /* CompleteTransactionsController.swift */,
+				5D5446D822406CF71271DC0829F786F2 /* InAppProductQueryRequest.swift */,
+				61F1C801C40121E1725CA1988053429E /* InAppReceipt.swift */,
+				2F7F87FD758ABD64B3A8B16FEC78EDBB /* InAppReceiptRefreshRequest.swift */,
+				6C62FA9FDEA1F542ABC5E3C69C06C227 /* InAppReceiptVerificator.swift */,
+				788516D7A56BE437A9CE09520FBCC6E2 /* OS.swift */,
+				8642FFADE45015CA280452D6B12B573F /* PaymentQueueController.swift */,
+				C80EFC959AA9BB40E82F486CE66EAA18 /* PaymentsController.swift */,
+				91913538BCEB8DE93B37439AEE264497 /* ProductsInfoController.swift */,
+				9E757AF68A6481B5ECEFE4DABBACB960 /* RestorePurchasesController.swift */,
+				4C9CA7B3218170A98EB530FC4E81A6BB /* SKProduct+LocalizedPrice.swift */,
+				A0773087C12481C6B93951161EED1FFE /* SwiftyStoreKit.swift */,
+				02A2449B5FD7AC6C9D6C5F9F6BE705D3 /* SwiftyStoreKit+Types.swift */,
+				25DE60AFB81CB8876B99EB02BB9DD921 /* Support Files */,
 			);
-			name = Pods;
+			name = SwiftyStoreKit;
+			path = SwiftyStoreKit;
+			sourceTree = "<group>";
+		};
+		CFD49CC5F585118F1EA6EAAB40135BB8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F7746F7F92A4FD9542EA72E347CFCF0B /* Crashlytics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EB84F425AA403E8ADAA8089A108ABC97 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				22D6BD184CD2A2AC4372F5408FBC173F /* GCHelper.modulemap */,
+				A3B8011BB97168250FAE5F6C5DD2737E /* GCHelper.xcconfig */,
+				2A16B886A0A90A64DDB377EA1D2CF4CA /* GCHelper-dummy.m */,
+				DFF8F872129D979EF722F8DDD893D56B /* GCHelper-prefix.pch */,
+				E2F2D67F435A1F4938A7D364A1771B8F /* GCHelper-umbrella.h */,
+				E5C5FCB379F6E6385F01986657AE08B7 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/GCHelper";
 			sourceTree = "<group>";
 		};
 		EFB559EC05B68327356B81EEFE83B937 /* iOS */ = {
@@ -312,6 +363,14 @@
 				C9C343B974AEF9FD2E0CFA01950B1E24 /* Pods-BlueBuck */,
 			);
 			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		F9AB37475DC057CB5C399BFEF9385E29 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B2D9DCBD8DBD4006EB718089D8B78934 /* Fabric.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -430,7 +489,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 0930;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -527,7 +586,7 @@
 /* Begin XCBuildConfiguration section */
 		015ECEABFE0FB6D617A7E961A62F5ED0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 186C6BFC5FAEBF0AC2066A594C591333 /* GCHelper.xcconfig */;
+			baseConfigurationReference = A3B8011BB97168250FAE5F6C5DD2737E /* GCHelper.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -542,7 +601,11 @@
 				INFOPLIST_FILE = "Target Support Files/GCHelper/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MODULEMAP_FILE = "Target Support Files/GCHelper/GCHelper.modulemap";
 				PRODUCT_MODULE_NAME = GCHelper;
 				PRODUCT_NAME = GCHelper;
@@ -560,7 +623,7 @@
 		};
 		12E3C423BF2B7EB919DA22D3881D5691 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 58A8D0B6C62EAD89E99F33342218B904 /* SwiftyStoreKit.xcconfig */;
+			baseConfigurationReference = 89D3F5D439A36D3BDFEC46DD22BAB9B9 /* SwiftyStoreKit.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -575,7 +638,11 @@
 				INFOPLIST_FILE = "Target Support Files/SwiftyStoreKit/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MODULEMAP_FILE = "Target Support Files/SwiftyStoreKit/SwiftyStoreKit.modulemap";
 				PRODUCT_MODULE_NAME = SwiftyStoreKit;
 				PRODUCT_NAME = SwiftyStoreKit;
@@ -609,7 +676,11 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-BlueBuck/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-BlueBuck/Pods-BlueBuck.modulemap";
 				OTHER_LDFLAGS = "";
@@ -629,7 +700,7 @@
 		};
 		1B7891D348681FD79DBC6C86E648677A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 186C6BFC5FAEBF0AC2066A594C591333 /* GCHelper.xcconfig */;
+			baseConfigurationReference = A3B8011BB97168250FAE5F6C5DD2737E /* GCHelper.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -644,7 +715,11 @@
 				INFOPLIST_FILE = "Target Support Files/GCHelper/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MODULEMAP_FILE = "Target Support Files/GCHelper/GCHelper.modulemap";
 				PRODUCT_MODULE_NAME = GCHelper;
 				PRODUCT_NAME = GCHelper;
@@ -661,7 +736,7 @@
 		};
 		56B4409E4CB2CC75D90B6A1F716484B7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C582DB5DB75367A26049BA2652B4538 /* SwiftySound.xcconfig */;
+			baseConfigurationReference = 90F4A6553FD4CE0EC513AC2BC0ECD53F /* SwiftySound.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -676,7 +751,11 @@
 				INFOPLIST_FILE = "Target Support Files/SwiftySound/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MODULEMAP_FILE = "Target Support Files/SwiftySound/SwiftySound.modulemap";
 				PRODUCT_MODULE_NAME = SwiftySound;
 				PRODUCT_NAME = SwiftySound;
@@ -694,7 +773,7 @@
 		};
 		58BBFEA53673AA21F13034281AC782B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 58A8D0B6C62EAD89E99F33342218B904 /* SwiftyStoreKit.xcconfig */;
+			baseConfigurationReference = 89D3F5D439A36D3BDFEC46DD22BAB9B9 /* SwiftyStoreKit.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -709,7 +788,11 @@
 				INFOPLIST_FILE = "Target Support Files/SwiftyStoreKit/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MODULEMAP_FILE = "Target Support Files/SwiftyStoreKit/SwiftyStoreKit.modulemap";
 				PRODUCT_MODULE_NAME = SwiftyStoreKit;
 				PRODUCT_NAME = SwiftyStoreKit;
@@ -841,14 +924,13 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
 		};
 		99E114B8990B4F9A09A0800466945A44 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C582DB5DB75367A26049BA2652B4538 /* SwiftySound.xcconfig */;
+			baseConfigurationReference = 90F4A6553FD4CE0EC513AC2BC0ECD53F /* SwiftySound.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -863,7 +945,11 @@
 				INFOPLIST_FILE = "Target Support Files/SwiftySound/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MODULEMAP_FILE = "Target Support Files/SwiftySound/SwiftySound.modulemap";
 				PRODUCT_MODULE_NAME = SwiftySound;
 				PRODUCT_NAME = SwiftySound;
@@ -896,7 +982,11 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-BlueBuck/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-BlueBuck/Pods-BlueBuck.modulemap";
 				OTHER_LDFLAGS = "";

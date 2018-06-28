@@ -22,7 +22,7 @@ internal final class EnterLevelPopup: UIView {
         layer.cornerRadius = 15
         clipsToBounds = true
         title.text = "Level"
-        title.font = UIFont(name: "HelveticaNeue-Bold", size: 20*Global.screenWidthScalar)
+        title.font = UIFont(name: "HelveticaNeue-Bold", size: 20*Global.screenCommonScalar)
         title.textAlignment = .center
         title.textColor = .white
         centerView.backgroundColor = Color.blackLighter1
@@ -36,7 +36,7 @@ internal final class EnterLevelPopup: UIView {
         okay.clipsToBounds = true
         okay.setTitle("Okay", for: .normal)
         okay.setTitleColor(Color.black, for: .normal)
-        okay.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 18*Global.screenWidthScalar)
+        okay.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 18*Global.screenCommonScalar)
         cancel.setImage(#imageLiteral(resourceName: "cancel"), for: .normal)
         cancel.backgroundColor = Color.blackDarker
         
@@ -59,8 +59,8 @@ internal final class EnterLevelPopup: UIView {
         
         okay.translatesAutoresizingMaskIntoConstraints = false
         layoutContraints.append(okay.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2))
-        layoutContraints.append(okay.rightAnchor.constraint(equalTo: rightAnchor, constant: -15*Global.screenWidthScalar))
-        layoutContraints.append(okay.leftAnchor.constraint(equalTo: cancel.rightAnchor, constant: 15*Global.screenWidthScalar))
+        layoutContraints.append(okay.rightAnchor.constraint(equalTo: rightAnchor, constant: -15*Global.screenCommonScalar))
+        layoutContraints.append(okay.leftAnchor.constraint(equalTo: cancel.rightAnchor, constant: 15*Global.screenCommonScalar))
         layoutContraints.append(okay.centerYAnchor.constraint(equalTo: cancel.centerYAnchor))
         
         centerView.translatesAutoresizingMaskIntoConstraints = false
