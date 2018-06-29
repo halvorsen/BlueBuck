@@ -40,11 +40,13 @@ class TutorialController {
         guard let tutorialView = tutorialView else { return }
         self.gameView?.addSubview(tutorialView)
         tutorialView.center = self.gameView!.center
+        let tutLevelView = tutorialView.imageViews[.levelView]!
+        self.levelView?.addSubview(tutLevelView)
         if UIScreen.main.bounds.height > 810 {
-            tutorialView.center.y -= 72.5
+           tutLevelView.frame.origin.y += 50
         }
-//        tutorialView.imageViews[.levelView]!.frame.size = CGSize(width: 375*Global.screenCommonScalar, height: 667*Global.screenCommonScalar)
-        self.levelView?.addSubview(tutorialView.imageViews[.levelView]!)
+//        tutorialView.center = CGPoint(x: self.levelView!.bounds.width / 2, y: self.levelView!.bounds.height / 2)
+        
     }
     
     func setClosures(gameViewController: GameViewController) {

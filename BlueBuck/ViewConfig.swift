@@ -83,13 +83,13 @@ internal final class LandscapeLeft: ViewConfig {
 internal final class Popup: ViewConfig {
     override init() {
         super.init()
-        objectiveCenter1 = CGPoint(x: 62*Global.screenCommonScalar, y: 49*Global.screenCommonScalar)
-        objectiveCenter2 = CGPoint(x: 102*Global.screenCommonScalar, y: 49*Global.screenCommonScalar)
-        objectiveCenter2b = CGPoint(x: 99*Global.screenCommonScalar, y: 49*Global.screenCommonScalar)
-        objectiveCenter3 = CGPoint(x: 137.5*Global.screenCommonScalar, y: 49*Global.screenCommonScalar)
-        objectiveCenter4 = CGPoint(x: 171*Global.screenCommonScalar, y: 49*Global.screenCommonScalar)
-        objectiveCenter4b = CGPoint(x: 158*Global.screenCommonScalar, y: 49*Global.screenCommonScalar)
-        objectiveCenter5 = CGPoint(x: 213*Global.screenCommonScalar, y: 49*Global.screenCommonScalar)
+        objectiveCenter1 = CGPoint(x: 62*Global.screenWidthScalar, y: 49*Global.screenCommonScalar)
+        objectiveCenter2 = CGPoint(x: 102*Global.screenWidthScalar, y: 49*Global.screenCommonScalar)
+        objectiveCenter2b = CGPoint(x: 99*Global.screenWidthScalar, y: 49*Global.screenCommonScalar)
+        objectiveCenter3 = CGPoint(x: 137.5*Global.screenWidthScalar, y: 49*Global.screenCommonScalar)
+        objectiveCenter4 = CGPoint(x: 171*Global.screenWidthScalar, y: 49*Global.screenCommonScalar)
+        objectiveCenter4b = CGPoint(x: 158*Global.screenWidthScalar, y: 49*Global.screenCommonScalar)
+        objectiveCenter5 = CGPoint(x: 213*Global.screenWidthScalar, y: 49*Global.screenCommonScalar)
         popUp = true
     }
 }

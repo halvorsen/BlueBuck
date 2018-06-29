@@ -41,6 +41,9 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
              guard let config = config else { return }
        
             objectiveView?.frame = config.objectiveFrame
+            if let s = objectiveView?.superview {
+                objectiveView?.center.x = s.bounds.width / 2
+            }
             buttonView.config = config
             objectiveView?.config = config
         }
@@ -78,10 +81,13 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
             iconView.center.y = 787.5
         }
         baseView.addSubview(gameView!)
-        addTapViews()
-        
+//        addTapViews()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapOutsideGame))
+        tap.delegate = self
+        baseView.addGestureRecognizer(tap)
         baseView.addSubview(iconView)
         baseView.addSubview(buttonView)
+        objectiveView.isUserInteractionEnabled = false
         baseView.addSubview(objectiveView)
         buttonView.backgroundColor = .clear
    
@@ -200,36 +206,40 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
         }
     }
     
-    private func addTapViews() {
-        guard let objectiveView = objectiveView else { return }
-        
-        tapView.top.frame = CGRect(x: 0, y: 0, width: 375*Global.screenCommonScalar, height: 98*Global.screenCommonScalar)
-        if UIScreen.main.bounds.height > 810 {
-            tapView.top.frame.size.height += 72
-        }
-        tapView.bottom.frame = CGRect(x: 0, y: 569*Global.screenCommonScalar, width: 375*Global.screenCommonScalar, height: 98*Global.screenCommonScalar)
-        if UIScreen.main.bounds.height > 810 {
-            tapView.bottom.frame.size.height += 72
-            tapView.bottom.frame.origin.y += 72
-        }
-        tapView.left.frame = CGRect(x: 0, y: 98*Global.screenCommonScalar, width: 73*Global.screenCommonScalar, height: 471*Global.screenCommonScalar)
-        if UIScreen.main.bounds.height > 810 {
-            tapView.left.frame.origin.y += 72
-        }
-        tapView.right.frame = CGRect(x: 302*Global.screenCommonScalar, y: 98*Global.screenCommonScalar, width: 73*Global.screenCommonScalar, height: 471*Global.screenCommonScalar)
-        if UIScreen.main.bounds.height > 810 {
-            tapView.right.frame.origin.y += 72
-        }
-        for tapView in [tapView.top, tapView.bottom, tapView.left, tapView.right, buttonView, objectiveView] {
-            
-            let tap = UITapGestureRecognizer(target: self, action: #selector(tapOutsideGame(_:)))
-            tap.delegate = self
-            baseView.addSubview(tapView)
-            tapView.addGestureRecognizer(tap)
-            tapView.isUserInteractionEnabled = true
-        }
-        
-    }
+//    private func addTapViews() {
+//        guard let objectiveView = objectiveView else { return }
+//
+//        tapView.top.frame = CGRect(x: 0, y: 0, width: 375*Global.screenCommonScalar, height: 98*Global.screenCommonScalar)
+//        tapView.top.center.x = baseView.bounds.width * 0.5
+//        if UIScreen.main.bounds.height > 810 {
+//            tapView.top.frame.size.height += 72
+//        }
+//        tapView.bottom.frame = CGRect(x: 0, y: 569*Global.screenCommonScalar, width: 375*Global.screenCommonScalar, height: 98*Global.screenCommonScalar)
+//        tapView.bottom.center.x = baseView.bounds.width * 0.5
+//        if UIScreen.main.bounds.height > 810 {
+//            tapView.bottom.frame.size.height += 72
+//            tapView.bottom.frame.origin.y += 72
+//        }
+//        tapView.left.frame = CGRect(x: 0, y: 98*Global.screenCommonScalar, width: 73*Global.screenCommonScalar, height: 471*Global.screenCommonScalar)
+//        tapView.left.center.y = baseView.bounds.height * 0.5
+//        if UIScreen.main.bounds.height > 810 {
+//            tapView.left.frame.origin.y += 72
+//        }
+//        tapView.right.frame = CGRect(x: 302*Global.screenCommonScalar, y: 98*Global.screenCommonScalar, width: 73*Global.screenCommonScalar, height: 471*Global.screenCommonScalar)
+//        tapView.right.center.y = baseView.bounds.height * 0.5
+//        if UIScreen.main.bounds.height > 810 {
+//            tapView.right.frame.origin.y += 72
+//        }
+//        for tapView in [tapView.top, tapView.bottom, tapView.left, tapView.right, buttonView, objectiveView] {
+//
+//            let tap = UITapGestureRecognizer(target: self, action: #selector(tapOutsideGame(_:)))
+//            tap.delegate = self
+//            baseView.addSubview(tapView)
+//            tapView.addGestureRecognizer(tap)
+//            tapView.isUserInteractionEnabled = true
+//        }
+//
+//    }
     var movesCounter = 0
     internal func incrementMoveCounter() {
         movesCounter += 1
@@ -244,13 +254,14 @@ final class GameViewController: UIViewController, GameSceneDelegate, UIGestureRe
     }
     
     internal func tapOnGame() {
+
         if viewsOn {
             toggleButtonsAndObjectives()
         }
     }
     
-    @objc private func tapOutsideGame(_ tapGesture: UITapGestureRecognizer) {
-        
+    @objc internal func tapOutsideGame() {
+    
         guard isNotTutorial else { return }
         toggleButtonsAndObjectives()
     }

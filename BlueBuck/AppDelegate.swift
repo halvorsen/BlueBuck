@@ -21,12 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Fabric.with([Crashlytics.self])
-        if Global.screenWidthScalar < 322 {
-            Global.screenCommonScalar = UIScreen.main.bounds.height/667
-        }
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         Sound.enabled = true
-        
+        if UIScreen.main.bounds.width < 322 {
+          
+            Global.screenCommonScalar = UIScreen.main.bounds.height/667
+        }
+    
         if UserDefaults.standard.bool(forKey: "blueBuckLaunchedBefore") { // Subsequent Launches
             
             let viewController = LevelsViewController()

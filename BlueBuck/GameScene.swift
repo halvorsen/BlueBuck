@@ -16,6 +16,7 @@ internal protocol GameSceneDelegate: class {
     func gameComplete()
     func incrementMoveCounter()
     func resetMoveCounter()
+    func tapOutsideGame()
 }
 
 final class GameScene: SKScene {
@@ -231,7 +232,7 @@ final class GameScene: SKScene {
     
     @objc private func tapFunc(_ gesture: UITapGestureRecognizer) {
        
-        gameDelegate?.tapOnGame()
+        
         var tapLocation = gesture.location(in: view)
         tapLocation.y = UIScreen.main.bounds.height - tapLocation.y
         if UIScreen.main.bounds.height > 810 {
@@ -246,11 +247,12 @@ final class GameScene: SKScene {
                 tappedOn(squares[i], orientation: orientation)
                 
                 didTapOnBlock(squares[i])
-               
+                gameDelegate?.tapOnGame()
                 return
             }
             
         }
+        gameDelegate?.tapOutsideGame()
     }
     
     private func addBlockToQueue(_ newBlock: Block) {

@@ -19,10 +19,10 @@ internal final class EnterLevelPopup: UIView {
     override init(frame: CGRect) {
     super.init(frame: frame)
         backgroundColor = Color.blackPopup
-        layer.cornerRadius = 15
+        layer.cornerRadius = 15*Global.screenCommonScalar
         clipsToBounds = true
         title.text = "Level"
-        title.font = UIFont(name: "HelveticaNeue-Bold", size: 20*Global.screenCommonScalar)
+        title.font = UIFont(name: "HelveticaNeue-Bold", size: 18*Global.screenCommonScalar)
         title.textAlignment = .center
         title.textColor = .white
         centerView.backgroundColor = Color.blackLighter1

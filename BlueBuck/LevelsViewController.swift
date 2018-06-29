@@ -19,7 +19,7 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
     private var objectiveView: ObjectiveView?
     private var tutorialController: TutorialController?
     private lazy var mask = UIView(frame: view.bounds)
-    internal var doTutorial = true
+    internal var doTutorial = false
     internal var tutorialView: UIImageView?
     internal let cover = UIView()
     internal var easterEggController: EasterEggController?
@@ -48,9 +48,11 @@ final class LevelsViewController: UIViewController, TutorialDelegate {
         
         
         guard let enterLevelPopup = enterLevelPopup else { return }
-        objectiveView.frame = enterLevelPopup.centerView.bounds
+        objectiveView.frame.size.width = enterLevelPopup.centerView.bounds.size.width
+        objectiveView.frame.size.height = 98*Global.screenCommonScalar
+        objectiveView.center = CGPoint(x: enterLevelPopup.centerView.bounds.width / 2, y: enterLevelPopup.centerView.bounds.height / 2)
         enterLevelPopup.centerView.addSubview(objectiveView)
-    
+        
         UIView.animate(withDuration: 0.4) {
             enterLevelPopup.alpha = 1.0
         }

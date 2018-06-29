@@ -28,7 +28,8 @@ internal final class LevelsView: UIScrollView {
         levelBackgroundView.frame.size = contentSize
         levelBackgroundView.center.x = self.center.x
         if UIScreen.main.bounds.height > 810 {
-            contentSize = CGSize(width: 375*Global.screenCommonScalar, height: 2970)
+            contentSize.height = 2970*Global.screenHeightScalar
+            levelBackgroundView.frame.size = CGSize(width: contentSize.width, height: 3000*Global.screenHeightScalar)
         }
         addSubview(levelBackgroundView)
         for i in 0..<buttons.count {
@@ -54,7 +55,7 @@ internal final class LevelsView: UIScrollView {
       
         contentOffset.y = contentSize.height - 667*Global.screenCommonScalar
         if UIScreen.main.bounds.height > 810 {
-            contentOffset.y = contentSize.height - 730*Global.screenCommonScalar
+            contentOffset.y = contentSize.height - 600*Global.screenHeightScalar
         }
         for button in buttons {
             addSubview(button)
